@@ -1,141 +1,287 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="km">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MGG STORE | Diamond Top Up</title>
+  <title>MGG STORE - Diamond Top Up</title>
 
   <style>
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: Arial, sans-serif;
+      font-family: Arial, "Noto Sans Khmer", sans-serif;
     }
 
     body {
-      min-height: 100vh;
+      background: linear-gradient(135deg, #09001a, #16003b, #05000d);
       color: white;
-      background:
-        radial-gradient(circle at top, #243b80 0%, transparent 35%),
-        linear-gradient(135deg, #050816, #0b1026 55%, #050816);
-      padding: 25px 15px 50px;
+      min-height: 100vh;
     }
 
-    .container {
-      max-width: 900px;
-      margin: auto;
-    }
-
-    .header {
+    header {
       text-align: center;
-      margin-bottom: 25px;
+      padding: 35px 15px;
     }
 
     .logo {
       font-size: 42px;
       font-weight: 900;
-      letter-spacing: 3px;
-      color: #70d9ff;
-      text-shadow: 0 0 20px #008cff;
+      color: #b86cff;
+      text-shadow: 0 0 20px #8a2be2;
     }
 
     .subtitle {
-      color: #b8c5e8;
       margin-top: 8px;
+      color: #ddd;
+      font-size: 17px;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 20px;
+    }
+
+    .hero h1 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      color: #ccc;
+      margin-bottom: 25px;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      max-width: 900px;
+      margin: 0 auto 35px;
+      padding: 0 15px;
+    }
+
+    .feature {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(190,100,255,0.35);
+      border-radius: 15px;
+      padding: 18px 8px;
+      text-align: center;
+      box-shadow: 0 0 15px rgba(150,50,255,0.15);
+    }
+
+    .feature .icon {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .feature h3 {
+      font-size: 15px;
+    }
+
+    .products {
+      max-width: 900px;
+      margin: auto;
+      padding: 0 15px 40px;
+    }
+
+    .products h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 26px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
     }
 
     .card {
-      background: rgba(13, 20, 48, 0.88);
-      border: 1px solid rgba(93, 181, 255, 0.25);
-      border-radius: 22px;
-      padding: 22px;
-      margin-bottom: 20px;
-      box-shadow: 0 15px 40px rgba(0,0,0,.35);
-      backdrop-filter: blur(10px);
+      background: linear-gradient(145deg, #1c0640, #0d0220);
+      border: 1px solid #7424c9;
+      border-radius: 18px;
+      padding: 22px 15px;
+      text-align: center;
+      transition: 0.3s;
     }
 
-    .title {
-      font-size: 20px;
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 25px rgba(160,60,255,0.45);
+    }
+
+    .diamond {
+      font-size: 35px;
+    }
+
+    .card h3 {
+      margin: 10px 0;
+    }
+
+    .price {
+      color: #d58aff;
+      font-size: 22px;
       font-weight: bold;
       margin-bottom: 15px;
     }
 
-    .games {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-    }
-
-    .game {
-      padding: 15px;
-      border-radius: 14px;
-      background: #111a38;
-      border: 1px solid #27345f;
-      cursor: pointer;
-      text-align: center;
-      transition: .2s;
-    }
-
-    .game:hover,
-    .game.active {
-      border-color: #58c7ff;
-      background: #15264d;
-      transform: translateY(-2px);
-    }
-
-    .diamond-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-    }
-
-    .diamond {
-      padding: 18px 10px;
-      border-radius: 16px;
-      background: #101938;
-      border: 1px solid #2a3968;
+    .buy {
+      display: inline-block;
+      text-decoration: none;
       color: white;
-      cursor: pointer;
+      background: linear-gradient(90deg, #7b20d4, #bd54ff);
+      padding: 11px 22px;
+      border-radius: 25px;
+      font-weight: bold;
+    }
+
+    .contact {
       text-align: center;
-      transition: .2s;
+      padding: 30px 15px 45px;
     }
 
-    .diamond:hover,
-    .diamond.selected {
-      border-color: #62d5ff;
-      box-shadow: 0 0 18px rgba(58,190,255,.25);
-      background: #142750;
+    .contact h2 {
+      margin-bottom: 12px;
     }
 
-    .diamond b {
-      display: block;
-      font-size: 19px;
-      color: #7cdbff;
-      margin-bottom: 5px;
+    .telegram {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 13px 25px;
+      border-radius: 25px;
+      background: #168de2;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
     }
 
-    .pass {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 17px;
-      border-radius: 16px;
-      background: linear-gradient(90deg, #172755, #111a38);
-      border: 1px solid #30477d;
-      cursor: pointer;
+    footer {
+      text-align: center;
+      padding: 18px;
+      color: #999;
+      border-top: 1px solid rgba(255,255,255,0.1);
     }
 
-    .pass.selected {
-      border-color: #62d5ff;
-      box-shadow: 0 0 20px rgba(58,190,255,.2);
-    }
+    @media (max-width: 700px) {
+      .features {
+        grid-template-columns: repeat(2, 1fr);
+      }
 
-    input {
-      width: 100%;
-      padding: 15px;
-      margin-top: 9px;
-      margin-bottom: 14px;
-      border: 1px solid #2b3b6b;
-      border-radius: 13px;
-      background: #080e22
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .logo {
+        font-size: 34px;
+      }
+
+      .hero h1 {
+        font-size: 26px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">💎 MGG STORE</div>
+    <div class="subtitle">Diamond Top Up • Fast • Safe • Affordable</div>
+  </header>
+
+  <section class="hero">
+    <h1>💎 Diamond Top Up</h1>
+    <p>សេវាកម្ម Top Up ងាយស្រួល រហ័ស និងមានភាពងាយស្រួលសម្រាប់អតិថិជន</p>
+  </section>
+
+  <section class="features">
+
+    <div class="feature">
+      <div class="icon">⚡</div>
+      <h3>លឿនរហ័ស</h3>
+    </div>
+
+    <div class="feature">
+      <div class="icon">🔒</div>
+      <h3>សុវត្ថិភាព</h3>
+    </div>
+
+    <div class="feature">
+      <div class="icon">💰</div>
+      <h3>តម្លៃសមរម្យ</h3>
+    </div>
+
+    <div class="feature">
+      <div class="icon">❤️</div>
+      <h3>មិនខកបំណង</h3>
+    </div>
+
+  </section>
+
+  <section class="products">
+
+    <h2>🔥 Diamond Packages</h2>
+
+    <div class="cards">
+
+      <div class="card">
+        <div class="diamond">💎</div>
+        <h3>100 Diamonds</h3>
+        <div class="price">$1.00</div>
+        <a class="buy" href="https://t.me/MGGStoreAdmin">ទិញឥឡូវ</a>
+      </div>
+
+      <div class="card">
+        <div class="diamond">💎</div>
+        <h3>310 Diamonds</h3>
+        <div class="price">$3.00</div>
+        <a class="buy" href="https://t.me/MGGStoreAdmin">ទិញឥឡូវ</a>
+      </div>
+
+      <div class="card">
+        <div class="diamond">💎</div>
+        <h3>520 Diamonds</h3>
+        <div class="price">$5.00</div>
+        <a class="buy" href="https://t.me/MGGStoreAdmin">ទិញឥឡូវ</a>
+      </div>
+
+      <div class="card">
+        <div class="diamond">💎</div>
+        <h3>1060 Diamonds</h3>
+        <div class="price">$10.00</div>
+        <a class="buy" href="https://t.me/MGGStoreAdmin">ទិញឥឡូវ</a>
+      </div>
+
+      <div class="card">
+        <div class="diamond">🎟️</div>
+        <h3>Weekly Pass</h3>
+        <div class="price">$2.50</div>
+        <a class="buy" href="https://t.me/MGGStoreAdmin">ទិញឥឡូវ</a>
+      </div>
+
+      <div class="card">
+        <div class="diamond">👑</div>
+        <h3>Monthly Pass</h3>
+        <div class="price">$8.00</div>
+        <a class="buy" href="https://t.me/MGGStoreAdmin">ទិញឥឡូវ</a>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="contact">
+    <h2>📩 ត្រូវការជំនួយ?</h2>
+    <p>ទាក់ទង Admin ដើម្បីធ្វើការកម្មង់</p>
+
+    <a class="telegram" href="https://t.me/MGGStoreAdmin">
+      💬 Telegram Admin
+    </a>
+  </section>
+
+  <footer>
+    © 2026 MGG STORE • Diamond Top Up
+  </footer>
+
+</body>
+          </html>
