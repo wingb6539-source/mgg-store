@@ -1,304 +1,569 @@
 <!DOCTYPE html>
 <html lang="km">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MGG STORE - Diamond Top Up</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, "Noto Sans Khmer", sans-serif;
-    }
+<title>MGG STORE - Game Top Up</title>
 
-    body {
-      background: linear-gradient(135deg, #09001a, #16003b, #05000d);
-      color: white;
-      min-height: 100vh;
-    }
+<style>
+*{
+  box-sizing:border-box;
+}
 
-    header {
-      text-align: center;
-      padding: 35px 15px;
-    }
+body{
+  margin:0;
+  font-family:Arial,"Noto Sans Khmer",sans-serif;
+  background:linear-gradient(180deg,#ff8a00,#ff4b00 45%,#a90000);
+  color:white;
+}
 
-    .logo {
-      font-size: 42px;
-      font-weight: 900;
-      color: #b86cff;
-      text-shadow: 0 0 20px #8a2be2;
-    }
+a{
+  text-decoration:none;
+  color:inherit;
+}
 
-    .subtitle {
-      margin-top: 8px;
-      color: #ddd;
-      font-size: 17px;
-    }
+/* HEADER */
+.header{
+  position:sticky;
+  top:0;
+  z-index:20;
+  background:linear-gradient(90deg,#8b0000,#d40000);
+  border-bottom:4px solid #ffd400;
+  padding:12px 5%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
 
-    .hero {
-      text-align: center;
-      padding: 20px;
-    }
+.logo{
+  font-size:23px;
+  font-weight:1000;
+  color:#ffd92e;
+  text-shadow:2px 2px #700000;
+}
 
-    .hero h1 {
-      font-size: 32px;
-      margin-bottom: 10px;
-    }
+.telegram{
+  background:#25a7e8;
+  padding:11px 18px;
+  border-radius:30px;
+  font-weight:bold;
+}
 
-    .hero p {
-      color: #ccc;
-      margin-bottom: 25px;
-    }
+/* MAIN */
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:22px 16px;
+}
 
-    .features {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-      max-width: 900px;
-      margin: 0 auto 35px;
-      padding: 0 15px;
-    }
+/* HERO */
+.hero{
+  border:4px solid #ffd52a;
+  border-radius:22px;
+  overflow:hidden;
+  background:radial-gradient(circle,#ffe75b,#f6a900 45%,#df2500);
+  min-height:330px;
+  display:flex;
+  align-items:center;
+  position:relative;
+  box-shadow:0 10px 30px #68000080;
+}
 
-    .feature {
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(190,100,255,0.35);
-      border-radius: 15px;
-      padding: 18px 8px;
-      text-align: center;
-      box-shadow: 0 0 15px rgba(150,50,255,0.15);
-    }
+.hero-text{
+  padding:30px;
+  max-width:65%;
+  position:relative;
+  z-index:2;
+}
 
-    .feature .icon {
-      font-size: 28px;
-      margin-bottom: 8px;
-    }
+.hero h1{
+  margin:0;
+  font-size:clamp(42px,8vw,75px);
+  color:#ffef38;
+  text-shadow:4px 4px #a90000;
+}
 
-    .feature h3 {
-      font-size: 15px;
-    }
+.hero h2{
+  margin:8px 0;
+  color:#00e5ff;
+  text-shadow:3px 3px #006078;
+}
 
-    .products {
-      max-width: 900px;
-      margin: auto;
-      padding: 0 15px 40px;
-    }
+.hero p{
+  font-size:18px;
+  font-weight:bold;
+}
 
-    .products h2 {
-      text-align: center;
-      margin-bottom: 20px;
-      font-size: 26px;
-    }
+.hero-art{
+  position:absolute;
+  right:5%;
+  bottom:5px;
+  font-size:130px;
+}
 
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 15px;
-    }
+/* FEATURES */
+.features{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin:20px 0;
+}
 
-    .card {
-      background: linear-gradient(145deg, #1c0640, #0d0220);
-      border: 1px solid #7424c9;
-      border-radius: 18px;
-      padding: 22px 15px;
-      text-align: center;
-      transition: 0.3s;
-    }
+.feature{
+  background:linear-gradient(#fff45a,#ffd400);
+  color:#a40000;
+  border-radius:16px;
+  padding:15px;
+  text-align:center;
+  font-weight:900;
+  border:2px solid white;
+}
 
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 0 25px rgba(160,60,255,0.45);
-    }
+/* TITLE */
+.section-title{
+  text-align:center;
+  background:linear-gradient(#ffe52a,#ffbf00);
+  color:#a40000;
+  border:3px solid white;
+  border-radius:18px;
+  padding:14px;
+  margin:24px 0;
+  font-size:24px;
+  font-weight:1000;
+}
 
-    .diamond {
-      font-size: 35px;
-    }
+/* GAMES */
+.games{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
 
-    .card h3 {
-      margin: 10px 0;
-    }
+.card{
+  background:linear-gradient(180deg,#ffbd16,#e60000 38%);
+  border:4px solid #ffd52a;
+  border-radius:24px;
+  overflow:hidden;
+  box-shadow:0 8px 18px #65000066;
+}
 
-    .price {
-      color: #d58aff;
-      font-size: 22px;
-      font-weight: bold;
-      margin-bottom: 15px;
-    }
+.game-img{
+  height:165px;
+  display:grid;
+  place-items:center;
+  font-size:70px;
+  background:radial-gradient(circle,#5adfff,#0754a7 65%,#15224d);
+  position:relative;
+}
 
-    .buy {
-      display: inline-block;
-      text-decoration: none;
-      color: white;
-      background: linear-gradient(90deg, #7b20d4, #bd54ff);
-      padding: 11px 22px;
-      border-radius: 25px;
-      font-weight: bold;
-    }
+.flag{
+  position:absolute;
+  top:9px;
+  right:9px;
+  font-size:20px;
+  background:white;
+  padding:5px 8px;
+  border-radius:12px;
+}
 
-    .contact {
-      text-align: center;
-      padding: 30px 15px 45px;
-    }
+.card h3{
+  margin:0;
+  padding:12px 10px 5px;
+  text-align:center;
+}
 
-    .contact h2 {
-      margin-bottom: 12px;
-    }
+.sub{
+  text-align:center;
+  color:#ffe943;
+  font-weight:bold;
+  padding-bottom:10px;
+}
 
-    .telegram {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 13px 25px;
-      border-radius: 25px;
-      background: #168de2;
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-    }
+.buy{
+  display:block;
+  margin:0 18px 18px;
+  background:#ffd21c;
+  color:#8c0000;
+  border-radius:25px;
+  text-align:center;
+  padding:11px;
+  font-weight:1000;
+  border:2px solid white;
+}
 
-    footer {
-      text-align: center;
-      padding: 18px;
-      color: #999;
-      border-top: 1px solid rgba(255,255,255,0.1);
-    }
+/* INFO */
+.note{
+  background:#fff0a8;
+  color:#8b0000;
+  padding:18px;
+  border-radius:16px;
+  font-weight:bold;
+  margin-top:25px;
+  text-align:center;
+}
 
-    @media (max-width: 700px) {
-      .features {
-        grid-template-columns: repeat(2, 1fr);
-      }
+/* CHAT */
+.chat{
+  position:fixed;
+  right:16px;
+  bottom:20px;
+  z-index:30;
+  background:#e50000;
+  border:4px solid #ffd42a;
+  border-radius:50px;
+  padding:10px 16px;
+  font-weight:900;
+}
 
-      .cards {
-        grid-template-columns: 1fr;
-      }
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:30px 15px;
+  background:#790000;
+  margin-top:35px;
+}
 
-      .logo {
-        font-size: 34px;
-      }
+/* MOBILE */
+@media(max-width:750px){
 
-      .hero h1 {
-        font-size: 26px;
-      }
-    }
-  </style>
+  .header{
+    padding:10px 12px;
+  }
+
+  .logo{
+    font-size:18px;
+  }
+
+  .telegram{
+    padding:9px 12px;
+    font-size:13px;
+  }
+
+  .hero{
+    min-height:300px;
+  }
+
+  .hero-text{
+    padding:22px;
+    max-width:80%;
+  }
+
+  .hero-art{
+    font-size:90px;
+    right:0;
+  }
+
+  .features{
+    grid-template-columns:1fr;
+  }
+
+  .games{
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+  }
+
+  .game-img{
+    height:135px;
+    font-size:58px;
+  }
+
+  .card h3{
+    font-size:14px;
+  }
+}
+
+@media(max-width:430px){
+
+  .games{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .hero h1{
+    font-size:40px;
+  }
+
+  .hero h2{
+    font-size:20px;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <header>
-    <div class="logo">💎 MGG STORE</div>
-    <div class="subtitle">Diamond Top Up • Fast • Safe • Affordable</div>
-  </header>
+<header class="header">
 
-  <section class="hero">
-    <h1>💎 Diamond Top Up</h1>
-    <p>សេវាកម្ម Top Up ងាយស្រួល រហ័ស និងមានភាពងាយស្រួលសម្រាប់អតិថិជន</p>
-  </section>
+  <div class="logo">
+    💎 MGG STORE
+  </div>
 
-  <section class="features">
+  <a class="telegram"
+     href="https://t.me/MGGStoreAdmin">
+     ✈️ Chat Admin
+  </a>
 
-    <div class="feature">
-      <div class="icon">⚡</div>
-      <h3>លឿនរហ័ស</h3>
-    </div>
+</header>
 
-    <div class="feature">
-      <div class="icon">🔒</div>
-      <h3>សុវត្ថិភាព</h3>
-    </div>
 
-    <div class="feature">
-      <div class="icon">💰</div>
-      <h3>តម្លៃសមរម្យ</h3>
-    </div>
+<main class="container">
 
-    <div class="feature">
-      <div class="icon">❤️</div>
-      <h3>មិនខកបំណង</h3>
-    </div>
+<!-- HERO -->
+<section class="hero">
 
-  </section>
+  <div class="hero-text">
 
-  <section class="products">
+    <h1>MGG STORE</h1>
 
-    <h2>🔥 Diamond Packages</h2>
+    <h2>TOP UP GAME ⚡</h2>
 
-    <div class="cards">
+    <p>
+      លឿនរហ័ស • សុវត្ថិភាព • តម្លៃសមរម្យ • មិនខកបំណង
+    </p>
 
-      <div class="card">
-        <div class="diamond">💎</div>
-        <h3>100 Diamonds</h3>
-        <div class="price">$1.00</div>
-        <a class="buy" href="https://t.me/MGGStoreAdmin">ទិញឥឡូវ</a>
-      </div>
+  </div>
 
-      <div class="card">
-        <div class="diamond">💎</div>
-        <h3>310 Diamonds</h3>
-        <div class="price">$3.00</div>
-        <a class="buy" href="https://t.me/MGGStoreAdmin">ទិញឥឡូវ</a>
-      </div>
+  <div class="hero-art">
+    💎🎮
+  </div>
 
-      <div class="card">
-        <div class="diamond">💎</div>
-        <h3>520 Diamonds</h3>
-        <div class="price">$5.00</div>
-        <a class="buy" href="https://t.me/MGGStoreAdmin">ទិញឥឡូវ</a>
-      </div>
+</section>
 
-      <div class="card">
-        <div class="diamond">💎</div>
-        <h3>1060 Diamonds</h3>
-        <div class="price">$10.00</div>
-        <a class="buy" href="https://t.me/MGGStoreAdmin">ទិញឥឡូវ</a>
-      </div>
 
-      <div class="card">
-        <div class="diamond">🎟️</div>
-        <h3>Weekly Pass</h3>
-        <div class="price">$2.50</div>
-        <a class="buy" href="https://t.me/MGGStoreAdmin">ទិញឥឡូវ</a>
-      </div>
+<!-- FEATURES -->
+<div class="features">
 
-      <div class="card">
-        <div class="diamond">👑</div>
-        <h3>Monthly Pass</h3>
-        <div class="price">$8.00</div>
-        <a class="buy" href="https://t.me/MGGStoreAdmin">ទិញឥឡូវ</a>
-      </div>
+  <div class="feature">
+    ⚡ លឿនរហ័ស
+  </div>
 
-    </div>
-  </section>
+  <div class="feature">
+    🛡️ សុវត្ថិភាព
+  </div>
 
-  <section class="contact">
-    <h2>📩 ត្រូវការជំនួយ?</h2>
-    <p>ទាក់ទង Admin ដើម្បីធ្វើការកម្មង់</p>
+  <div class="feature">
+    💰 តម្លៃសមរម្យ
+  </div>
 
-    <a class="telegram" href="https://t.me/MGGStoreAdmin">
-      💬 Telegram Admin
-    </a>
-  </section>
+</div>
 
-  <footer>
-    © 2026 MGG STORE • Diamond Top Up
-  </footer>
+
+<!-- TITLE -->
+<div class="section-title">
+  🎮 ជ្រើសរើសហ្គេមដែលអ្នកចង់ Top Up 🎮
+</div>
+
+
+<!-- GAMES -->
+<section class="games">
+
+
+<!-- MOBILE LEGENDS -->
+<article class="card">
+
+  <div class="game-img">
+    ⚔️
+    <span class="flag">🇰🇭</span>
+  </div>
+
+  <h3>MOBILE LEGENDS</h3>
+
+  <div class="sub">
+    Diamonds 💎
+  </div>
+
+  <a class="buy"
+     href="https://t.me/MGGStoreAdmin">
+     ទិញឥឡូវនេះ
+  </a>
+
+</article>
+
+
+<!-- FREE FIRE -->
+<article class="card">
+
+  <div class="game-img">
+    🔥
+    <span class="flag">
+      🇰🇭 🇸🇬 🇲🇾
+    </span>
+  </div>
+
+  <h3>FREE FIRE</h3>
+
+  <div class="sub">
+    Diamonds 💎
+  </div>
+
+  <a class="buy"
+     href="https://t.me/MGGStoreAdmin">
+     ទិញឥឡូវនេះ
+  </a>
+
+</article>
+
+
+<!-- FREE FIRE SPIN -->
+<article class="card">
+
+  <div class="game-img">
+    🎡
+    <span class="flag">🇰🇭</span>
+  </div>
+
+  <h3>FREE FIRE SPIN</h3>
+
+  <div class="sub">
+    Special Top Up
+  </div>
+
+  <a class="buy"
+     href="https://t.me/MGGStoreAdmin">
+     ទិញឥឡូវនេះ
+  </a>
+
+</article>
+
+
+<!-- WEEKLY PASS -->
+<article class="card">
+
+  <div class="game-img">
+    🎟️
+    <span class="flag">🇵🇭</span>
+  </div>
+
+  <h3>WEEKLY PASS</h3>
+
+  <div class="sub">
+    Pass • Membership
+  </div>
+
+  <a class="buy"
+     href="https://t.me/MGGStoreAdmin">
+     ទិញឥឡូវនេះ
+  </a>
+
+</article>
+
+
+<!-- ROBLOX -->
+<article class="card">
+
+  <div class="game-img">
+    🧱
+    <span class="flag">🌏</span>
+  </div>
+
+  <h3>ROBLOX</h3>
+
+  <div class="sub">
+    Robux / Game Pass
+  </div>
+
+  <a class="buy"
+     href="https://t.me/MGGStoreAdmin">
+     ទិញឥឡូវនេះ
+  </a>
+
+</article>
+
+
+<!-- HONOR OF KINGS -->
+<article class="card">
+
+  <div class="game-img">
+    🏆
+    <span class="flag">🇰🇭</span>
+  </div>
+
+  <h3>HONOR OF KINGS</h3>
+
+  <div class="sub">
+    Tokens / Top Up
+  </div>
+
+  <a class="buy"
+     href="https://t.me/MGGStoreAdmin">
+     ទិញឥឡូវនេះ
+  </a>
+
+</article>
+
+
+<!-- PUBG -->
+<article class="card">
+
+  <div class="game-img">
+    🎯
+    <span class="flag">🌏</span>
+  </div>
+
+  <h3>PUBG MOBILE</h3>
+
+  <div class="sub">
+    UC / Top Up
+  </div>
+
+  <a class="buy"
+     href="https://t.me/MGGStoreAdmin">
+     ទិញឥឡូវនេះ
+  </a>
+
+</article>
+
+
+<!-- GAME TOP UP -->
+<article class="card">
+
+  <div class="game-img">
+    🎮
+    <span class="flag">🌏</span>
+  </div>
+
+  <h3>GAME TOP UP</h3>
+
+  <div class="sub">
+    Fast Service
+  </div>
+
+  <a class="buy"
+     href="https://t.me/MGGStoreAdmin">
+     ទិញឥឡូវនេះ
+  </a>
+
+</article>
+
+
+</section>
+
+
+<div class="note">
+  ⚡ លឿនរហ័ស
+  •
+  🛡️ សុវត្ថិភាព
+  •
+  💰 តម្លៃសមរម្យ
+  •
+  ❤️ មិនខកបំណង
+</div>
+
+</main>
+
+
+<!-- CHAT BUTTON -->
+<a class="chat"
+   href="https://t.me/MGGStoreAdmin">
+   💬 Chat MGG
+</a>
+
+
+<footer>
+  © 2026 MGG STORE
+  <br>
+  Telegram: @MGGStoreAdmin
+</footer>
 
 </body>
-          </html>
-<section style="text-align:center;padding:30px 15px;">
-  <h2>🏦 បង់ប្រាក់តាម ABA KHQR</h2>
-  <p>ស្កេន QR ខាងក្រោម ដើម្បីបង់ប្រាក់</p>
-
-  <img src="aba-khqr.jpg"
-       alt="ABA KHQR - SOENG SANG"
-       style="width:100%;max-width:400px;border-radius:20px;">
-
-  <p style="margin-top:15px;">
-    👤 Account: <b>SOENG SANG</b>
-  </p>
-
-  <a href="https://t.me/MGGStoreAdmin"
-     style="display:inline-block;padding:12px 20px;background:#168cff;color:white;border-radius:12px;text-decoration:none;font-weight:bold;">
-    📲 ខ្ញុំបានបង់ប្រាក់រួច
-  </a>
-</section>
+</html>
