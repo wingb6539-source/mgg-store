@@ -7,8 +7,14 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Environment Variables
+const PORT = process.env.PORT || 3000;
+const API_SECRET = process.env.API_SECRET;
+
+// Temporary order storage
 const orders = [];
 
+// Home
 app.get("/", (req, res) => {
   res.json({
     store: "MGG STORE",
@@ -16,8 +22,13 @@ app.get("/", (req, res) => {
   });
 });
 
+// Create Order
 app.post("/api/orders", (req, res) => {
-  const { game, playerId, package: packageName } = req.body;
+  const {
+    game,
+    playerId,
+    package: packageName
+  } = req.body;
 
   if (!game || !playerId || !packageName) {
     return res.status(400).json({
@@ -27,7 +38,10 @@ app.post("/api/orders", (req, res) => {
   }
 
   const order = {
-    orderId: "MGG-" + crypto.randomBytes(4).toString("hex").toUpperCase(),
+    orderId:
+      "MGG-" +
+      crypto.randomBytes(4).toString("hex").toUpperCase(),
+
     game,
     playerId,
     package: packageName,
@@ -43,6 +57,7 @@ app.post("/api/orders", (req, res) => {
   });
 });
 
+// Get Orders
 app.get("/api/orders", (req, res) => {
   res.json({
     success: true,
@@ -50,6 +65,7 @@ app.get("/api/orders", (req, res) => {
   });
 });
 
-app.listen(process.env.PORT || 3000, () => {
+// Start Server
+app.listen(PORT, () => {
   console.log("MGG STORE Backend is running");
 });
