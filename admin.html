@@ -1,0 +1,67 @@
+<!DOCTYPE html><html lang="km">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MGG STORE — Admin Panel</title>
+  <link rel="stylesheet" href="admin.css">
+</head><body>  <!-- LOGIN -->  <div id="loginPage" class="login-page">
+    <div class="login-box">
+      <div class="logo">MGG</div>
+      <h1>MGG STORE</h1>
+      <p>Admin Panel V2026</p>  <input id="adminUser" type="text" placeholder="Admin username">
+  <input id="adminPass" type="password" placeholder="Admin password">
+
+  <button onclick="login()">🔐 Login</button>
+  <p id="loginMessage"></p>
+</div>
+
+  </div>  <!-- ADMIN PANEL -->  <div id="adminPanel" class="hidden"><header class="topbar">
+  <div>
+    <h2>MGG STORE</h2>
+    <span>Admin Dashboard</span>
+  </div>
+
+  <button class="logout" onclick="logout()">Logout</button>
+</header>
+
+<main class="container">
+
+  <section class="stats">
+    <div class="card">
+      <span>📦 Orders</span>
+      <strong id="totalOrders">0</strong>
+    </div>
+
+    <div class="card">
+      <span>⏳ Pending</span>
+      <strong id="pendingOrders">0</strong>
+    </div>
+
+    <div class="card">
+      <span>✅ Completed</span>
+      <strong id="completedOrders">0</strong>
+    </div>
+  </section>
+
+  <section class="orders-box">
+    <div class="section-head">
+      <div>
+        <h2>Orders</h2>
+        <p>Manage customer orders</p>
+      </div>
+
+      <input
+        id="searchOrder"
+        type="text"
+        placeholder="🔍 Search Order ID / Player ID"
+        oninput="renderOrders()"
+      >
+    </div>
+
+    <div id="ordersList"></div>
+  </section>
+
+</main>
+
+  </div>  <script src="admin.js"></script></body>
+  </html>
