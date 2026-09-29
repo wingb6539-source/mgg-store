@@ -1,154 +1,462 @@
-<!DOCTYPE html><html lang="km">
+<!DOCTYPE html>
+<html lang="km">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>MGG STORE V2026</title>
+
   <link rel="stylesheet" href="style.css">
-</head><body><header class="hero">
-  <div class="logo">MGG STORE</div>
-  <p>🎮 Game Top Up • ⚡ លឿន • 🔒 សុវត្ថិភាព • 💎 តម្លៃសមរម្យ</p>
-  <a class="telegram" href="https://t.me/MGGStoreAdmin" target="_blank">
-    💬 Telegram Admin
-  </a>
-</header><main>  <section>
-    <h2>🎮 ជ្រើសរើសហ្គេម</h2><div class="games">
 
-  <div class="game-card">
-    <div class="game-icon">🔥</div>
-    <h3>Free Fire</h3>
-    <p>💎 Diamond Top Up</p>
-    <button onclick="openBuy('Free Fire')">🛒 ចូលទិញ</button>
-  </div>
+  <style>
+    /* ADMIN LOGIN BUTTON */
+    .admin-login {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      z-index: 9999;
 
-  <div class="game-card">
-    <div class="game-icon">⚔️</div>
-    <h3>Mobile Legends</h3>
-    <p>💎 Diamond Top Up</p>
-    <button onclick="openBuy('Mobile Legends')">🛒 ចូលទិញ</button>
-  </div>
+      padding: 10px 15px;
 
-  <div class="game-card">
-    <div class="game-icon">🧱</div>
-    <h3>Roblox</h3>
-    <p>💰 Robux Top Up</p>
-    <button onclick="openBuy('Roblox')">🛒 ចូលទិញ</button>
-  </div>
+      background: #ff5a00;
+      color: white;
 
-</div>
+      text-decoration: none;
+      border-radius: 10px;
 
-  </section>  <section class="features">
-    <div>⚡ លឿនរហ័ស</div>
-    <div>🔒 សុវត្ថិភាព</div>
-    <div>💰 តម្លៃសមរម្យ</div>
-    <div>❤️ មិនខកបំណង</div>
-  </section>  <section class="pass">
-    <h2>🎁 Weekly Pass</h2>
-    <p>មាន Weekly Pass និង Package ផ្សេងៗ</p>
-    <button onclick="openBuy('Weekly Pass')">🛒 ទិញឥឡូវ</button>
-  </section></main><div id="buyModal" class="modal">
-  <div class="modal-box">
-    <button class="close" onclick="closeBuy()">✕</button><h2 id="productName">ទិញ</h2>
+      font-weight: bold;
+      font-size: 14px;
 
-<input id="playerId" type="text" placeholder="🎮 Player ID">
-
-<input id="packageName" type="text" placeholder="💎 Package / ចំនួន">
-
-<button class="confirm" onclick="sendOrder()">
-  📩 ផ្ញើការបញ្ជាទិញ
-</button>
-
-<p class="small">
-  បន្ទាប់ពីបំពេញព័ត៌មាន សូមទាក់ទង Admin តាម Telegram
-</p>
-
-  </div>
-</div><footer>
-  <p>© 2026 MGG STORE — Game Top Up</p>
-  <a href="https://t.me/MGGStoreAdmin" target="_blank">
-    @MGGStoreAdmin
-  </a>
-</footer><script>
-const API_URL = "https://mgg-store-backend.onrender.com";
-
-let selectedProduct = "";
-
-function openBuy(product) {
-  selectedProduct = product;
-
-  document.getElementById("productName").textContent =
-    "🛒 ទិញ " + product;
-
-  document.getElementById("playerId").value = "";
-  document.getElementById("packageName").value = "";
-
-  document.getElementById("buyModal").style.display = "flex";
-}
-
-function closeBuy() {
-  document.getElementById("buyModal").style.display = "none";
-}
-
-async function sendOrder() {
-  const playerId =
-    document.getElementById("playerId").value.trim();
-
-  const packageName =
-    document.getElementById("packageName").value.trim();
-
-  if (!playerId || !packageName) {
-    alert("សូមបំពេញ Player ID និង Package ជាមុនសិន!");
-    return;
-  }
-
-  const orderData = {
-    game: selectedProduct,
-    package: packageName,
-    playerId: playerId,
-    paymentMethod: "Telegram"
-  };
-
-  try {
-    const response = await fetch(
-      API_URL + "/api/orders",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(orderData)
-      }
-    );
-
-    const data = await response.json();
-
-    if (!response.ok || !data.success) {
-      throw new Error(data.message || "Order failed");
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
     }
 
-    const message =
-      "សួស្តី Admin 👋\n\n" +
-      "🛒 Game: " + selectedProduct + "\n" +
-      "🎮 Player ID: " + playerId + "\n" +
-      "💎 Package: " + packageName + "\n" +
-      "🆔 Order ID: " + data.order.id;
+    .admin-login:hover {
+      opacity: 0.85;
+    }
+  </style>
 
-    window.open(
-      "https://t.me/MGGStoreAdmin?text=" +
-      encodeURIComponent(message),
-      "_blank"
-    );
+</head>
 
-    alert("✅ Order បានបង្កើតជោគជ័យ!");
+<body>
 
-    closeBuy();
+  <!-- ADMIN LOGIN -->
+  <a href="admin.html" class="admin-login">
+    🔐 ADMIN LOGIN
+  </a>
 
-  } catch (error) {
-    console.error(error);
 
-    alert(
-      "❌ មិនអាចភ្ជាប់ទៅ Backend បានទេ។ សូមសាកម្ដងទៀត!"
-    );
-  }
-}
-</script></body>
+  <!-- HEADER -->
+  <header class="hero">
+
+    <div class="logo">
+      MGG STORE
+    </div>
+
+    <p>
+      🎮 Game Top Up • ⚡ លឿន • 🔒 សុវត្ថិភាព • 💎 តម្លៃសមរម្យ
+    </p>
+
+    <a
+      class="telegram"
+      href="https://t.me/MGGStoreAdmin"
+      target="_blank"
+    >
+      💬 Telegram Admin
+    </a>
+
+  </header>
+
+
+  <!-- MAIN -->
+  <main>
+
+    <!-- GAMES -->
+    <section>
+
+      <h2>🎮 ជ្រើសរើសហ្គេម</h2>
+
+      <div class="games">
+
+
+        <!-- FREE FIRE -->
+        <div class="game-card">
+
+          <div class="game-icon">
+            🔥
+          </div>
+
+          <h3>
+            Free Fire
+          </h3>
+
+          <p>
+            💎 Diamond Top Up
+          </p>
+
+          <button onclick="openBuy('Free Fire')">
+            🛒 ចូលទិញ
+          </button>
+
+        </div>
+
+
+        <!-- MOBILE LEGENDS -->
+        <div class="game-card">
+
+          <div class="game-icon">
+            ⚔️
+          </div>
+
+          <h3>
+            Mobile Legends
+          </h3>
+
+          <p>
+            💎 Diamond Top Up
+          </p>
+
+          <button onclick="openBuy('Mobile Legends')">
+            🛒 ចូលទិញ
+          </button>
+
+        </div>
+
+
+        <!-- ROBLOX -->
+        <div class="game-card">
+
+          <div class="game-icon">
+            🧱
+          </div>
+
+          <h3>
+            Roblox
+          </h3>
+
+          <p>
+            💰 Robux Top Up
+          </p>
+
+          <button onclick="openBuy('Roblox')">
+            🛒 ចូលទិញ
+          </button>
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+
+    <!-- FEATURES -->
+    <section class="features">
+
+      <div>
+        ⚡ លឿនរហ័ស
+      </div>
+
+      <div>
+        🔒 សុវត្ថិភាព
+      </div>
+
+      <div>
+        💰 តម្លៃសមរម្យ
+      </div>
+
+      <div>
+        ❤️ មិនខកបំណង
+      </div>
+
+    </section>
+
+
+    <!-- WEEKLY PASS -->
+    <section class="pass">
+
+      <h2>
+        🎁 Weekly Pass
+      </h2>
+
+      <p>
+        មាន Weekly Pass និង Package ផ្សេងៗ
+      </p>
+
+      <button onclick="openBuy('Weekly Pass')">
+        🛒 ទិញឥឡូវ
+      </button>
+
+    </section>
+
+  </main>
+
+
+  <!-- BUY MODAL -->
+  <div
+    id="buyModal"
+    class="modal"
+  >
+
+    <div class="modal-box">
+
+      <button
+        class="close"
+        onclick="closeBuy()"
+      >
+        ✕
+      </button>
+
+
+      <h2 id="productName">
+        ទិញ
+      </h2>
+
+
+      <input
+        id="playerId"
+        type="text"
+        placeholder="🎮 Player ID"
+      >
+
+
+      <input
+        id="packageName"
+        type="text"
+        placeholder="💎 Package / ចំនួន"
+      >
+
+
+      <button
+        class="confirm"
+        onclick="sendOrder()"
+      >
+        📩 ផ្ញើការបញ្ជាទិញ
+      </button>
+
+
+      <p class="small">
+        បន្ទាប់ពីបំពេញព័ត៌មាន
+        សូមទាក់ទង Admin តាម Telegram
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <!-- FOOTER -->
+  <footer>
+
+    <p>
+      © 2026 MGG STORE — Game Top Up
+    </p>
+
+    <a
+      href="https://t.me/MGGStoreAdmin"
+      target="_blank"
+    >
+      @MGGStoreAdmin
+    </a>
+
+  </footer>
+
+
+  <!-- JAVASCRIPT -->
+  <script>
+
+    const API_URL =
+      "https://mgg-store-backend.onrender.com";
+
+
+    let selectedProduct = "";
+
+
+    // ==========================
+    // OPEN BUY
+    // ==========================
+
+    function openBuy(product) {
+
+      selectedProduct = product;
+
+      document.getElementById(
+        "productName"
+      ).textContent =
+        "🛒 ទិញ " + product;
+
+
+      document.getElementById(
+        "playerId"
+      ).value = "";
+
+
+      document.getElementById(
+        "packageName"
+      ).value = "";
+
+
+      document.getElementById(
+        "buyModal"
+      ).style.display = "flex";
+
+    }
+
+
+    // ==========================
+    // CLOSE BUY
+    // ==========================
+
+    function closeBuy() {
+
+      document.getElementById(
+        "buyModal"
+      ).style.display = "none";
+
+    }
+
+
+    // ==========================
+    // SEND ORDER
+    // ==========================
+
+    async function sendOrder() {
+
+      const playerId =
+        document
+          .getElementById("playerId")
+          .value
+          .trim();
+
+
+      const packageName =
+        document
+          .getElementById("packageName")
+          .value
+          .trim();
+
+
+      if (!playerId || !packageName) {
+
+        alert(
+          "សូមបំពេញ Player ID និង Package ជាមុនសិន!"
+        );
+
+        return;
+
+      }
+
+
+      const orderData = {
+
+        game: selectedProduct,
+
+        package: packageName,
+
+        playerId: playerId,
+
+        paymentMethod: "Telegram"
+
+      };
+
+
+      try {
+
+        const response =
+          await fetch(
+            API_URL + "/api/orders",
+            {
+
+              method: "POST",
+
+              headers: {
+                "Content-Type":
+                  "application/json"
+              },
+
+              body:
+                JSON.stringify(orderData)
+
+            }
+          );
+
+
+        const data =
+          await response.json();
+
+
+        if (
+          !response.ok ||
+          !data.success
+        ) {
+
+          throw new Error(
+            data.message ||
+            "Order failed"
+          );
+
+        }
+
+
+        const orderId =
+          data.order?.orderId ||
+          "N/A";
+
+
+        const message =
+
+          "សួស្តី Admin 👋\n\n" +
+
+          "🛒 Game: " +
+          selectedProduct +
+          "\n" +
+
+          "🎮 Player ID: " +
+          playerId +
+          "\n" +
+
+          "💎 Package: " +
+          packageName +
+          "\n" +
+
+          "🆔 Order ID: " +
+          orderId;
+
+
+        window.open(
+
+          "https://t.me/MGGStoreAdmin?text=" +
+
+          encodeURIComponent(message),
+
+          "_blank"
+
+        );
+
+
+        alert(
+          "✅ Order បានបង្កើតជោគជ័យ!"
+        );
+
+
+        closeBuy();
+
+
+      } catch (error) {
+
+        console.error(error);
+
+
+        alert(
+          "❌ មិនអាចភ្ជាប់ទៅ Backend បានទេ។ សូមសាកម្ដងទៀត!"
+        );
+
+      }
+
+    }
+
+  </script>
+
+</body>
+
   </html>
