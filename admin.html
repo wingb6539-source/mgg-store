@@ -2,66 +2,159 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MGG STORE — Admin Panel</title>
-  <link rel="stylesheet" href="admin.css">
-</head><body>  <!-- LOGIN -->  <div id="loginPage" class="login-page">
-    <div class="login-box">
-      <div class="logo">MGG</div>
-      <h1>MGG STORE</h1>
-      <p>Admin Panel V2026</p>  <input id="adminUser" type="text" placeholder="Admin username">
-  <input id="adminPass" type="password" placeholder="Admin password">
+  <title>MGG STORE Admin</title>  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-  <button onclick="login()">🔐 Login</button>
-  <p id="loginMessage"></p>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: Arial, "Noto Sans Khmer", sans-serif;
+      background: #111;
+      color: white;
+    }
+
+    .box {
+      width: 90%;
+      max-width: 380px;
+      padding: 30px;
+      border-radius: 22px;
+      background: #1d1d1d;
+      text-align: center;
+      box-shadow: 0 20px 60px #000;
+    }
+
+    .logo {
+      width: 70px;
+      height: 70px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 20px;
+      background: linear-gradient(135deg,#ff9d00,#ff3b00);
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    h1 {
+      margin-bottom: 5px;
+    }
+
+    p {
+      color: #aaa;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      margin-top: 12px;
+      border: 1px solid #444;
+      border-radius: 12px;
+      background: #111;
+      color: white;
+      font-size: 15px;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      margin-top: 16px;
+      border: 0;
+      border-radius: 12px;
+      background: linear-gradient(135deg,#ff9d00,#ff3b00);
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    #message {
+      color: #ff5555;
+      min-height: 20px;
+    }
+
+    #dashboard {
+      display: none;
+      width: 90%;
+      max-width: 800px;
+      padding: 30px;
+      border-radius: 22px;
+      background: #1d1d1d;
+    }
+
+    .stat {
+      margin-top: 20px;
+      padding: 25px;
+      border-radius: 15px;
+      background: #111;
+    }
+  </style></head><body>  <!-- LOGIN -->  <div class="box" id="loginBox"><div class="logo">MGG</div>
+
+<h1>MGG STORE</h1>
+<p>Admin Panel V2026</p>
+
+<input
+  id="username"
+  type="text"
+  placeholder="Admin username"
+>
+
+<input
+  id="password"
+  type="password"
+  placeholder="Admin password"
+>
+
+<button onclick="login()">🔐 Login</button>
+
+<p id="message"></p>
+
+  </div>  <!-- DASHBOARD -->  <div id="dashboard"><h1>🔥 MGG STORE ADMIN</h1>
+<p>Welcome to Admin Panel V2026</p>
+
+<div class="stat">
+  📦 Total Orders
+  <h2>0</h2>
 </div>
 
-  </div>  <!-- ADMIN PANEL -->  <div id="adminPanel" class="hidden"><header class="topbar">
-  <div>
-    <h2>MGG STORE</h2>
-    <span>Admin Dashboard</span>
-  </div>
+<button onclick="logout()">🚪 Logout</button>
 
-  <button class="logout" onclick="logout()">Logout</button>
-</header>
+  </div>  <script>
+    function login() {
 
-<main class="container">
+      const username =
+        document.getElementById("username").value.trim();
 
-  <section class="stats">
-    <div class="card">
-      <span>📦 Orders</span>
-      <strong id="totalOrders">0</strong>
-    </div>
+      const password =
+        document.getElementById("password").value;
 
-    <div class="card">
-      <span>⏳ Pending</span>
-      <strong id="pendingOrders">0</strong>
-    </div>
+      if (username === "admin" && password === "mgg2026") {
 
-    <div class="card">
-      <span>✅ Completed</span>
-      <strong id="completedOrders">0</strong>
-    </div>
-  </section>
+        document.getElementById("loginBox").style.display = "none";
 
-  <section class="orders-box">
-    <div class="section-head">
-      <div>
-        <h2>Orders</h2>
-        <p>Manage customer orders</p>
-      </div>
+        document.getElementById("dashboard").style.display = "block";
 
-      <input
-        id="searchOrder"
-        type="text"
-        placeholder="🔍 Search Order ID / Player ID"
-        oninput="renderOrders()"
-      >
-    </div>
+      } else {
 
-    <div id="ordersList"></div>
-  </section>
+        document.getElementById("message").textContent =
+          "❌ Username ឬ Password មិនត្រឹមត្រូវ";
 
-</main>
+      }
+    }
 
-  </div>  <script src="admin.js"></script></body>
-  </html>
+    function logout() {
+
+      document.getElementById("dashboard").style.display = "none";
+
+      document.getElementById("loginBox").style.display = "block";
+
+      document.getElementById("username").value = "";
+
+      document.getElementById("password").value = "";
+    }
+  </script></body>
+</html>
