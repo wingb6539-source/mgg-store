@@ -1,19 +1,27 @@
-<!DOCTYPE html><html lang="km">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MGG STORE Admin</title>  <style>
-    * { box-sizing: border-box; }
 
-    body {
+  <title>MGG STORE — Admin Panel</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
       margin: 0;
-      min-height: 100vh;
-      font-family: Arial, "Noto Sans Khmer", sans-serif;
-      background: #111;
-      color: white;
+      padding: 0;
     }
 
-    .login {
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #ff7a00, #ff3d00);
+      min-height: 100vh;
+      color: #222;
+    }
+
+    /* LOGIN */
+    .login-page {
       min-height: 100vh;
       display: flex;
       align-items: center;
@@ -21,130 +29,218 @@
       padding: 20px;
     }
 
-    .box {
+    .login-box {
       width: 100%;
-      max-width: 390px;
-      padding: 30px;
+      max-width: 400px;
+      background: white;
       border-radius: 22px;
-      background: #1d1d1d;
-      text-align: center;
+      padding: 30px;
+      box-shadow: 0 15px 40px rgba(0,0,0,.25);
     }
 
     .logo {
-      width: 70px;
-      height: 70px;
-      margin: auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 20px;
-      background: linear-gradient(135deg,#ff9d00,#ff3b00);
-      font-size: 24px;
-      font-weight: bold;
+      text-align: center;
+      font-size: 30px;
+      font-weight: 900;
+      color: #ff4b00;
+      margin-bottom: 8px;
     }
 
-    input {
+    .subtitle {
+      text-align: center;
+      color: #777;
+      margin-bottom: 25px;
+    }
+
+    .input {
       width: 100%;
       padding: 14px;
-      margin-top: 12px;
-      border: 1px solid #444;
+      margin-bottom: 14px;
+      border: 1px solid #ddd;
       border-radius: 12px;
-      background: #111;
-      color: white;
+      font-size: 16px;
+      outline: none;
     }
 
-    button {
-      border: 0;
-      border-radius: 10px;
-      padding: 12px 16px;
-      color: white;
-      background: #ff6500;
+    .input:focus {
+      border-color: #ff6200;
+    }
+
+    .btn {
+      border: none;
+      border-radius: 12px;
+      padding: 13px 18px;
+      font-size: 15px;
       font-weight: bold;
       cursor: pointer;
+      transition: .2s;
     }
 
-    .login button {
+    .btn:hover {
+      transform: translateY(-1px);
+      opacity: .9;
+    }
+
+    .btn-primary {
       width: 100%;
-      margin-top: 16px;
+      background: #ff5500;
+      color: white;
     }
 
-    #message {
-      color: #ff5555;
-      min-height: 20px;
+    .btn-secondary {
+      background: #222;
+      color: white;
     }
 
-    #dashboard {
+    .error {
+      color: #e00000;
+      text-align: center;
+      margin-top: 12px;
+      font-size: 14px;
+    }
+
+    /* DASHBOARD */
+    .dashboard {
       display: none;
-      padding: 25px;
-      max-width: 1100px;
-      margin: auto;
+      min-height: 100vh;
+      background: #f5f5f5;
     }
 
-    .top {
+    .topbar {
+      background: white;
+      padding: 16px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 15px;
+      box-shadow: 0 3px 15px rgba(0,0,0,.08);
+      position: sticky;
+      top: 0;
+      z-index: 10;
     }
 
+    .brand {
+      font-size: 23px;
+      font-weight: 900;
+      color: #ff4b00;
+    }
+
+    .top-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 25px 18px;
+    }
+
+    .welcome {
+      margin-bottom: 20px;
+    }
+
+    .welcome h1 {
+      font-size: 28px;
+      margin-bottom: 5px;
+    }
+
+    .welcome p {
+      color: #777;
+    }
+
+    /* STATS */
     .stats {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 15px;
-      margin: 25px 0;
+      margin-bottom: 25px;
     }
 
-    .stat, .order {
-      background: #1d1d1d;
-      border: 1px solid #333;
-      border-radius: 16px;
+    .stat {
+      background: white;
       padding: 20px;
+      border-radius: 18px;
+      box-shadow: 0 5px 18px rgba(0,0,0,.06);
     }
 
-    .stat span {
-      color: #aaa;
+    .stat-title {
+      color: #777;
+      font-size: 14px;
+      margin-bottom: 8px;
     }
 
-    .stat strong {
-      display: block;
-      margin-top: 8px;
-      font-size: 28px;
+    .stat-number {
+      font-size: 30px;
+      font-weight: 900;
     }
 
-    .orders {
-      display: grid;
-      gap: 15px;
+    .orders-box {
+      background: white;
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 5px 18px rgba(0,0,0,.06);
+    }
+
+    .orders-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+      gap: 10px;
+    }
+
+    .orders-header h2 {
+      font-size: 21px;
+    }
+
+    .order {
+      border: 1px solid #eee;
+      border-radius: 15px;
+      padding: 16px;
+      margin-bottom: 12px;
+      background: #fff;
     }
 
     .order-top {
       display: flex;
       justify-content: space-between;
       gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .order-id {
+      font-weight: 900;
+      color: #ff4b00;
     }
 
     .status {
-      padding: 6px 10px;
-      border-radius: 8px;
-      background: #333;
+      padding: 5px 9px;
+      border-radius: 20px;
+      background: #fff1e8;
+      color: #ff5500;
       font-size: 12px;
+      font-weight: bold;
     }
 
-    .info {
-      margin-top: 12px;
-      color: #ccc;
-      line-height: 1.8;
-    }
-
-    .refresh {
-      background: #333;
+    .order-info {
+      display: grid;
+      gap: 5px;
+      color: #555;
+      font-size: 14px;
     }
 
     .empty {
-      padding: 35px;
       text-align: center;
-      color: #999;
-      background: #1d1d1d;
-      border-radius: 16px;
+      padding: 40px 15px;
+      color: #777;
+    }
+
+    .loading {
+      color: #ff5500;
+    }
+
+    small {
+      word-break: break-word;
     }
 
     @media (max-width: 700px) {
@@ -152,62 +248,208 @@
         grid-template-columns: 1fr;
       }
 
-      .top {
+      .topbar {
         align-items: flex-start;
+        gap: 10px;
+        flex-direction: column;
+      }
+
+      .top-actions {
+        width: 100%;
+      }
+
+      .top-actions .btn {
+        flex: 1;
+      }
+
+      .orders-header {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .orders-header .btn {
+        width: 100%;
       }
     }
-  </style></head><body>  <!-- LOGIN -->  <div class="login" id="loginPage">
-    <div class="box">
-      <div class="logo">MGG</div>  <h1>MGG STORE</h1>
-  <p>Admin Panel V2026</p>
+  </style>
+</head>
 
-  <input id="username" type="text" placeholder="Admin username">
-  <input id="password" type="password" placeholder="Admin password">
+<body>
 
-  <button onclick="login()">🔐 Login</button>
+  <!-- LOGIN PAGE -->
+  <div class="login-page" id="loginPage">
 
-  <p id="message"></p>
-</div>
+    <div class="login-box">
 
-  </div>  <!-- DASHBOARD -->  <div id="dashboard"><div class="top">
-  <div>
-    <h1>🔥 MGG STORE ADMIN</h1>
-    <p>Order Dashboard</p>
+      <div class="logo">
+        MGG STORE
+      </div>
+
+      <div class="subtitle">
+        Admin Panel V2026
+      </div>
+
+      <input
+        class="input"
+        id="username"
+        type="text"
+        placeholder="Username"
+      >
+
+      <input
+        class="input"
+        id="password"
+        type="password"
+        placeholder="Password"
+      >
+
+      <button
+        class="btn btn-primary"
+        onclick="login()"
+      >
+        🔐 Login
+      </button>
+
+      <div
+        class="error"
+        id="loginError"
+      ></div>
+
+    </div>
+
   </div>
 
-  <div>
-    <button class="refresh" onclick="loadOrders()">🔄 Refresh</button>
-    <button onclick="logout()">🚪 Logout</button>
+
+  <!-- DASHBOARD -->
+  <div
+    class="dashboard"
+    id="dashboard"
+  >
+
+    <div class="topbar">
+
+      <div class="brand">
+        🛒 MGG STORE ADMIN
+      </div>
+
+      <div class="top-actions">
+
+        <button
+          class="btn btn-secondary"
+          onclick="loadOrders()"
+        >
+          🔄 Refresh
+        </button>
+
+        <button
+          class="btn btn-secondary"
+          onclick="logout()"
+        >
+          Logout
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <div class="container">
+
+      <div class="welcome">
+        <h1>Welcome Admin 👋</h1>
+        <p>Manage MGG STORE orders</p>
+      </div>
+
+
+      <!-- STATS -->
+      <div class="stats">
+
+        <div class="stat">
+          <div class="stat-title">
+            Total Orders
+          </div>
+
+          <div
+            class="stat-number"
+            id="totalOrders"
+          >
+            0
+          </div>
+        </div>
+
+
+        <div class="stat">
+          <div class="stat-title">
+            Pending Payment
+          </div>
+
+          <div
+            class="stat-number"
+            id="pendingOrders"
+          >
+            0
+          </div>
+        </div>
+
+
+        <div class="stat">
+          <div class="stat-title">
+            Completed
+          </div>
+
+          <div
+            class="stat-number"
+            id="completedOrders"
+          >
+            0
+          </div>
+        </div>
+
+      </div>
+
+
+      <!-- ORDERS -->
+      <div class="orders-box">
+
+        <div class="orders-header">
+
+          <h2>
+            📦 Orders
+          </h2>
+
+          <button
+            class="btn btn-secondary"
+            onclick="loadOrders()"
+          >
+            🔄 Reload Orders
+          </button>
+
+        </div>
+
+        <div id="orders">
+
+          <div class="empty">
+            Loading orders...
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
   </div>
-</div>
 
 
-<div class="stats">
+  <script>
 
-  <div class="stat">
-    <span>📦 Total Orders</span>
-    <strong id="total">0</strong>
-  </div>
+    /* =========================
+       ADMIN LOGIN
+    ========================= */
 
-  <div class="stat">
-    <span>⏳ Pending</span>
-    <strong id="pending">0</strong>
-  </div>
+    const ADMIN_USERNAME = "admin";
+    const ADMIN_PASSWORD = "mgg2026";
 
-  <div class="stat">
-    <span>✅ Completed</span>
-    <strong id="completed">0</strong>
-  </div>
-
-</div>
-
-
-<div id="orders" class="orders"></div>
-
-  </div>  <script>
-
-    const API_URL =
-      "https://mgg-store-backend.onrender.com";
 
     function login() {
 
@@ -217,151 +459,327 @@
       const password =
         document.getElementById("password").value;
 
-      if (username === "admin" && password === "mgg2026") {
+      const error =
+        document.getElementById("loginError");
 
-        document.getElementById("loginPage").style.display = "none";
-        document.getElementById("dashboard").style.display = "block";
+
+      if (
+        username === ADMIN_USERNAME &&
+        password === ADMIN_PASSWORD
+      ) {
+
+        localStorage.setItem(
+          "mgg_admin_login",
+          "true"
+        );
+
+        document.getElementById(
+          "loginPage"
+        ).style.display = "none";
+
+        document.getElementById(
+          "dashboard"
+        ).style.display = "block";
 
         loadOrders();
 
       } else {
 
-        document.getElementById("message").textContent =
-          "❌ Username ឬ Password មិនត្រឹមត្រូវ";
+        error.textContent =
+          "❌ Username or password is incorrect";
 
       }
+
     }
 
 
     function logout() {
 
-      document.getElementById("dashboard").style.display = "none";
-      document.getElementById("loginPage").style.display = "flex";
+      localStorage.removeItem(
+        "mgg_admin_login"
+      );
+
+      location.reload();
 
     }
 
 
+    /* =========================
+       CHECK LOGIN
+    ========================= */
+
+    if (
+      localStorage.getItem(
+        "mgg_admin_login"
+      ) === "true"
+    ) {
+
+      document.getElementById(
+        "loginPage"
+      ).style.display = "none";
+
+      document.getElementById(
+        "dashboard"
+      ).style.display = "block";
+
+      loadOrders();
+
+    }
+
+
+    /* =========================
+       LOAD ORDERS FROM BACKEND
+    ========================= */
+
     async function loadOrders() {
 
-      const ordersBox =
+      const box =
         document.getElementById("orders");
 
-      ordersBox.innerHTML =
-        '<div class="empty">⏳ Loading orders...</div>';
+
+      box.innerHTML = `
+        <div class="empty loading">
+          ⏳ Connecting to MGG Backend...
+        </div>
+      `;
+
 
       try {
 
-        const response =
-          await fetch(API_URL + "/api/orders");
+        const response = await fetch(
+          "https://mgg-store-backend.onrender.com/api/orders"
+        );
+
+
+        const text =
+          await response.text();
+
+
+        console.log(
+          "Backend status:",
+          response.status
+        );
+
+        console.log(
+          "Backend response:",
+          text
+        );
+
 
         if (!response.ok) {
-          throw new Error("Server error");
+
+          throw new Error(
+            "HTTP " +
+            response.status +
+            ": " +
+            text
+          );
+
         }
 
-        const data = await response.json();
+
+        const data =
+          JSON.parse(text);
+
 
         const orders =
-          Array.isArray(data) ? data :
-          Array.isArray(data.orders) ? data.orders :
-          [];
+          Array.isArray(data)
+            ? data
+            : Array.isArray(data.orders)
+              ? data.orders
+              : [];
+
 
         updateStats(orders);
-        displayOrders(orders);
+
+        renderOrders(orders);
+
 
       } catch (error) {
 
-        ordersBox.innerHTML = `
+        console.error(
+          "Backend error:",
+          error
+        );
+
+
+        box.innerHTML = `
           <div class="empty">
-            ❌ Cannot connect to Backend<br><br>
-            ${error.message}
+
+            ❌ Backend Connection Error
+
+            <br><br>
+
+            <small>
+              ${escapeHTML(error.message)}
+            </small>
+
+            <br><br>
+
+            <button
+              class="btn btn-secondary"
+              onclick="loadOrders()"
+            >
+              🔄 Try Again
+            </button>
+
           </div>
         `;
 
       }
+
     }
 
+
+    /* =========================
+       UPDATE STATS
+    ========================= */
 
     function updateStats(orders) {
 
-      document.getElementById("total").textContent =
-        orders.length;
+      document.getElementById(
+        "totalOrders"
+      ).textContent = orders.length;
 
-      document.getElementById("pending").textContent =
+
+      const pending =
         orders.filter(
-          o => o.status === "PENDING_PAYMENT"
+          order =>
+            order.status ===
+            "PENDING_PAYMENT"
         ).length;
 
-      document.getElementById("completed").textContent =
+
+      const completed =
         orders.filter(
-          o => o.status === "COMPLETED"
+          order =>
+            order.status ===
+            "COMPLETED"
         ).length;
+
+
+      document.getElementById(
+        "pendingOrders"
+      ).textContent = pending;
+
+
+      document.getElementById(
+        "completedOrders"
+      ).textContent = completed;
+
     }
 
 
-    function displayOrders(orders) {
+    /* =========================
+       RENDER ORDERS
+    ========================= */
+
+    function renderOrders(orders) {
 
       const box =
         document.getElementById("orders");
+
 
       if (!orders.length) {
 
         box.innerHTML = `
           <div class="empty">
-            📦 No orders yet
+            📭 No orders yet
           </div>
         `;
 
         return;
+
       }
 
-      box.innerHTML = orders.map(order => `
 
-        <div class="order">
+      box.innerHTML =
+        orders
+          .slice()
+          .reverse()
+          .map(order => `
 
-          <div class="order-top">
-            <strong>
-              ${escapeHTML(order.orderId || "-")}
-            </strong>
+            <div class="order">
 
-            <span class="status">
-              ${escapeHTML(order.status || "-")}
-            </span>
-          </div>
+              <div class="order-top">
 
-          <div class="info">
+                <div class="order-id">
+                  ${escapeHTML(
+                    order.orderId || "NO ID"
+                  )}
+                </div>
 
-            🎮 Game:
-            ${escapeHTML(order.game || "-")}
-            <br>
+                <div class="status">
+                  ${escapeHTML(
+                    order.status || "UNKNOWN"
+                  )}
+                </div>
 
-            👤 Player ID:
-            ${escapeHTML(order.playerId || "-")}
-            <br>
+              </div>
 
-            💎 Package:
-            ${escapeHTML(order.package || "-")}
-            <br>
 
-            🕒 Created:
-            ${escapeHTML(order.createdAt || "-")}
+              <div class="order-info">
 
-          </div>
+                <div>
+                  🎮 Game:
+                  <b>
+                    ${escapeHTML(
+                      order.game || "-"
+                    )}
+                  </b>
+                </div>
 
-        </div>
+                <div>
+                  👤 Player ID:
+                  <b>
+                    ${escapeHTML(
+                      order.playerId || "-"
+                    )}
+                  </b>
+                </div>
 
-      `).join("");
+                <div>
+                  💎 Package:
+                  <b>
+                    ${escapeHTML(
+                      order.package || "-"
+                    )}
+                  </b>
+                </div>
+
+                <div>
+                  🕒 Created:
+                  ${escapeHTML(
+                    order.createdAt || "-"
+                  )}
+                </div>
+
+              </div>
+
+            </div>
+
+          `)
+          .join("");
+
     }
 
+
+    /* =========================
+       SECURITY
+    ========================= */
 
     function escapeHTML(value) {
 
       return String(value)
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
     }
 
-  </script></body>
+  </script>
+
+</body>
   </html>
