@@ -1225,4 +1225,217 @@ function showQR(){
 async function confirmOrder(){
 
   const player =
-    documen
+    document.getElementById("playerId").value.trim();
+
+  const server =
+    document.getElementById("serverId").value.trim();
+
+  const button =
+    document.getElementById("confirmButton");
+
+  const result =
+    document.getElementById("orderResult");
+
+  const error =
+    document.getElementById("orderError");
+
+
+  result.style.display = "none";
+  error.style.display = "none";
+
+
+  if(!player){
+
+    alert("សូមបញ្ចូល Player ID");
+
+    return;
+  }
+
+
+  if(!selectedPackage){
+
+    alert("សូមជ្រើស Package មុន");
+
+    return;
+  }
+
+
+  button.disabled = true;
+
+  button.innerText =
+    "⏳ Creating Order...";
+
+
+  try{
+
+    const response =
+      await fetch(ORDERS_API, {
+
+        method: "POST",
+
+        headers: {
+          "Content-Type": "application/json"
+        },
+
+        body: JSON.stringify({
+
+          game: currentGame,
+
+          playerId: player,
+
+          serverId: server,
+
+          package: selectedPackage
+
+        })
+
+      });
+
+
+    const data =
+      await response.json();
+
+
+    if(!response.ok || !data.success){
+
+      throw new Error(
+        data.message ||
+        "Order creation failed"
+      );
+
+    }
+
+
+    result.innerHTML = `
+      <strong>✅ Order Created!</strong><br><br>
+
+      Order ID:
+      <strong>${escapeHTML(data.order.orderId)}</strong><br>
+
+      Game:
+      ${escapeHTML(data.order.game)}<br>
+
+      Player ID:
+      ${escapeHTML(data.order.playerId)}<br>
+
+      Package:
+      ${escapeHTML(data.order.package)}<br>
+
+      Status:
+      ${escapeHTML(data.order.status)}
+    `;
+
+
+    result.style.display =
+      "block";
+
+
+  }catch(err){
+
+    console.error(err);
+
+    error.innerText =
+      "❌ មិនអាចបង្កើត Order បានទេ: " +
+      err.message;
+
+    error.style.display =
+      "block";
+
+  }finally{
+
+    button.disabled = false;
+
+    button.innerText =
+      "✅ Confirm Payment";
+
+  }
+
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| ESCAPE HTML
+|--------------------------------------------------------------------------
+*/
+
+function escapeHTML(value){
+
+  return String(value)
+
+    .replace(/&/g, "&amp;")
+
+    .replace(/</g, "&lt;")
+
+    .replace(/>/g, "&gt;")
+
+    .replace(/"/g, "&quot;")
+
+    .replace(/'/g, "&#039;");
+
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| SEARCH GAMES
+|--------------------------------------------------------------------------
+*/
+
+function searchGames(){
+
+  const keyword =
+    document
+      .getElementById("search")
+      .value
+      .toLowerCase()
+      .trim();
+
+
+  document
+    .querySelectorAll(".game")
+    .forEach(game => {
+
+      const name =
+        game.dataset.name
+          .toLowerCase();
+
+      game.style.display =
+        name.includes(keyword)
+          ? ""
+          : "none";
+
+    });
+
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| CLOSE MODAL BY CLICKING OUTSIDE
+|--------------------------------------------------------------------------
+*/
+
+document
+  .getElementById("modal")
+  .addEventListener(
+    "click",
+    function(e){
+
+      if(e.target === this){
+
+        closeModal();
+
+      }
+
+    }
+  );
+
+</script>
+
+</body>
+</html>
+
+
+  
+  
