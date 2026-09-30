@@ -2,353 +2,419 @@
 <html lang="km">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>MGG STORE V2026</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MGG STORE — Game Top Up</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,Helvetica,sans-serif;
+}
 
 body{
- background:#090909;
- color:white;
+  background:#080b12;
+  color:white;
+  min-height:100vh;
 }
 
 header{
- background:linear-gradient(90deg,#a90000,#ef1600,#a90000);
- border-bottom:4px solid #ffd000;
- padding:14px 4%;
- display:flex;
- align-items:center;
- justify-content:space-between;
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:rgba(8,11,18,.94);
+  backdrop-filter:blur(15px);
+  border-bottom:1px solid #202633;
+}
+
+.nav{
+  max-width:1200px;
+  margin:auto;
+  padding:16px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
 }
 
 .logo{
- font-size:27px;
- font-weight:900;
- color:#ffd000;
- text-shadow:2px 2px #500;
+  font-size:24px;
+  font-weight:900;
+  letter-spacing:1px;
 }
 
-.admin{
- background:#42a9e8;
- padding:10px 17px;
- border-radius:30px;
- font-weight:bold;
+.logo span{
+  color:#ff4d2e;
+}
+
+.status{
+  font-size:12px;
+  color:#68f59a;
+  background:#102519;
+  border:1px solid #1e6338;
+  padding:7px 11px;
+  border-radius:20px;
 }
 
 .hero{
- margin:12px auto;
- width:94%;
- max-width:1200px;
- min-height:190px;
- border:3px solid #ffd000;
- border-radius:18px;
- padding:25px;
- background:
- linear-gradient(90deg,rgba(0,0,0,.8),rgba(0,0,0,.2)),
- url("YOUR_BANNER_IMAGE") center/cover;
+  max-width:1200px;
+  margin:25px auto;
+  padding:45px 25px;
+  border-radius:25px;
+  background:
+    radial-gradient(circle at 85% 20%,#ff4d2e55,transparent 30%),
+    linear-gradient(135deg,#171b27,#0d1018);
+  border:1px solid #252b39;
 }
 
 .hero h1{
- color:#ffd000;
- font-size:40px;
+  font-size:42px;
+  margin-bottom:12px;
+}
+
+.hero h1 span{
+  color:#ff542f;
 }
 
 .hero p{
- margin-top:8px;
- color:#fff;
- font-weight:bold;
+  color:#aeb6c5;
+  max-width:600px;
+  line-height:1.7;
+}
+
+.features{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:20px;
+}
+
+.feature{
+  background:#141925;
+  border:1px solid #292f3c;
+  padding:9px 13px;
+  border-radius:10px;
+  font-size:13px;
 }
 
 .container{
- width:94%;
- max-width:1200px;
- margin:auto;
+  max-width:1200px;
+  margin:auto;
+  padding:0 20px 50px;
 }
 
 .section-title{
- margin:20px 0 12px;
- color:#ffd000;
+  font-size:24px;
+  margin:28px 0 16px;
 }
 
-/* GAMES */
-
 .games{
- display:grid;
- grid-template-columns:repeat(4,1fr);
- gap:10px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:15px;
 }
 
 .game{
- background:#171717;
- border:2px solid #ffb800;
- border-radius:15px;
- overflow:hidden;
- cursor:pointer;
- transition:.15s;
+  position:relative;
+  min-height:145px;
+  overflow:hidden;
+  cursor:pointer;
+  border-radius:18px;
+  border:1px solid #292f3c;
+  background:linear-gradient(135deg,#202635,#11151e);
+  transition:.2s;
 }
 
 .game:hover{
- transform:translateY(-3px);
- border-color:#fff000;
+  transform:translateY(-4px);
+  border-color:#ff542f;
+  box-shadow:0 12px 30px #0008;
 }
 
-.game img{
- width:100%;
- height:105px;
- object-fit:cover;
+.game::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(90deg,#000b,transparent);
 }
 
-.game-name{
- padding:10px 5px;
- text-align:center;
- font-weight:bold;
- font-size:13px;
+.game-content{
+  position:absolute;
+  z-index:2;
+  left:18px;
+  bottom:18px;
 }
 
-.game button{
- width:90%;
- margin:0 5% 10px;
- padding:9px;
- border:0;
- border-radius:9px;
- background:#ff3c13;
- color:#fff;
- font-weight:bold;
+.game-content h3{
+  font-size:20px;
 }
 
-/* SHOP */
-
-.shop{
- display:none;
- margin:20px 0;
- padding:12px;
- border:2px solid #ffb800;
- border-radius:18px;
- background:linear-gradient(#180000,#090909);
+.game-content p{
+  color:#b8c0ce;
+  margin-top:5px;
+  font-size:12px;
 }
 
-.shop.show{
- display:block;
+.game-badge{
+  position:absolute;
+  z-index:3;
+  top:12px;
+  right:12px;
+  background:#ff542f;
+  padding:5px 8px;
+  border-radius:7px;
+  font-size:10px;
+  font-weight:bold;
 }
 
-.shop-title{
- padding:15px;
- border-radius:12px;
- background:linear-gradient(90deg,#e40000,#ff6a00);
- border:2px solid #ffd000;
- margin-bottom:12px;
+.ff{
+  background:
+  linear-gradient(135deg,#402014,#11151d);
 }
 
-.shop-title h2{
- color:#fff;
+.ml{
+  background:
+  linear-gradient(135deg,#172e52,#151624);
 }
 
-.shop-title p{
- color:#ffe900;
- margin-top:5px;
+.pubg{
+  background:
+  linear-gradient(135deg,#3b3218,#12151d);
 }
 
-/* PACKAGES */
+.roblox{
+  background:
+  linear-gradient(135deg,#321e32,#12151d);
+}
 
-.package-head{
- display:grid;
- grid-template-columns:1.3fr 1fr .8fr;
- gap:5px;
- padding:10px;
- background:#8e0000;
- border:1px solid #ffd000;
- color:#ffe500;
- font-size:12px;
- text-align:center;
- border-radius:10px 10px 0 0;
+.bs{
+  background:
+  linear-gradient(135deg,#172d2b,#12151d);
+}
+
+.hok{
+  background:
+  linear-gradient(135deg,#302019,#12151d);
+}
+
+.pass{
+  background:
+  linear-gradient(135deg,#3a2020,#14151c);
+}
+
+.spin-box{
+  margin-top:25px;
+  background:#11151f;
+  border:1px solid #292f3c;
+  border-radius:20px;
+  padding:25px;
+  text-align:center;
+}
+
+.wheel{
+  width:180px;
+  height:180px;
+  border-radius:50%;
+  margin:20px auto;
+  background:conic-gradient(
+    #ff542f 0deg 60deg,
+    #222938 60deg 120deg,
+    #ff8b2e 120deg 180deg,
+    #222938 180deg 240deg,
+    #ff542f 240deg 300deg,
+    #222938 300deg 360deg
+  );
+  border:8px solid #242a38;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:transform 3s cubic-bezier(.15,.8,.2,1);
+}
+
+.wheel-inner{
+  width:75px;
+  height:75px;
+  background:#0b0e15;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:13px;
+  font-weight:bold;
+}
+
+.spin-btn{
+  border:0;
+  background:#ff542f;
+  color:white;
+  padding:13px 25px;
+  border-radius:12px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.spin-result{
+  margin-top:15px;
+  color:#ffb28f;
+  min-height:20px;
+}
+
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:999;
+  background:#000b;
+  padding:20px;
+  overflow:auto;
+}
+
+.modal-box{
+  max-width:650px;
+  margin:40px auto;
+  background:#10141e;
+  border:1px solid #2a3140;
+  border-radius:22px;
+  padding:25px;
+}
+
+.close{
+  float:right;
+  cursor:pointer;
+  font-size:24px;
+  color:#aeb6c5;
+}
+
+.selected-game{
+  color:#ff633f;
+  margin-bottom:5px;
 }
 
 .packages{
- display:grid;
- grid-template-columns:repeat(2,1fr);
- gap:8px;
- padding:8px 0;
- max-height:650px;
- overflow-y:auto;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+  margin:18px 0;
 }
 
 .package{
- position:relative;
- min-height:105px;
- border:2px solid #ffd000;
- border-radius:15px;
- padding:10px;
- background:linear-gradient(135deg,#ffb300,#ff5a00,#df1600);
- cursor:pointer;
- overflow:hidden;
+  background:#171c28;
+  border:1px solid #2a3140;
+  color:white;
+  padding:15px;
+  border-radius:12px;
+  cursor:pointer;
+  text-align:left;
 }
 
-.package:active{
- transform:scale(.98);
+.package:hover,
+.package.active{
+  border-color:#ff542f;
+  background:#211b1d;
 }
 
-.package .badge{
- display:inline-block;
- background:#a90000;
- border:1px solid #ffd000;
- border-radius:20px;
- padding:4px 8px;
- font-size:10px;
- font-weight:bold;
+.package strong{
+  display:block;
+  font-size:16px;
 }
 
-.package .amount{
- font-size:18px;
- font-weight:900;
- margin-top:12px;
-}
-
-.package .price{
- font-size:27px;
- font-weight:900;
- text-align:right;
- margin-top:4px;
- text-shadow:2px 2px #8c0000;
-}
-
-.package.selected{
- border:3px solid white;
- box-shadow:0 0 0 3px #ff2500;
-}
-
-/* ORDER */
-
-.order-box{
- margin-top:15px;
- background:#151515;
- border:2px solid #ffb800;
- border-radius:15px;
- padding:15px;
-}
-
-.order-box h3{
- color:#ffd000;
- margin-bottom:10px;
+.package span{
+  color:#ff9c83;
+  font-size:13px;
 }
 
 input{
- width:100%;
- padding:14px;
- margin-top:8px;
- background:#222;
- color:white;
- border:1px solid #555;
- border-radius:10px;
- font-size:16px;
+  width:100%;
+  background:#090c13;
+  color:white;
+  border:1px solid #303747;
+  padding:14px;
+  border-radius:11px;
+  margin-top:9px;
+  outline:none;
 }
 
-.btn{
- width:100%;
- margin-top:10px;
- padding:14px;
- border:0;
- border-radius:11px;
- background:linear-gradient(90deg,#ff2c00,#ff9700);
- color:white;
- font-size:16px;
- font-weight:bold;
+input:focus{
+  border-color:#ff542f;
 }
 
-.verify-ok{
- margin-top:8px;
- color:#35ff71;
+.verify{
+  width:100%;
+  margin-top:12px;
+  border:0;
+  padding:13px;
+  border-radius:11px;
+  background:#252c3b;
+  color:white;
+  cursor:pointer;
 }
 
-.payment{
- margin-top:15px;
- text-align:center;
- padding:15px;
- background:#1b1b1b;
- border:1px solid #555;
- border-radius:15px;
+.verify.success{
+  background:#123c28;
+  color:#6dffa4;
+}
+
+.buy{
+  width:100%;
+  margin-top:15px;
+  border:0;
+  padding:15px;
+  border-radius:12px;
+  background:#ff542f;
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
 }
 
 .qr{
- width:190px;
- height:190px;
- background:white;
- margin:12px auto;
- object-fit:contain;
- display:block;
- border-radius:10px;
+  display:none;
+  margin-top:20px;
+  text-align:center;
+  padding:20px;
+  background:#171c28;
+  border-radius:15px;
 }
 
-.result{
- display:none;
- margin-top:12px;
- padding:14px;
- border-radius:12px;
- background:#102d17;
- border:1px solid #38ff70;
- line-height:1.8;
+.qr-box{
+  width:190px;
+  height:190px;
+  background:white;
+  color:#111;
+  margin:15px auto;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:14px;
+  font-weight:bold;
+}
+
+.note{
+  color:#9fa8b8;
+  font-size:12px;
+  line-height:1.6;
 }
 
 footer{
- margin-top:30px;
- padding:25px;
- text-align:center;
- background:#a90000;
- border-top:3px solid #ffd000;
- color:#ffd000;
+  border-top:1px solid #202633;
+  text-align:center;
+  padding:30px 15px;
+  color:#858e9f;
+  font-size:13px;
 }
 
-/* MOBILE */
+@media(max-width:600px){
+  .hero h1{
+    font-size:31px;
+  }
 
-@media(max-width:700px){
+  .packages{
+    grid-template-columns:1fr;
+  }
 
- header{
-  padding:12px;
- }
-
- .logo{
-  font-size:21px;
- }
-
- .admin{
-  font-size:11px;
-  padding:8px 10px;
- }
-
- .hero{
-  min-height:150px;
- }
-
- .hero h1{
-  font-size:28px;
- }
-
- .games{
-  grid-template-columns:repeat(3,1fr);
-  gap:7px;
- }
-
- .game img{
-  height:78px;
- }
-
- .game-name{
-  font-size:10px;
- }
-
- .game button{
-  font-size:10px;
-  padding:7px;
- }
-
- .package .amount{
-  font-size:14px;
- }
-
- .package .price{
-  font-size:23px;
- }
-
+  .nav{
+    padding:13px 15px;
+  }
 }
 </style>
 </head>
@@ -356,546 +422,434 @@ footer{
 <body>
 
 <header>
- <div class="logo">👑 MGG STORE V2026</div>
- <div class="admin">Telegram @MGGStoreAdmin</div>
+  <div class="nav">
+    <div class="logo">MGG <span>STORE</span></div>
+    <div class="status">● ONLINE</div>
+  </div>
 </header>
 
 <section class="hero">
- <h1>MGG STORE</h1>
- <p>💎 Diamond • UC • Robux • Token</p>
- <p>⚡ Fast • Safe • Reasonable Price</p>
+  <h1>GAME <span>TOP UP</span></h1>
+  <p>
+    លឿនរហ័ស • សុវត្ថិភាព • តម្លៃសមរម្យ • មិនខកបំណង
+  </p>
+
+  <div class="features">
+    <div class="feature">Instant Order</div>
+    <div class="feature">Player ID Verify</div>
+    <div class="feature">KHQR Payment</div>
+    <div class="feature">24/7 Support</div>
+  </div>
 </section>
 
-<main class="container">
+<div class="container">
 
-<h2 class="section-title">🎮 ជ្រើសរើសហ្គេម</h2>
+  <h2 class="section-title">Popular Games</h2>
 
-<div class="games">
+  <div class="games">
 
-<div class="game" onclick="openGame('Mobile Legends')">
-<img src="YOUR_ML_IMAGE">
-<div class="game-name">⚔️ Mobile Legends</div>
-<button>🛒 ចូលទិញ</button>
-</div>
+    <div class="game ff" onclick="openGame('Free Fire','ff')">
+      <div class="game-badge">TOP UP</div>
+      <div class="game-content">
+        <h3>Free Fire</h3>
+        <p>Diamonds & Weekly</p>
+      </div>
+    </div>
 
-<div class="game" onclick="openGame('PUBG Mobile')">
-<img src="YOUR_PUBG_IMAGE">
-<div class="game-name">🪖 PUBG Mobile</div>
-<button>🛒 ចូលទិញ</button>
-</div>
+    <div class="game ml" onclick="openGame('Mobile Legends','ml')">
+      <div class="game-badge">HOT</div>
+      <div class="game-content">
+        <h3>Mobile Legends</h3>
+        <p>Diamonds & Weekly Pass</p>
+      </div>
+    </div>
 
-<div class="game" onclick="openGame('Roblox')">
-<img src="YOUR_ROBLOX_IMAGE">
-<div class="game-name">🎮 Roblox</div>
-<button>🛒 ចូលទិញ</button>
-</div>
+    <div class="game pubg" onclick="openGame('PUBG Mobile','pubg')">
+      <div class="game-content">
+        <h3>PUBG Mobile</h3>
+        <p>UC Top Up</p>
+      </div>
+    </div>
 
-<div class="game" onclick="openGame('Free Fire')">
-<img src="YOUR_FF_IMAGE">
-<div class="game-name">🔥 Free Fire</div>
-<button>🛒 ចូលទិញ</button>
-</div>
+    <div class="game roblox" onclick="openGame('Roblox','roblox')">
+      <div class="game-content">
+        <h3>Roblox</h3>
+        <p>Robux / Gift</p>
+      </div>
+    </div>
 
-<div class="game" onclick="openGame('Honor of Kings')">
-<img src="YOUR_HOK_IMAGE">
-<div class="game-name">👑 Honor of Kings</div>
-<button>🛒 ចូលទិញ</button>
-</div>
+    <div class="game bs" onclick="openGame('Blood Strike','bs')">
+      <div class="game-content">
+        <h3>Blood Strike</h3>
+        <p>Gold Top Up</p>
+      </div>
+    </div>
 
-<div class="game" onclick="openGame('Genshin Impact')">
-<img src="YOUR_GENSHIN_IMAGE">
-<div class="game-name">🌌 Genshin Impact</div>
-<button>🛒 ចូលទិញ</button>
-</div>
+    <div class="game hok" onclick="openGame('Honor of Kings','hok')">
+      <div class="game-content">
+        <h3>Honor of Kings</h3>
+        <p>Tokens</p>
+      </div>
+    </div>
 
-<div class="game" onclick="openGame('Honkai Star Rail')">
-<img src="YOUR_HSR_IMAGE">
-<div class="game-name">⚡ Honkai Star Rail</div>
-<button>🛒 ចូលទិញ</button>
-</div>
+  </div>
 
-<div class="game" onclick="openGame('Call of Duty Mobile')">
-<img src="YOUR_CODM_IMAGE">
-<div class="game-name">🛡️ Call of Duty</div>
-<button>🛒 ចូលទិញ</button>
-</div>
+  <h2 class="section-title">Free Reward</h2>
 
-<div class="game" onclick="openGame('Valorant')">
-<img src="YOUR_VALORANT_IMAGE">
-<div class="game-name">🔫 Valorant</div>
-<button>🛒 ចូលទិញ</button>
-</div>
+  <div class="spin-box">
+    <h2>MGG Reward Spin</h2>
+    <p class="note">
+      Spin មួយដងដោយឥតគិតថ្លៃ ដើម្បីទទួលបាន promotional reward។
+    </p>
 
-<div class="game" onclick="openGame('Arena Breakout')">
-<img src="YOUR_ARENA_IMAGE">
-<div class="game-name">🎯 Arena Breakout</div>
-<button>🛒 ចូលទិញ</button>
-</div>
+    <div class="wheel" id="wheel">
+      <div class="wheel-inner">MGG</div>
+    </div>
 
-<div class="game" onclick="openGame('FC Mobile')">
-<img src="YOUR_FC_IMAGE">
-<div class="game-name">⚽ FC Mobile</div>
-<button>🛒 ចូលទិញ</button>
-</div>
+    <button class="spin-btn" onclick="spinReward()">
+      SPIN FREE
+    </button>
 
-<div class="game" onclick="openGame('Steam Wallet')">
-<img src="YOUR_STEAM_IMAGE">
-<div class="game-name">🎮 Steam Wallet</div>
-<button>🛒 ចូលទិញ</button>
-</div>
+    <div class="spin-result" id="spinResult"></div>
+  </div>
 
 </div>
-
-
-<section class="shop" id="shop">
-
-<div class="shop-title">
- <h2 id="gameTitle">🛒 Game</h2>
- <p id="currencyTitle">Currency</p>
-</div>
-
-<div class="package-head">
- <span>ប្រភេទលុយ</span>
- <span>ចំនួន</span>
- <span>USD</span>
-</div>
-
-<div class="packages" id="packages"></div>
-
-
-<div class="order-box">
-
-<h3>👤 Player Information</h3>
-
-<input id="playerId" placeholder="Player ID">
-
-<input id="confirmId" placeholder="Confirm Player ID">
-
-<button class="btn" onclick="verifyID()">
-🛡️ ផ្ទៀងផ្ទាត់ ID
-</button>
-
-<div id="verifyText"></div>
-
-</div>
-
-
-<div class="payment">
-
-<h3>💳 MGG STORE PAYMENT</h3>
-
-<p style="margin-top:7px;color:#aaa">
-ស្កេន QR ដើម្បីទូទាត់
-</p>
-
-<img
-class="qr"
-src="YOUR_MGG_STORE_QR"
-alt="MGG STORE QR">
-
-<p style="color:#ffcc00">
-⚠️ ពិនិត្យ Game + Package + Player ID មុនទូទាត់
-</p>
-
-<button class="btn" onclick="createOrder()">
-💰 ខ្ញុំបានបង់ប្រាក់
-</button>
-
-</div>
-
-<div class="result" id="result"></div>
-
-</section>
-
-</main>
-
 
 <footer>
-👑 MGG STORE V2026<br>
-⚡ Fast • 🛡️ Safe • 💎 Reasonable Price
+  MGG STORE © 2026 • Fast • Secure • Affordable
 </footer>
+
+
+<!-- BUY MODAL -->
+
+<div class="modal" id="modal">
+
+  <div class="modal-box">
+
+    <div class="close" onclick="closeModal()">×</div>
+
+    <div class="selected-game" id="gameName">
+      Free Fire
+    </div>
+
+    <h2>Select Package</h2>
+
+    <div class="packages" id="packages"></div>
+
+    <label>Player ID</label>
+    <input
+      id="playerId"
+      type="text"
+      placeholder="Enter Player ID"
+    >
+
+    <label>Server ID (if required)</label>
+    <input
+      id="serverId"
+      type="text"
+      placeholder="Enter Server ID"
+    >
+
+    <button class="verify" id="verifyBtn" onclick="verifyPlayer()">
+      VERIFY PLAYER ID
+    </button>
+
+    <div id="verifyText" class="note" style="margin-top:10px;"></div>
+
+    <button class="buy" onclick="showPayment()">
+      CONTINUE TO PAYMENT
+    </button>
+
+    <div class="qr" id="qr">
+
+      <h3>KHQR PAYMENT</h3>
+
+      <div class="qr-box">
+        MGG STORE<br>
+        KHQR DEMO
+      </div>
+
+      <p class="note">
+        នេះជាតំបន់ QR Demo សិន។<br>
+        ពេលមាន payment API ពិត យើងនឹងភ្ជាប់ QR/Payment verification នៅទីនេះ។
+      </p>
+
+      <button class="buy" onclick="createOrder()">
+        CONFIRM ORDER
+      </button>
+
+    </div>
+
+    <div id="orderResult" class="note" style="margin-top:15px;"></div>
+
+  </div>
+</div>
 
 
 <script>
 
-const API_URL =
-"https://mgg-store-backend.onrender.com";
+let currentGame = "";
+let selectedPackage = "";
+let verified = false;
 
-let selectedGame="";
-let selectedPackage=null;
+const packageData = {
 
+  ff:[
+    ["100 Diamonds","$0.99"],
+    ["310 Diamonds","$2.99"],
+    ["520 Diamonds","$4.99"],
+    ["1060 Diamonds","$9.99"],
+    ["Weekly Pass","$1.99"]
+  ],
 
-/* =========================
-   GAME PACKAGES
-========================= */
+  ml:[
+    ["86 Diamonds","$1.00"],
+    ["172 Diamonds","$2.00"],
+    ["257 Diamonds","$3.00"],
+    ["706 Diamonds","$7.50"],
+    ["Weekly Pass","$1.99"]
+  ],
 
-const gamePackages={
+  pubg:[
+    ["60 UC","$0.99"],
+    ["325 UC","$4.99"],
+    ["660 UC","$9.99"],
+    ["1800 UC","$24.99"]
+  ],
 
-"Mobile Legends":{
-currency:"Diamond",
-items:[
-["11 Diamonds","11","$0.25"],
-["86 Diamonds","86","$1.50"],
-["172 Diamonds","172","$3.00"],
-["257 Diamonds","257","$4.50"],
-["706 Diamonds","706","$12.00"],
-["2,195 Diamonds","2,195","$35.00"]
-]},
+  roblox:[
+    ["400 Robux","$4.99"],
+    ["800 Robux","$9.99"],
+    ["1700 Robux","$19.99"]
+  ],
 
-"PUBG Mobile":{
-currency:"Unknown Cash (UC)",
-items:[
-["60 UC","60","$0.99"],
-["325 UC","325","$4.99"],
-["660 UC","660","$9.99"],
-["1,800 UC","1,800","$24.99"],
-["3,850 UC","3,850","$49.99"],
-["8,100 UC","8,100","$99.99"]
-]},
+  bs:[
+    ["100 Gold","$0.99"],
+    ["500 Gold","$4.99"],
+    ["1100 Gold","$9.99"]
+  ],
 
-"Roblox":{
-currency:"Robux",
-items:[
-["400 Robux","400","$4.99"],
-["800 Robux","800","$9.99"],
-["1,700 Robux","1,700","$19.99"],
-["4,500 Robux","4,500","$49.99"],
-["10,000 Robux","10,000","$99.99"]
-]},
-
-"Free Fire":{
-currency:"Diamond / Token",
-items:[
-["100 Diamonds","100","$0.99"],
-["310 Diamonds","310","$3.00"],
-["520 Diamonds","520","$5.00"],
-["1,060 Diamonds","1,060","$10.00"],
-["2,180 Diamonds","2,180","$20.00"],
-["5,600 Diamonds","5,600","$50.00"]
-]},
-
-"Honor of Kings":{
-currency:"Token",
-items:[
-["80 Tokens","80","SET PRICE"],
-["400 Tokens","400","SET PRICE"],
-["800 Tokens","800","SET PRICE"],
-["1,680 Tokens","1,680","SET PRICE"],
-["3,400 Tokens","3,400","SET PRICE"],
-["6,800 Tokens","6,800","SET PRICE"]
-]},
-
-"Genshin Impact":{
-currency:"Genesis Crystal",
-items:[
-["60 Crystals","60","SET PRICE"],
-["300 + Bonus","300","SET PRICE"],
-["980 + Bonus","980","SET PRICE"],
-["1,980 + Bonus","1,980","SET PRICE"],
-["3,280 + Bonus","3,280","SET PRICE"],
-["6,480 + Bonus","6,480","SET PRICE"]
-]},
-
-"Honkai Star Rail":{
-currency:"Oneiric Shard",
-items:[
-["60 Shards","60","SET PRICE"],
-["300 + Bonus","300","SET PRICE"],
-["980 + Bonus","980","SET PRICE"],
-["1,980 + Bonus","1,980","SET PRICE"],
-["3,280 + Bonus","3,280","SET PRICE"],
-["6,480 + Bonus","6,480","SET PRICE"]
-]},
-
-"Call of Duty Mobile":{
-currency:"CP",
-items:[
-["80 CP","80","SET PRICE"],
-["420 CP","420","SET PRICE"],
-["880 CP","880","SET PRICE"],
-["2,400 CP","2,400","SET PRICE"],
-["5,000 CP","5,000","SET PRICE"],
-["10,800 CP","10,800","SET PRICE"]
-]},
-
-"Valorant":{
-currency:"VP",
-items:[
-["475 VP","475","SET PRICE"],
-["1,000 VP","1,000","SET PRICE"],
-["2,050 VP","2,050","SET PRICE"],
-["3,650 VP","3,650","SET PRICE"],
-["5,350 VP","5,350","SET PRICE"],
-["11,000 VP","11,000","SET PRICE"]
-]},
-
-"Arena Breakout":{
-currency:"Bonds",
-items:[
-["60 Bonds","60","SET PRICE"],
-["300 Bonds","300","SET PRICE"],
-["680 Bonds","680","SET PRICE"],
-["1,280 Bonds","1,280","SET PRICE"],
-["3,280 Bonds","3,280","SET PRICE"]
-]},
-
-"FC Mobile":{
-currency:"FC Points",
-items:[
-["100 FC Points","100","SET PRICE"],
-["520 FC Points","520","SET PRICE"],
-["1,050 FC Points","1,050","SET PRICE"],
-["2,200 FC Points","2,200","SET PRICE"],
-["5,750 FC Points","5,750","SET PRICE"]
-]},
-
-"Steam Wallet":{
-currency:"USD Wallet",
-items:[
-["$5 Wallet","5","SET PRICE"],
-["$10 Wallet","10","SET PRICE"],
-["$20 Wallet","20","SET PRICE"],
-["$25 Wallet","25","SET PRICE"],
-["$50 Wallet","50","SET PRICE"],
-["$100 Wallet","100","SET PRICE"]
-]}
+  hok:[
+    ["80 Tokens","$0.99"],
+    ["420 Tokens","$4.99"],
+    ["880 Tokens","$9.99"]
+  ]
 
 };
 
 
-/* =========================
-   OPEN GAME
-========================= */
+function openGame(name,key){
 
-function openGame(game){
+  currentGame = key;
+  selectedPackage = "";
+  verified = false;
 
- selectedGame=game;
- selectedPackage=null;
+  document.getElementById("gameName").innerText = name;
 
- const data=gamePackages[game];
+  const box = document.getElementById("packages");
 
- document.getElementById("gameTitle").textContent=
- "🛒 "+game;
+  box.innerHTML = "";
 
- document.getElementById("currencyTitle").textContent=
- "💎 Currency: "+data.currency;
+  packageData[key].forEach(item => {
 
- const box=document.getElementById("packages");
+    const div = document.createElement("div");
 
- box.innerHTML="";
+    div.className = "package";
 
- data.items.forEach(item=>{
+    div.innerHTML = `
+      <strong>${item[0]}</strong>
+      <span>${item[1]}</span>
+    `;
 
-   const card=document.createElement("div");
+    div.onclick = () => {
 
-   card.className="package";
+      document.querySelectorAll(".package")
+        .forEach(x => x.classList.remove("active"));
 
-   card.innerHTML=`
+      div.classList.add("active");
 
-     <span class="badge">
-       💎 ${item[0]}
-     </span>
+      selectedPackage = item[0];
 
-     <div class="amount">
-       ${item[1]}
-     </div>
+    };
 
-     <div class="price">
-       ${item[2]}
-     </div>
+    box.appendChild(div);
 
-   `;
+  });
 
-   card.onclick=()=>{
+  document.getElementById("playerId").value = "";
+  document.getElementById("serverId").value = "";
 
-     document
-     .querySelectorAll(".package")
-     .forEach(x=>
-       x.classList.remove("selected")
-     );
+  document.getElementById("verifyText").innerText = "";
 
-     card.classList.add("selected");
+  document.getElementById("verifyBtn").classList.remove("success");
 
-     selectedPackage={
-       name:item[0],
-       amount:item[1],
-       price:item[2],
-       currency:data.currency
-     };
+  document.getElementById("qr").style.display = "none";
 
-   };
+  document.getElementById("orderResult").innerText = "";
 
-   box.appendChild(card);
-
- });
-
- document.getElementById("shop")
- .classList.add("show");
-
- document.getElementById("shop")
- .scrollIntoView({
-   behavior:"smooth"
- });
-
+  document.getElementById("modal").style.display = "block";
 }
 
 
-/* =========================
-   VERIFY ID
-========================= */
-
-function verifyID(){
-
- const id=
- document.getElementById("playerId")
- .value.trim();
-
- const confirm=
- document.getElementById("confirmId")
- .value.trim();
-
- const text=
- document.getElementById("verifyText");
-
- if(!id){
-
-   text.innerHTML=
-   "<span style='color:#ff5555'>❌ សូមបញ្ចូល Player ID</span>";
-
-   return;
- }
-
- if(id!==confirm){
-
-   text.innerHTML=
-   "<span style='color:#ff5555'>❌ ID មិនដូចគ្នា</span>";
-
-   return;
- }
-
- text.innerHTML=
- "<span class='verify-ok'>✅ Player ID ត្រូវគ្នា</span>";
-
+function closeModal(){
+  document.getElementById("modal").style.display = "none";
 }
 
 
-/* =========================
-   CREATE ORDER
-========================= */
+function verifyPlayer(){
+
+  const id =
+    document.getElementById("playerId").value.trim();
+
+  if(!id){
+
+    document.getElementById("verifyText").innerText =
+      "Please enter your Player ID.";
+
+    return;
+  }
+
+  if(id.length < 5){
+
+    document.getElementById("verifyText").innerText =
+      "Player ID មិនទាន់ត្រឹមត្រូវទេ។";
+
+    return;
+  }
+
+  verified = true;
+
+  document.getElementById("verifyBtn")
+    .classList.add("success");
+
+  document.getElementById("verifyBtn")
+    .innerText = "✓ PLAYER VERIFIED";
+
+  document.getElementById("verifyText").innerText =
+    "Player ID verified (Demo).";
+}
+
+
+function showPayment(){
+
+  if(!selectedPackage){
+
+    alert("Please select a package.");
+
+    return;
+  }
+
+  if(!verified){
+
+    alert("Please verify Player ID first.");
+
+    return;
+  }
+
+  document.getElementById("qr").style.display = "block";
+
+}
+
 
 async function createOrder(){
 
- const playerId=
- document.getElementById("playerId")
- .value.trim();
+  const playerId =
+    document.getElementById("playerId").value.trim();
 
- const confirm=
- document.getElementById("confirmId")
- .value.trim();
+  const serverId =
+    document.getElementById("serverId").value.trim();
 
- const result=
- document.getElementById("result");
+  const result =
+    document.getElementById("orderResult");
+
+  result.innerText = "Creating order...";
+
+  try{
+
+    const response = await fetch(
+      "https://mgg-store-backend.onrender.com/api/orders",
+      {
+        method:"POST",
+        headers:{
+          "Content-Type":"application/json"
+        },
+        body:JSON.stringify({
+
+          game:currentGame,
+
+          playerId:playerId,
+
+          serverId:serverId,
+
+          package:selectedPackage
+
+        })
+      }
+    );
+
+    const data = await response.json();
+
+    if(data.success || data.orderId){
+
+      result.innerText =
+        "✓ Order created: " +
+        (data.orderId || "MGG-ORDER");
+
+    }else{
+
+      result.innerText =
+        "Order created. Please check Admin.";
+
+    }
+
+  }catch(error){
+
+    result.innerText =
+      "Backend demo connection error.";
+
+  }
+
+}
 
 
- if(!selectedPackage){
+function spinReward(){
 
-   alert("សូមជ្រើសរើស Package 💎");
+  const wheel =
+    document.getElementById("wheel");
 
-   return;
- }
+  const result =
+    document.getElementById("spinResult");
 
- if(!playerId||playerId!==confirm){
+  const rewards = [
+    "5% OFF",
+    "10% OFF",
+    "Free Reward",
+    "Try Again",
+    "Bonus Point",
+    "Special Coupon"
+  ];
 
-   alert("សូមផ្ទៀងផ្ទាត់ Player ID");
+  const random =
+    Math.floor(Math.random()*rewards.length);
 
-   return;
- }
+  const rotation =
+    1440 + Math.floor(Math.random()*360);
 
- result.style.display="block";
+  wheel.style.transform =
+    `rotate(${rotation}deg)`;
 
- result.innerHTML=
- "⏳ កំពុងបង្កើត Order...";
+  result.innerText = "Spinning...";
 
- try{
+  setTimeout(()=>{
 
-   const response=
-   await fetch(
-     API_URL+"/api/orders",
-     {
-       method:"POST",
+    result.innerText =
+      "Reward: " + rewards[random];
 
-       headers:{
-         "Content-Type":
-         "application/json"
-       },
-
-       body:JSON.stringify({
-
-         game:selectedGame,
-
-         playerId:playerId,
-
-         package:selectedPackage.name,
-
-         currency:selectedPackage.currency,
-
-         amount:selectedPackage.amount,
-
-         price:selectedPackage.price
-
-       })
-     }
-   );
-
-   if(!response.ok){
-
-     throw new Error(
-       "HTTP "+response.status
-     );
-
-   }
-
-   const data=
-   await response.json();
-
-   result.innerHTML=`
-
-   <b>✅ Order បានបង្កើត!</b><br>
-
-   🆔 Order:
-   ${data.orderId||"MGG-XXXXXX"}<br>
-
-   🎮 Game:
-   ${selectedGame}<br>
-
-   💎 Currency:
-   ${selectedPackage.currency}<br>
-
-   📦 Amount:
-   ${selectedPackage.amount}<br>
-
-   💵 Price:
-   ${selectedPackage.price}<br>
-
-   👤 Player ID:
-   ${playerId}<br>
-
-   ⏳ Status:
-   PENDING_PAYMENT
-
-   `;
-
- }catch(error){
-
-   result.innerHTML=
-   "❌ Backend Connection Error<br>"+
-   error.message;
-
- }
+  },3000);
 
 }
 
 </script>
 
 </body>
-  </html>
+ </html>
