@@ -3,116 +3,235 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MGG STORE — Game Top Up</title>
+
+<title>MGG STORE V2026 — Game Top Up</title>
 
 <style>
+
+/* =========================================================
+   MGG STORE V2026
+   BLUE NEON EDITION
+========================================================= */
+
 *{
   box-sizing:border-box;
   margin:0;
   padding:0;
-  font-family:Arial,Helvetica,sans-serif;
+  font-family:Arial,"Noto Sans Khmer",sans-serif;
+}
+
+:root{
+  --blue:#078cff;
+  --blue2:#00c6ff;
+  --dark:#020817;
+  --card:#071a36;
+  --line:#1265b0;
+  --gold:#ffd43b;
+  --white:#fff;
+}
+
+html{
+  scroll-behavior:smooth;
 }
 
 body{
-  background:#f7f7f8;
-  color:#111;
+  background:
+    radial-gradient(circle at 20% 10%,rgba(0,140,255,.16),transparent 30%),
+    radial-gradient(circle at 80% 30%,rgba(0,198,255,.12),transparent 30%),
+    #020817;
+  color:white;
+  min-height:100vh;
 }
 
+/* ================= HEADER ================= */
+
 header{
-  height:72px;
-  background:#fff;
-  border-bottom:1px solid #eee;
+  position:sticky;
+  top:0;
+  z-index:1000;
+  height:70px;
+
+  background:rgba(2,12,30,.94);
+  backdrop-filter:blur(15px);
+
+  border-bottom:1px solid #075da9;
+
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:0 6%;
-  position:sticky;
-  top:0;
-  z-index:100;
+
+  padding:0 5%;
 }
 
 .logo{
-  font-size:25px;
-  font-weight:900;
+  font-size:26px;
+  font-weight:1000;
+  color:white;
+  text-shadow:0 0 15px #009dff;
 }
 
 .logo span{
-  color:#ff4b00;
+  color:#00bfff;
 }
 
 nav{
   display:flex;
-  gap:25px;
+  gap:24px;
 }
 
 nav a{
+  color:#dceeff;
   text-decoration:none;
-  color:#222;
   font-size:14px;
-  font-weight:700;
+  font-weight:bold;
 }
 
 nav a:hover{
-  color:#ff4b00;
+  color:#00c6ff;
 }
 
 .search{
-  width:220px;
+  width:210px;
   padding:11px 15px;
-  border:1px solid #ddd;
   border-radius:25px;
+  border:1px solid #1769ac;
+  background:#071a36;
+  color:white;
   outline:none;
 }
 
+.search::placeholder{
+  color:#8ba8c7;
+}
+
+/* ================= CONTAINER ================= */
+
 .container{
-  width:88%;
-  max-width:1250px;
+  width:92%;
+  max-width:1400px;
   margin:auto;
 }
 
+/* ================= HERO ================= */
+
 .hero{
-  margin:25px 0;
-  min-height:330px;
+  margin:22px 0;
+
+  min-height:360px;
+
   border-radius:24px;
   overflow:hidden;
+
+  position:relative;
+
   background:
-    linear-gradient(90deg,rgba(0,0,0,.85),rgba(0,0,0,.25)),
+    linear-gradient(90deg,
+      rgba(1,10,28,.96),
+      rgba(1,25,60,.72),
+      rgba(0,115,255,.18)
+    ),
     url("images/mgg-banner.jpg") center/cover;
-  display:flex;
-  align-items:center;
-  padding:45px;
-  color:white;
+
+  border:1px solid #0878d4;
+
+  box-shadow:
+    0 0 30px rgba(0,130,255,.25);
+}
+
+.hero-content{
+  padding:55px;
+  max-width:720px;
+}
+
+.badge{
+  display:inline-block;
+
+  padding:7px 13px;
+
+  border-radius:20px;
+
+  background:#ffd43b;
+  color:#07101f;
+
+  font-size:13px;
+  font-weight:900;
+
+  margin-bottom:15px;
+
+  box-shadow:0 0 20px rgba(255,212,59,.35);
 }
 
 .hero h1{
-  font-size:48px;
-  margin-bottom:12px;
+  font-size:58px;
+  font-weight:1000;
+  line-height:1;
+
+  text-shadow:
+    0 0 15px #008cff,
+    0 0 35px #006eff;
+
+  margin-bottom:16px;
+}
+
+.hero h1 span{
+  color:#00c6ff;
 }
 
 .hero p{
+  color:#dceeff;
   font-size:18px;
+  line-height:1.8;
   margin-bottom:25px;
 }
 
-.btn{
-  display:inline-block;
-  padding:13px 22px;
-  background:#ff4b00;
-  color:#fff;
-  border:0;
+.hero-features{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-bottom:25px;
+}
+
+.feature{
+  padding:9px 13px;
+  border:1px solid #1578c9;
+  background:rgba(0,50,100,.5);
   border-radius:10px;
-  font-weight:800;
+  font-size:13px;
+}
+
+.btn{
+  border:0;
   cursor:pointer;
+
+  padding:14px 24px;
+
+  border-radius:12px;
+
+  background:
+    linear-gradient(135deg,#008cff,#00c6ff);
+
+  color:white;
+
+  font-weight:900;
+
+  box-shadow:
+    0 0 18px rgba(0,153,255,.45);
+
+  transition:.2s;
 }
 
 .btn:hover{
-  background:#e63f00;
+  transform:translateY(-2px);
+  box-shadow:
+    0 0 28px rgba(0,190,255,.7);
 }
 
 .btn:disabled{
-  opacity:.6;
+  opacity:.5;
   cursor:not-allowed;
 }
+
+/* ================= SECTION ================= */
 
 .section{
   margin:55px 0;
@@ -122,100 +241,436 @@ nav a:hover{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  margin-bottom:22px;
+  margin-bottom:20px;
 }
 
 .section-head h2{
-  font-size:27px;
+  font-size:28px;
+}
+
+.section-head h2::first-letter{
+  color:#00c6ff;
 }
 
 .see{
-  color:#ff4b00;
-  font-weight:700;
+  color:#00bfff;
   text-decoration:none;
+  font-weight:bold;
 }
+
+/* ================= GAMES ================= */
 
 .games{
   display:grid;
   grid-template-columns:repeat(5,1fr);
-  gap:18px;
+  gap:16px;
 }
 
 .game{
-  background:#fff;
-  border-radius:15px;
+  position:relative;
+
+  background:
+    linear-gradient(180deg,#09234a,#04132b);
+
+  border:1px solid #1467ae;
+
+  border-radius:16px;
+
   overflow:hidden;
-  border:1px solid #eee;
-  transition:.2s;
+
   cursor:pointer;
+
+  transition:.25s;
+
+  box-shadow:
+    0 8px 25px rgba(0,0,0,.25);
 }
 
 .game:hover{
-  transform:translateY(-5px);
-  box-shadow:0 10px 30px rgba(0,0,0,.09);
+  transform:translateY(-7px);
+
+  border-color:#00c6ff;
+
+  box-shadow:
+    0 0 25px rgba(0,157,255,.35);
 }
 
 .game img{
   width:100%;
-  height:155px;
+  height:175px;
   object-fit:cover;
   display:block;
 }
 
 .game-info{
-  padding:14px;
+  padding:13px;
 }
 
 .game-info h3{
   font-size:16px;
-  margin-bottom:8px;
+  margin-bottom:7px;
 }
 
 .tag{
-  font-size:11px;
-  color:#777;
+  color:#83b7df;
+  font-size:12px;
 }
 
 .topup{
+  width:100%;
   margin-top:12px;
+
+  padding:10px;
+
+  border:1px solid #159cff;
+
+  border-radius:9px;
+
+  background:#087cff;
+  color:white;
+
+  font-weight:900;
+
+  cursor:pointer;
+}
+
+.topup:hover{
+  background:#00bfff;
+}
+
+/* ================= PACKAGES ================= */
+
+.packages-showcase{
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  gap:13px;
+}
+
+.package-card{
+  position:relative;
+
+  text-align:center;
+
+  padding:18px 10px;
+
+  background:
+    linear-gradient(180deg,#0b2c5b,#061630);
+
+  border:1px solid #176db4;
+
+  border-radius:15px;
+
+  transition:.25s;
+}
+
+.package-card:hover{
+  transform:translateY(-5px);
+  border-color:#00c6ff;
+}
+
+.package-card.popular{
+  border:2px solid #ffd43b;
+
+  box-shadow:
+    0 0 25px rgba(255,212,59,.2);
+}
+
+.popular-label{
+  position:absolute;
+
+  top:-12px;
+  left:50%;
+
+  transform:translateX(-50%);
+
+  background:#ffd43b;
+  color:#101010;
+
+  border-radius:20px;
+
+  padding:5px 10px;
+
+  font-size:11px;
+  font-weight:900;
+
+  white-space:nowrap;
+}
+
+.diamond{
+  font-size:40px;
+  margin:10px;
+  filter:drop-shadow(0 0 10px #00c6ff);
+}
+
+.package-card h3{
+  font-size:22px;
+}
+
+.bonus{
+  color:#ffd43b;
+  font-size:12px;
+  font-weight:bold;
+  margin:5px;
+}
+
+.price{
+  font-size:20px;
+  font-weight:900;
+  margin:8px;
+}
+
+.small-btn{
   width:100%;
   padding:9px;
+
   border:0;
-  background:#111;
-  color:#fff;
-  border-radius:8px;
+  border-radius:9px;
+
+  background:#087cff;
+  color:white;
+
   font-weight:bold;
   cursor:pointer;
 }
 
-.promos{
+/* ================= SPIN ================= */
+
+.spin-area{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
+  grid-template-columns:1fr 1fr;
+  gap:25px;
+
+  background:
+    linear-gradient(135deg,#061a38,#031025);
+
+  border:1px solid #126ab6;
+
+  border-radius:20px;
+
+  padding:28px;
+
+  box-shadow:0 0 30px rgba(0,100,255,.12);
+}
+
+.spin-info{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.spin-info h2{
+  font-size:30px;
+  margin-bottom:12px;
+}
+
+.spin-info p{
+  color:#a9c5df;
+  line-height:1.8;
+}
+
+.wheel-wrap{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+}
+
+.wheel{
+  width:280px;
+  height:280px;
+
+  border-radius:50%;
+
+  position:relative;
+
+  border:8px solid #078cff;
+
+  background:
+    conic-gradient(
+      #ffd43b 0deg 60deg,
+      #ff4b7d 60deg 120deg,
+      #00c6ff 120deg 180deg,
+      #8b5cf6 180deg 240deg,
+      #00e676 240deg 300deg,
+      #ff8a00 300deg 360deg
+    );
+
+  box-shadow:
+    0 0 35px rgba(0,153,255,.55);
+
+  transition:transform 4s cubic-bezier(.15,.75,.15,1);
+}
+
+.wheel::after{
+  content:"SPIN";
+
+  position:absolute;
+
+  left:50%;
+  top:50%;
+
+  transform:translate(-50%,-50%);
+
+  width:70px;
+  height:70px;
+
+  border-radius:50%;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:#06152e;
+
+  border:4px solid white;
+
+  font-weight:1000;
+
+  color:white;
+}
+
+.wheel-label{
+  position:absolute;
+
+  font-weight:900;
+  font-size:13px;
+
+  color:#07101f;
+
+  text-align:center;
+}
+
+.w1{top:35px;left:100px;}
+.w2{top:100px;right:25px;}
+.w3{bottom:38px;right:75px;}
+.w4{bottom:38px;left:65px;}
+.w5{top:100px;left:25px;}
+.w6{top:35px;right:75px;}
+
+.pointer{
+  width:0;
+  height:0;
+
+  border-left:12px solid transparent;
+  border-right:12px solid transparent;
+  border-top:30px solid #fff;
+
+  margin-bottom:-8px;
+
+  z-index:2;
+
+  filter:drop-shadow(0 0 7px #00c6ff);
+}
+
+.spin-btn{
+  margin-top:20px;
+  min-width:170px;
+}
+
+/* ================= SUPPORT ================= */
+
+.support{
+  display:grid;
+  grid-template-columns:1.3fr 1fr;
   gap:20px;
 }
 
-.promo{
-  background:#fff;
-  border-radius:15px;
-  overflow:hidden;
-  border:1px solid #eee;
+.support-card{
+  background:
+    linear-gradient(135deg,#092550,#04132b);
+
+  border:1px solid #126ab6;
+
+  border-radius:18px;
+
+  padding:25px;
 }
 
-.promo img{
-  width:100%;
-  height:190px;
-  object-fit:cover;
+.support-admin{
+  display:flex;
+  gap:15px;
+  align-items:center;
 }
 
-.promo div{
-  padding:17px;
+.admin-avatar{
+  width:58px;
+  height:58px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:50%;
+
+  background:
+    linear-gradient(135deg,#008cff,#00d4ff);
+
+  font-size:27px;
+
+  border:3px solid #9eeaff;
 }
+
+.online{
+  color:#00e676;
+  font-size:13px;
+  margin-top:3px;
+}
+
+.chat-box{
+  margin-top:18px;
+
+  background:#020c1c;
+
+  border-radius:14px;
+
+  padding:15px;
+}
+
+.message{
+  background:#0b2850;
+  padding:12px;
+  border-radius:12px;
+  color:#d9edff;
+  line-height:1.6;
+}
+
+.chat-input{
+  display:flex;
+  gap:8px;
+  margin-top:10px;
+}
+
+.chat-input input{
+  flex:1;
+  padding:12px;
+
+  border-radius:9px;
+  border:1px solid #1b70b5;
+
+  background:#06172e;
+  color:white;
+}
+
+.chat-input button{
+  padding:10px 15px;
+  border:0;
+  border-radius:9px;
+  background:#087cff;
+  color:white;
+  font-weight:bold;
+}
+
+/* ================= PAYMENT ================= */
 
 .payment{
-  background:#fff;
+  background:
+    linear-gradient(135deg,#071c3a,#031027);
+
+  border:1px solid #126ab6;
+
   border-radius:18px;
-  padding:30px;
-  border:1px solid #eee;
+
+  padding:28px;
 }
 
 .pay-grid{
@@ -226,121 +681,150 @@ nav a:hover{
 }
 
 .pay{
-  border:1px solid #ddd;
-  border-radius:12px;
   padding:20px;
+
+  border:1px solid #146db6;
+  border-radius:13px;
+
+  background:#06172f;
+
   text-align:center;
+
   font-weight:bold;
 }
 
-footer{
-  background:#111;
-  color:#fff;
-  margin-top:70px;
-  padding:50px 6% 25px;
+.pay:hover{
+  border-color:#00c6ff;
 }
 
-.footer-grid{
-  max-width:1250px;
-  margin:auto;
-  display:grid;
-  grid-template-columns:2fr 1fr 1fr 1fr;
-  gap:35px;
-}
-
-footer h3{
-  margin-bottom:15px;
-}
-
-footer p,
-footer a{
-  color:#aaa;
-  font-size:14px;
-  line-height:2;
-  text-decoration:none;
-}
-
-.copy{
-  max-width:1250px;
-  margin:35px auto 0;
-  padding-top:20px;
-  border-top:1px solid #333;
-  text-align:center;
-  color:#888;
-  font-size:13px;
-}
+/* ================= MODAL ================= */
 
 .modal{
   display:none;
+
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.65);
-  z-index:999;
+
+  z-index:5000;
+
+  background:rgba(0,5,15,.82);
+
+  backdrop-filter:blur(8px);
+
   align-items:center;
   justify-content:center;
-  padding:20px;
+
+  padding:15px;
 }
 
 .modal-box{
   width:100%;
-  max-width:520px;
-  max-height:90vh;
+  max-width:560px;
+
+  max-height:92vh;
   overflow:auto;
-  background:#fff;
+
+  background:
+    linear-gradient(180deg,#092550,#031027);
+
+  border:1px solid #168cff;
+
   border-radius:20px;
+
   padding:25px;
+
+  box-shadow:
+    0 0 40px rgba(0,145,255,.35);
 }
 
 .close{
   float:right;
-  font-size:25px;
+
+  font-size:28px;
+
   cursor:pointer;
+
+  color:#9bcfff;
+}
+
+.modal-title{
+  color:#00c6ff;
+  margin-bottom:20px;
+}
+
+.step{
+  display:flex;
+  gap:8px;
+
+  margin-bottom:20px;
+}
+
+.step span{
+  flex:1;
+
+  text-align:center;
+
+  padding:8px 4px;
+
+  border-radius:8px;
+
+  background:#06172f;
+
+  border:1px solid #145f9d;
+
+  color:#8bb9dd;
+
+  font-size:12px;
+}
+
+.step span.active{
+  background:#087cff;
+  color:white;
+  border-color:#00c6ff;
 }
 
 label{
   display:block;
   margin-top:14px;
-  margin-bottom:6px;
+  margin-bottom:7px;
+
   font-weight:bold;
 }
 
 input{
   width:100%;
+
   padding:13px;
-  border:1px solid #ddd;
+
   border-radius:9px;
+
+  border:1px solid #1b70b5;
+
+  background:#06172e;
+
+  color:white;
+
   outline:none;
 }
 
-.packages{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:10px;
-  margin-top:10px;
-}
-
-.package{
-  padding:13px;
-  border:1px solid #ddd;
-  border-radius:10px;
-  cursor:pointer;
-}
-
-.package:hover,
-.package.active{
-  border:2px solid #ff4b00;
-  background:#fff5ef;
-}
-
 .verify{
-  margin-top:10px;
   width:100%;
+
+  margin-top:10px;
+
   padding:11px;
-  background:#222;
-  color:white;
+
   border:0;
+
   border-radius:9px;
+
+  background:#123455;
+
+  color:white;
+
   cursor:pointer;
+
+  font-weight:bold;
 }
 
 .verify.ok{
@@ -348,66 +832,184 @@ input{
 }
 
 .verify.error{
-  background:#c62828;
+  background:#b52828;
+}
+
+.modal-packages{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+
+  margin-top:10px;
+}
+
+.modal-package{
+  padding:13px;
+
+  border:1px solid #1769aa;
+
+  border-radius:10px;
+
+  background:#06172f;
+
+  cursor:pointer;
+
+  transition:.2s;
+}
+
+.modal-package:hover,
+.modal-package.active{
+  border:2px solid #00c6ff;
+
+  background:#082e5d;
+
+  box-shadow:0 0 15px rgba(0,198,255,.2);
 }
 
 .qr{
-  margin-top:20px;
-  padding:20px;
-  border-radius:12px;
-  background:#f5f5f5;
-  text-align:center;
   display:none;
+
+  margin-top:20px;
+
+  padding:20px;
+
+  border-radius:14px;
+
+  background:#04132a;
+
+  border:1px solid #176db4;
+
+  text-align:center;
 }
 
 .qr-box{
-  width:170px;
-  height:170px;
+  width:180px;
+  height:180px;
+
   margin:15px auto;
+
   background:
     repeating-linear-gradient(
       45deg,
-      #111 0px,
-      #111 4px,
+      #fff 0px,
       #fff 4px,
-      #fff 8px
+      #111 4px,
+      #111 8px
     );
+
+  border:8px solid white;
 }
 
 .order-result{
   display:none;
+
   margin-top:18px;
+
   padding:15px;
+
   border-radius:12px;
-  background:#eaf8ee;
-  border:1px solid #b8e5c5;
-  color:#146c2e;
+
+  background:#06331d;
+
+  border:1px solid #1bd477;
+
+  color:#8ff0b4;
+
+  line-height:1.8;
 }
 
 .order-error{
   display:none;
+
   margin-top:18px;
+
   padding:15px;
+
   border-radius:12px;
-  background:#fff0f0;
-  border:1px solid #f1b8b8;
-  color:#b00020;
+
+  background:#3b1010;
+
+  border:1px solid #ff5b5b;
+
+  color:#ff9a9a;
 }
 
-@media(max-width:900px){
+/* ================= FOOTER ================= */
+
+footer{
+  margin-top:70px;
+
+  background:#010711;
+
+  border-top:1px solid #0b5b9c;
+
+  padding:45px 5% 25px;
+}
+
+.footer-grid{
+  max-width:1400px;
+  margin:auto;
+
+  display:grid;
+
+  grid-template-columns:2fr 1fr 1fr 1fr;
+
+  gap:30px;
+}
+
+footer h3{
+  margin-bottom:14px;
+  color:#00c6ff;
+}
+
+footer p,
+footer a{
+  color:#8baac8;
+
+  font-size:14px;
+
+  line-height:2;
+
+  text-decoration:none;
+}
+
+.copy{
+  max-width:1400px;
+  margin:30px auto 0;
+
+  padding-top:20px;
+
+  border-top:1px solid #14304b;
+
+  text-align:center;
+
+  color:#607993;
+
+  font-size:13px;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:1100px){
+
   .games{
+    grid-template-columns:repeat(4,1fr);
+  }
+
+  .packages-showcase{
     grid-template-columns:repeat(3,1fr);
   }
 
-  .footer-grid{
-    grid-template-columns:repeat(2,1fr);
+  .hero h1{
+    font-size:48px;
   }
 }
 
-@media(max-width:600px){
+@media(max-width:800px){
 
   header{
-    padding:0 18px;
+    height:64px;
+    padding:0 15px;
   }
 
   nav{
@@ -423,12 +1025,15 @@ input{
   }
 
   .hero{
-    min-height:270px;
-    padding:25px;
+    min-height:330px;
+  }
+
+  .hero-content{
+    padding:35px 25px;
   }
 
   .hero h1{
-    font-size:34px;
+    font-size:40px;
   }
 
   .games{
@@ -437,10 +1042,15 @@ input{
   }
 
   .game img{
-    height:125px;
+    height:145px;
   }
 
-  .promos{
+  .packages-showcase{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .spin-area,
+  .support{
     grid-template-columns:1fr;
   }
 
@@ -449,72 +1059,185 @@ input{
   }
 
   .footer-grid{
+    grid-template-columns:1fr 1fr;
+  }
+}
+
+@media(max-width:500px){
+
+  .logo{
+    font-size:21px;
+  }
+
+  .search{
+    width:135px;
+    padding:9px 12px;
+  }
+
+  .hero{
+    min-height:390px;
+  }
+
+  .hero-content{
+    padding:30px 20px;
+  }
+
+  .hero h1{
+    font-size:34px;
+  }
+
+  .hero p{
+    font-size:15px;
+  }
+
+  .games{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .game img{
+    height:120px;
+  }
+
+  .game-info{
+    padding:10px;
+  }
+
+  .game-info h3{
+    font-size:14px;
+  }
+
+  .packages-showcase{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .package-card{
+    padding:14px 7px;
+  }
+
+  .diamond{
+    font-size:30px;
+  }
+
+  .package-card h3{
+    font-size:18px;
+  }
+
+  .wheel{
+    width:245px;
+    height:245px;
+  }
+
+  .modal-box{
+    padding:18px;
+  }
+
+  .footer-grid{
     grid-template-columns:1fr;
   }
 }
+
 </style>
 </head>
 
 <body>
 
+<!-- ======================================================
+     HEADER
+====================================================== -->
+
 <header>
 
   <div class="logo">
-    MGG<span>STORE</span>
+    💎 MGG<span>STORE</span>
   </div>
 
   <nav>
-    <a href="#">Home</a>
-    <a href="#games">Games</a>
-    <a href="#rewards">Rewards</a>
-    <a href="#promo">Promotions</a>
-    <a href="#contact">Contact</a>
+    <a href="#">ទំព័រដើម</a>
+    <a href="#games">ហ្គេម</a>
+    <a href="#packages">ពេជ្រ</a>
+    <a href="#spin">បង្វិល</a>
+    <a href="#support">ជំនួយ</a>
   </nav>
 
   <input
     class="search"
     id="search"
-    placeholder="Search games..."
+    placeholder="🔎 ស្វែងរកហ្គេម..."
     onkeyup="searchGames()"
   >
 
 </header>
 
+
 <main class="container">
+
+<!-- ======================================================
+     HERO
+====================================================== -->
 
 <section class="hero">
 
-  <div>
+  <div class="hero-content">
 
-    <h1>MGG STORE</h1>
+    <div class="badge">
+      👑 MGG STORE V2026
+    </div>
+
+    <h1>
+      MGG <span>STORE</span>
+    </h1>
 
     <p>
-      លឿនរហ័ស • សុវត្ថិភាព • តម្លៃសមរម្យ • មិនខកបំណង
+      ទិញពេជ្រ និង Game Top Up ងាយៗ
+      លឿន សុវត្ថិភាព និងតម្លៃសមរម្យ
     </p>
+
+    <div class="hero-features">
+
+      <div class="feature">⚡ លឿនរហ័ស</div>
+      <div class="feature">🔒 សុវត្ថិភាព</div>
+      <div class="feature">💰 តម្លៃសមរម្យ</div>
+      <div class="feature">🇰🇭 សម្រាប់កម្ពុជា</div>
+
+    </div>
 
     <button
       class="btn"
       onclick="document.getElementById('games').scrollIntoView()"
     >
-      🛒 ចូលទិញ
+      🛒 ចាប់ផ្តើមទិញ
     </button>
 
   </div>
 
 </section>
 
+
+<!-- ======================================================
+     GAMES
+====================================================== -->
+
 <section class="section" id="games">
 
   <div class="section-head">
-    <h2>Featured Games</h2>
-    <a class="see" href="#">See All →</a>
+
+    <h2>🎮 ហ្គេមពេញនិយម</h2>
+
+    <a class="see" href="#games">
+      មើលហ្គេមទាំងអស់ →
+    </a>
+
   </div>
+
 
   <div class="games" id="gameGrid">
 
-    <div class="game"
+
+    <div
+      class="game"
       data-name="Free Fire"
-      onclick="openGame('Free Fire')">
+      onclick="openGame('Free Fire')"
+    >
 
       <img
         src="images/Screenshot_2026-09-30-08-01-18-05.jpg"
@@ -523,16 +1246,27 @@ input{
       >
 
       <div class="game-info">
+
         <h3>Free Fire</h3>
-        <span class="tag">Direct Top-up</span>
-        <button class="topup">TOP UP</button>
+
+        <span class="tag">
+          💎 ពេជ្រ Direct Top Up
+        </span>
+
+        <button class="topup">
+          ចូលទិញ
+        </button>
+
       </div>
 
     </div>
 
-    <div class="game"
+
+    <div
+      class="game"
       data-name="Mobile Legends"
-      onclick="openGame('Mobile Legends')">
+      onclick="openGame('Mobile Legends')"
+    >
 
       <img
         src="images/Screenshot_2026-09-30-14-37-30-58.jpg"
@@ -541,34 +1275,56 @@ input{
       >
 
       <div class="game-info">
+
         <h3>Mobile Legends</h3>
-        <span class="tag">Direct Top-up</span>
-        <button class="topup">TOP UP</button>
+
+        <span class="tag">
+          💎 Diamond Top Up
+        </span>
+
+        <button class="topup">
+          ចូលទិញ
+        </button>
+
       </div>
 
     </div>
 
-    <div class="game"
+
+    <div
+      class="game"
       data-name="PUBG Mobile"
-      onclick="openGame('PUBG Mobile')">
+      onclick="openGame('PUBG Mobile')"
+    >
 
       <img
         src="images/pubg.jpg"
         alt="PUBG Mobile"
-        onerror="this.src='https://placehold.co/600x400?text=PUBG+Mobile'"
+        onerror="this.src='https://placehold.co/600x400?text=PUBG'"
       >
 
       <div class="game-info">
+
         <h3>PUBG Mobile</h3>
-        <span class="tag">UC Top-up</span>
-        <button class="topup">TOP UP</button>
+
+        <span class="tag">
+          🎯 UC Top Up
+        </span>
+
+        <button class="topup">
+          ចូលទិញ
+        </button>
+
       </div>
 
     </div>
 
-    <div class="game"
+
+    <div
+      class="game"
       data-name="Roblox"
-      onclick="openGame('Roblox')">
+      onclick="openGame('Roblox')"
+    >
 
       <img
         src="images/Screenshot_2026-09-30-14-34-51-87.jpg"
@@ -577,16 +1333,27 @@ input{
       >
 
       <div class="game-info">
+
         <h3>Roblox</h3>
-        <span class="tag">Robux Top-up</span>
-        <button class="topup">TOP UP</button>
+
+        <span class="tag">
+          🧱 Robux Top Up
+        </span>
+
+        <button class="topup">
+          ចូលទិញ
+        </button>
+
       </div>
 
     </div>
 
-    <div class="game"
+
+    <div
+      class="game"
       data-name="Blood Strike"
-      onclick="openGame('Blood Strike')">
+      onclick="openGame('Blood Strike')"
+    >
 
       <img
         src="images/Screenshot_2026-09-30-14-44-57-67.jpg"
@@ -595,16 +1362,27 @@ input{
       >
 
       <div class="game-info">
+
         <h3>Blood Strike</h3>
-        <span class="tag">Gold Top-up</span>
-        <button class="topup">TOP UP</button>
+
+        <span class="tag">
+          🔥 Gold Top Up
+        </span>
+
+        <button class="topup">
+          ចូលទិញ
+        </button>
+
       </div>
 
     </div>
 
-    <div class="game"
+
+    <div
+      class="game"
       data-name="Honor of Kings"
-      onclick="openGame('Honor of Kings')">
+      onclick="openGame('Honor of Kings')"
+    >
 
       <img
         src="images/honor-of-kings.jpg"
@@ -613,16 +1391,27 @@ input{
       >
 
       <div class="game-info">
+
         <h3>Honor of Kings</h3>
-        <span class="tag">Token Top-up</span>
-        <button class="topup">TOP UP</button>
+
+        <span class="tag">
+          💎 Token Top Up
+        </span>
+
+        <button class="topup">
+          ចូលទិញ
+        </button>
+
       </div>
 
     </div>
 
-    <div class="game"
+
+    <div
+      class="game"
       data-name="Magic Chess"
-      onclick="openGame('Magic Chess')">
+      onclick="openGame('Magic Chess')"
+    >
 
       <img
         src="images/magic-chess.jpg"
@@ -631,16 +1420,27 @@ input{
       >
 
       <div class="game-info">
+
         <h3>Magic Chess</h3>
-        <span class="tag">Diamond Top-up</span>
-        <button class="topup">TOP UP</button>
+
+        <span class="tag">
+          ♟️ Diamond Top Up
+        </span>
+
+        <button class="topup">
+          ចូលទិញ
+        </button>
+
       </div>
 
     </div>
 
-    <div class="game"
+
+    <div
+      class="game"
       data-name="Genshin Impact"
-      onclick="openGame('Genshin Impact')">
+      onclick="openGame('Genshin Impact')"
+    >
 
       <img
         src="images/genshin.jpg"
@@ -649,793 +1449,23 @@ input{
       >
 
       <div class="game-info">
+
         <h3>Genshin Impact</h3>
-        <span class="tag">Crystal Top-up</span>
-        <button class="topup">TOP UP</button>
+
+        <span class="tag">
+          💠 Crystal Top Up
+        </span>
+
+        <button class="topup">
+          ចូលទិញ
+        </button>
+
       </div>
 
     </div>
 
-    <div class="game"
+
+    <div
+      class="game"
       data-name="Call of Duty Mobile"
-      onclick="openGame('Call of Duty Mobile')">
-
-      <img
-        src="images/cod-mobile.jpg"
-        alt="COD Mobile"
-        onerror="this.src='https://placehold.co/600x400?text=COD+Mobile'"
-      >
-
-      <div class="game-info">
-        <h3>Call of Duty Mobile</h3>
-        <span class="tag">CP Top-up</span>
-        <button class="topup">TOP UP</button>
-      </div>
-
-    </div>
-
-    <div class="game"
-      data-name="eFootball"
-      onclick="openGame('eFootball')">
-
-      <img
-        src="images/efootball.jpg"
-        alt="eFootball"
-        onerror="this.src='https://placehold.co/600x400?text=eFootball'"
-      >
-
-      <div class="game-info">
-        <h3>eFootball</h3>
-        <span class="tag">Coin Top-up</span>
-        <button class="topup">TOP UP</button>
-      </div>
-
-    </div>
-
-  </div>
-</section>
-
-<section class="section" id="rewards">
-
-  <div class="section-head">
-    <h2>🎁 MGG Rewards</h2>
-  </div>
-
-  <div class="payment">
-
-    <h3>Earn rewards when you top up</h3>
-
-    <p style="margin-top:10px;color:#666">
-      ទិញ Game Top Up ជាមួយ MGG STORE ដើម្បីប្រមូលពិន្ទុ
-      និងទទួលបាន Rewards ពិសេស។
-    </p>
-
-    <br>
-
-    <button class="btn">
-      🎁 Grab Reward
-    </button>
-
-  </div>
-
-</section>
-
-<section class="section" id="promo">
-
-  <div class="section-head">
-    <h2>NEWS & PROMOTIONS</h2>
-  </div>
-
-  <div class="promos">
-
-    <div class="promo">
-
-      <img
-        src="images/promo-1.jpg"
-        alt="Promotion"
-        onerror="this.src='https://placehold.co/800x400?text=Promotion'"
-      >
-
-      <div>
-        <h3>🔥 Special Top Up</h3>
-        <p>Promotion ពិសេសពី MGG STORE</p>
-      </div>
-
-    </div>
-
-    <div class="promo">
-
-      <img
-        src="images/promo-2.jpg"
-        alt="Weekly Reward"
-        onerror="this.src='https://placehold.co/800x400?text=Weekly+Reward'"
-      >
-
-      <div>
-        <h3>🎁 Weekly Reward</h3>
-        <p>Top up ហើយទទួល Reward</p>
-      </div>
-
-    </div>
-
-    <div class="promo">
-
-      <img
-        src="images/promo-3.jpg"
-        alt="Fast Delivery"
-        onerror="this.src='https://placehold.co/800x400?text=Fast+Delivery'"
-      >
-
-      <div>
-        <h3>⚡ Fast Delivery</h3>
-        <p>Order ងាយ • លឿន • សុវត្ថិភាព</p>
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-<section class="section">
-
-  <div class="section-head">
-    <h2>Payment Methods</h2>
-  </div>
-
-  <div class="payment">
-
-    <p>ទូទាត់បានងាយស្រួលតាមរយៈ៖</p>
-
-    <div class="pay-grid">
-
-      <div class="pay">🟢 ABA KHQR</div>
-      <div class="pay">💳 ABA Bank</div>
-      <div class="pay">⚡ MGG PAY</div>
-
-    </div>
-
-  </div>
-
-</section>
-
-</main>
-
-<footer id="contact">
-
-  <div class="footer-grid">
-
-    <div>
-
-      <h3>MGG STORE</h3>
-
-      <p>
-        Game Top Up សម្រាប់អ្នកលេងហ្គេមនៅកម្ពុជា។
-      </p>
-
-      <p>
-        ⚡ លឿនរហ័ស<br>
-        🔒 សុវត្ថិភាព<br>
-        💰 តម្លៃសមរម្យ
-      </p>
-
-    </div>
-
-    <div>
-
-      <h3>Support</h3>
-
-      <p><a href="#games">Game Top Up</a></p>
-      <p><a href="#rewards">Rewards</a></p>
-      <p><a href="#promo">Promotions</a></p>
-
-    </div>
-
-    <div>
-
-      <h3>Contact</h3>
-
-      <p>Telegram: @MGGStoreAdmin</p>
-      <p>🇰🇭 Cambodia</p>
-      <p>🟢 Support Online</p>
-
-    </div>
-
-    <div>
-
-      <h3>Payment</h3>
-
-      <p>We accept:</p>
-
-      <p style="font-size:22px;color:white">
-        ABA KHQR
-      </p>
-
-    </div>
-
-  </div>
-
-  <div class="copy">
-    © 2026 MGG STORE, All Rights Reserved.<br>
-    Built in Cambodia 🇰🇭 by MGG STORE
-  </div>
-
-</footer>
-
-
-<!-- TOP UP MODAL -->
-
-<div class="modal" id="modal">
-
-  <div class="modal-box">
-
-    <span class="close" onclick="closeModal()">×</span>
-
-    <h2 id="modalTitle">Game Top Up</h2>
-
-    <label>Player ID</label>
-
-    <input
-      id="playerId"
-      placeholder="Enter Player ID"
-    >
-
-    <label>Server ID</label>
-
-    <input
-      id="serverId"
-      placeholder="Enter Server ID"
-    >
-
-    <button
-      class="verify"
-      id="verifyButton"
-      onclick="verifyPlayer()"
-    >
-      🔎 Verify Player ID
-    </button>
-
-    <p
-      id="verifyResult"
-      style="margin-top:10px;color:#777"
-    ></p>
-
-
-    <label>Select Package</label>
-
-    <div class="packages">
-
-      <div
-        class="package"
-        onclick="selectPackage(this)"
-      >
-        💎 100 Diamonds — $0.99
-      </div>
-
-      <div
-        class="package"
-        onclick="selectPackage(this)"
-      >
-        💎 310 Diamonds — $2.99
-      </div>
-
-      <div
-        class="package"
-        onclick="selectPackage(this)"
-      >
-        💎 520 Diamonds — $4.99
-      </div>
-
-      <div
-        class="package"
-        onclick="selectPackage(this)"
-      >
-        💎 1060 Diamonds — $9.99
-      </div>
-
-      <div
-        class="package"
-        onclick="selectPackage(this)"
-      >
-        🎫 Weekly Pass — $1.99
-      </div>
-
-      <div
-        class="package"
-        onclick="selectPackage(this)"
-      >
-        ⭐ Special Package — $14.99
-      </div>
-
-    </div>
-
-
-    <button
-      class="btn"
-      id="paymentButton"
-      style="width:100%;margin-top:20px"
-      onclick="showQR()"
-    >
-      💳 Continue Payment
-    </button>
-
-
-    <div class="qr" id="qr">
-
-      <h3>ABA KHQR</h3>
-
-      <p>
-        Scan QR ដើម្បីទូទាត់
-      </p>
-
-      <!--
-        IMPORTANT:
-        Replace this placeholder with your real
-        ABA KHQR image only after your payment
-        setup is ready.
-      -->
-
-      <div class="qr-box"></div>
-
-      <p>
-        MGG STORE
-      </p>
-
-      <button
-        class="btn"
-        id="confirmButton"
-        style="margin-top:15px"
-        onclick="confirmOrder()"
-      >
-        ✅ Confirm Payment
-      </button>
-
-      <div
-        class="order-result"
-        id="orderResult"
-      ></div>
-
-      <div
-        class="order-error"
-        id="orderError"
-      ></div>
-
-    </div>
-
-  </div>
-
-</div>
-
-
-<script>
-
-/*
-|--------------------------------------------------------------------------
-| MGG STORE BACKEND
-|--------------------------------------------------------------------------
-*/
-
-const API_BASE =
-  "https://mgg-store-backend.onrender.com";
-
-const ORDERS_API =
-  API_BASE + "/api/orders";
-
-
-let currentGame = "";
-
-let selectedPackage = "";
-
-let playerVerified = false;
-
-
-/*
-|--------------------------------------------------------------------------
-| OPEN GAME
-|--------------------------------------------------------------------------
-*/
-
-function openGame(game){
-
-  currentGame = game;
-
-  selectedPackage = "";
-
-  playerVerified = false;
-
-  document.getElementById("modalTitle").innerText =
-    game + " Top Up";
-
-  document.getElementById("modal").style.display =
-    "flex";
-
-  document.getElementById("playerId").value = "";
-
-  document.getElementById("serverId").value = "";
-
-  document.getElementById("verifyResult").innerText = "";
-
-  document.getElementById("qr").style.display = "none";
-
-  document.getElementById("orderResult").style.display = "none";
-
-  document.getElementById("orderError").style.display = "none";
-
-  document
-    .querySelectorAll(".package")
-    .forEach(x => x.classList.remove("active"));
-
-}
-
-
-/*
-|--------------------------------------------------------------------------
-| CLOSE MODAL
-|--------------------------------------------------------------------------
-*/
-
-function closeModal(){
-
-  document.getElementById("modal").style.display =
-    "none";
-
-}
-
-
-/*
-|--------------------------------------------------------------------------
-| SELECT PACKAGE
-|--------------------------------------------------------------------------
-*/
-
-function selectPackage(el){
-
-  document
-    .querySelectorAll(".package")
-    .forEach(x => {
-      x.classList.remove("active");
-    });
-
-  el.classList.add("active");
-
-  selectedPackage =
-    el.innerText.trim();
-
-}
-
-
-/*
-|--------------------------------------------------------------------------
-| VERIFY PLAYER
-|--------------------------------------------------------------------------
-*/
-
-function verifyPlayer(){
-
-  const player =
-    document
-      .getElementById("playerId")
-      .value
-      .trim();
-
-  const result =
-    document.getElementById("verifyResult");
-
-  const button =
-    document.getElementById("verifyButton");
-
-
-  if(!player){
-
-    playerVerified = false;
-
-    result.innerText =
-      "❌ សូមបញ្ចូល Player ID";
-
-    result.style.color =
-      "red";
-
-    button.classList.remove("ok");
-
-    button.classList.add("error");
-
-    return;
-  }
-
-
-  if(player.length < 3){
-
-    playerVerified = false;
-
-    result.innerText =
-      "❌ Player ID ត្រូវមានយ៉ាងហោចណាស់ 3 តួ";
-
-    result.style.color =
-      "red";
-
-    button.classList.remove("ok");
-
-    button.classList.add("error");
-
-    return;
-  }
-
-
-  /*
-   * This is currently a format check.
-   * Real game-player verification API can be
-   * connected later.
-   */
-
-  playerVerified = true;
-
-  result.innerText =
-    "✅ Player ID format looks valid.";
-
-  result.style.color =
-    "green";
-
-  button.classList.remove("error");
-
-  button.classList.add("ok");
-
-}
-
-
-/*
-|--------------------------------------------------------------------------
-| SHOW PAYMENT
-|--------------------------------------------------------------------------
-*/
-
-function showQR(){
-
-  if(!playerVerified){
-
-    alert(
-      "សូម Verify Player ID ជាមុនសិន"
-    );
-
-    return;
-  }
-
-
-  if(!selectedPackage){
-
-    alert(
-      "សូមជ្រើស Package មុន"
-    );
-
-    return;
-  }
-
-
-  document.getElementById("qr").style.display =
-    "block";
-
-}
-
-
-/*
-|--------------------------------------------------------------------------
-| CREATE ORDER
-|--------------------------------------------------------------------------
-*/
-
-async function confirmOrder(){
-
-  const player =
-    document.getElementById("playerId").value.trim();
-
-  const server =
-    document.getElementById("serverId").value.trim();
-
-  const button =
-    document.getElementById("confirmButton");
-
-  const result =
-    document.getElementById("orderResult");
-
-  const error =
-    document.getElementById("orderError");
-
-
-  result.style.display = "none";
-  error.style.display = "none";
-
-
-  if(!player){
-
-    alert("សូមបញ្ចូល Player ID");
-
-    return;
-  }
-
-
-  if(!selectedPackage){
-
-    alert("សូមជ្រើស Package មុន");
-
-    return;
-  }
-
-
-  button.disabled = true;
-
-  button.innerText =
-    "⏳ Creating Order...";
-
-
-  try{
-
-    const response =
-      await fetch(ORDERS_API, {
-
-        method: "POST",
-
-        headers: {
-          "Content-Type": "application/json"
-        },
-
-        body: JSON.stringify({
-
-          game: currentGame,
-
-          playerId: player,
-
-          serverId: server,
-
-          package: selectedPackage
-
-        })
-
-      });
-
-
-    const data =
-      await response.json();
-
-
-    if(!response.ok || !data.success){
-
-      throw new Error(
-        data.message ||
-        "Order creation failed"
-      );
-
-    }
-
-
-    result.innerHTML = `
-      <strong>✅ Order Created!</strong><br><br>
-
-      Order ID:
-      <strong>${escapeHTML(data.order.orderId)}</strong><br>
-
-      Game:
-      ${escapeHTML(data.order.game)}<br>
-
-      Player ID:
-      ${escapeHTML(data.order.playerId)}<br>
-
-      Package:
-      ${escapeHTML(data.order.package)}<br>
-
-      Status:
-      ${escapeHTML(data.order.status)}
-    `;
-
-
-    result.style.display =
-      "block";
-
-
-  }catch(err){
-
-    console.error(err);
-
-    error.innerText =
-      "❌ មិនអាចបង្កើត Order បានទេ: " +
-      err.message;
-
-    error.style.display =
-      "block";
-
-  }finally{
-
-    button.disabled = false;
-
-    button.innerText =
-      "✅ Confirm Payment";
-
-  }
-
-}
-
-
-/*
-|--------------------------------------------------------------------------
-| ESCAPE HTML
-|--------------------------------------------------------------------------
-*/
-
-function escapeHTML(value){
-
-  return String(value)
-
-    .replace(/&/g, "&amp;")
-
-    .replace(/</g, "&lt;")
-
-    .replace(/>/g, "&gt;")
-
-    .replace(/"/g, "&quot;")
-
-    .replace(/'/g, "&#039;");
-
-}
-
-
-/*
-|--------------------------------------------------------------------------
-| SEARCH GAMES
-|--------------------------------------------------------------------------
-*/
-
-function searchGames(){
-
-  const keyword =
-    document
-      .getElementById("search")
-      .value
-      .toLowerCase()
-      .trim();
-
-
-  document
-    .querySelectorAll(".game")
-    .forEach(game => {
-
-      const name =
-        game.dataset.name
-          .toLowerCase();
-
-      game.style.display =
-        name.includes(keyword)
-          ? ""
-          : "none";
-
-    });
-
-}
-
-
-/*
-|--------------------------------------------------------------------------
-| CLOSE MODAL BY CLICKING OUTSIDE
-|--------------------------------------------------------------------------
-*/
-
-document
-  .getElementById("modal")
-  .addEventListener(
-    "click",
-    function(e){
-
-      if(e.target === this){
-
-        closeModal();
-
-      }
-
-    }
-  );
-
-</script>
-
-</body>
-</html>
-
-
-  
-  
+      onclick="openGame('Call 
