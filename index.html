@@ -72,8 +72,6 @@ nav a:hover{
   margin:auto;
 }
 
-/* HERO */
-
 .hero{
   margin:25px 0;
   min-height:330px;
@@ -114,8 +112,6 @@ nav a:hover{
   background:#e63f00;
 }
 
-/* SECTION */
-
 .section{
   margin:55px 0;
 }
@@ -136,8 +132,6 @@ nav a:hover{
   font-weight:700;
   text-decoration:none;
 }
-
-/* GAME GRID */
 
 .games{
   display:grid;
@@ -192,8 +186,6 @@ nav a:hover{
   cursor:pointer;
 }
 
-/* PROMOTION */
-
 .promos{
   display:grid;
   grid-template-columns:repeat(3,1fr);
@@ -221,8 +213,6 @@ nav a:hover{
   margin-bottom:8px;
 }
 
-/* PAYMENT */
-
 .payment{
   background:#fff;
   border-radius:18px;
@@ -244,8 +234,6 @@ nav a:hover{
   text-align:center;
   font-weight:bold;
 }
-
-/* FOOTER */
 
 footer{
   background:#111;
@@ -287,8 +275,6 @@ footer a:hover{
   color:#888;
   font-size:13px;
 }
-
-/* MODAL */
 
 .modal{
   display:none;
@@ -391,8 +377,6 @@ select{
     );
 }
 
-/* MOBILE */
-
 @media(max-width:900px){
   .games{
     grid-template-columns:repeat(3,1fr);
@@ -479,10 +463,7 @@ select{
 
 </header>
 
-
 <main class="container">
-
-<!-- HERO -->
 
 <section class="hero">
 
@@ -501,59 +482,46 @@ select{
 
 </section>
 
-
-<!-- FEATURED GAMES -->
-
 <section class="section" id="games">
 
   <div class="section-head">
-
     <h2>Featured Games</h2>
-
     <a class="see" href="#">See All →</a>
-
   </div>
-
 
   <div class="games" id="gameGrid">
 
-
+    <!-- FREE FIRE -->
     <div class="game"
       data-name="Free Fire"
       onclick="openGame('Free Fire')">
 
-      <img src="images/free-fire.jpg">
+      <img src="images/Screenshot_2026-09-30-08-01-18-05.jpg">
 
       <div class="game-info">
         <h3>Free Fire</h3>
         <span class="tag">Direct Top-up</span>
-
-        <button class="topup">
-          TOP UP
-        </button>
+        <button class="topup">TOP UP</button>
       </div>
 
     </div>
 
-
+    <!-- MOBILE LEGENDS -->
     <div class="game"
       data-name="Mobile Legends"
       onclick="openGame('Mobile Legends')">
 
-      <img src="images/mobile-legends.jpg">
+      <img src="images/Screenshot_2026-09-30-14-37-30-58.jpg">
 
       <div class="game-info">
         <h3>Mobile Legends</h3>
         <span class="tag">Direct Top-up</span>
-
-        <button class="topup">
-          TOP UP
-        </button>
+        <button class="topup">TOP UP</button>
       </div>
 
     </div>
 
-
+    <!-- PUBG -->
     <div class="game"
       data-name="PUBG Mobile"
       onclick="openGame('PUBG Mobile')">
@@ -563,51 +531,42 @@ select{
       <div class="game-info">
         <h3>PUBG Mobile</h3>
         <span class="tag">UC Top-up</span>
-
-        <button class="topup">
-          TOP UP
-        </button>
+        <button class="topup">TOP UP</button>
       </div>
 
     </div>
 
-
+    <!-- ROBLOX -->
     <div class="game"
       data-name="Roblox"
       onclick="openGame('Roblox')">
 
-      <img src="images/roblox.jpg">
+      <img src="images/Screenshot_2026-09-30-14-34-51-87.jpg">
 
       <div class="game-info">
         <h3>Roblox</h3>
         <span class="tag">Robux Top-up</span>
-
-        <button class="topup">
-          TOP UP
-        </button>
+        <button class="topup">TOP UP</button>
       </div>
 
     </div>
 
-
+    <!-- BLOOD STRIKE -->
     <div class="game"
       data-name="Blood Strike"
       onclick="openGame('Blood Strike')">
 
-      <img src="images/blood-strike.jpg">
+      <img src="images/Screenshot_2026-09-30-14-44-57-67.jpg">
 
       <div class="game-info">
         <h3>Blood Strike</h3>
         <span class="tag">Gold Top-up</span>
-
-        <button class="topup">
-          TOP UP
-        </button>
+        <button class="topup">TOP UP</button>
       </div>
 
     </div>
 
-
+    <!-- OTHER GAMES -->
     <div class="game"
       data-name="Honor of Kings"
       onclick="openGame('Honor of Kings')">
@@ -617,14 +576,10 @@ select{
       <div class="game-info">
         <h3>Honor of Kings</h3>
         <span class="tag">Token Top-up</span>
-
-        <button class="topup">
-          TOP UP
-        </button>
+        <button class="topup">TOP UP</button>
       </div>
 
     </div>
-
 
     <div class="game"
       data-name="Magic Chess"
@@ -635,14 +590,10 @@ select{
       <div class="game-info">
         <h3>Magic Chess</h3>
         <span class="tag">Diamond Top-up</span>
-
-        <button class="topup">
-          TOP UP
-        </button>
+        <button class="topup">TOP UP</button>
       </div>
 
     </div>
-
 
     <div class="game"
       data-name="Genshin Impact"
@@ -653,14 +604,10 @@ select{
       <div class="game-info">
         <h3>Genshin Impact</h3>
         <span class="tag">Crystal Top-up</span>
-
-        <button class="topup">
-          TOP UP
-        </button>
+        <button class="topup">TOP UP</button>
       </div>
 
     </div>
-
 
     <div class="game"
       data-name="Call of Duty Mobile"
@@ -671,14 +618,10 @@ select{
       <div class="game-info">
         <h3>Call of Duty Mobile</h3>
         <span class="tag">CP Top-up</span>
-
-        <button class="topup">
-          TOP UP
-        </button>
+        <button class="topup">TOP UP</button>
       </div>
 
     </div>
-
 
     <div class="game"
       data-name="eFootball"
@@ -689,20 +632,13 @@ select{
       <div class="game-info">
         <h3>eFootball</h3>
         <span class="tag">Coin Top-up</span>
-
-        <button class="topup">
-          TOP UP
-        </button>
+        <button class="topup">TOP UP</button>
       </div>
 
     </div>
 
   </div>
-
 </section>
-
-
-<!-- REWARDS -->
 
 <section class="section" id="rewards">
 
@@ -730,9 +666,6 @@ select{
 
 </section>
 
-
-<!-- PROMOTIONS -->
-
 <section class="section" id="promo">
 
   <div class="section-head">
@@ -740,50 +673,35 @@ select{
     <a class="see" href="#">See All →</a>
   </div>
 
-
   <div class="promos">
 
     <div class="promo">
-
       <img src="images/promo-1.jpg">
-
       <div>
         <h3>🔥 Special Top Up</h3>
         <p>Promotion ពិសេសពី MGG STORE</p>
       </div>
-
     </div>
 
-
     <div class="promo">
-
       <img src="images/promo-2.jpg">
-
       <div>
         <h3>🎁 Weekly Reward</h3>
         <p>Top up ហើយទទួល Reward</p>
       </div>
-
     </div>
 
-
     <div class="promo">
-
       <img src="images/promo-3.jpg">
-
       <div>
         <h3>⚡ Fast Delivery</h3>
         <p>Order ងាយ • លឿន • សុវត្ថិភាព</p>
       </div>
-
     </div>
 
   </div>
 
 </section>
-
-
-<!-- PAYMENT -->
 
 <section class="section">
 
@@ -793,23 +711,13 @@ select{
 
   <div class="payment">
 
-    <p>
-      ទូទាត់បានងាយស្រួលតាមរយៈ៖
-    </p>
+    <p>ទូទាត់បានងាយស្រួលតាមរយៈ៖</p>
 
     <div class="pay-grid">
 
-      <div class="pay">
-        🟢 ABA KHQR
-      </div>
-
-      <div class="pay">
-        💳 ABA Bank
-      </div>
-
-      <div class="pay">
-        ⚡ MGG PAY
-      </div>
+      <div class="pay">🟢 ABA KHQR</div>
+      <div class="pay">💳 ABA Bank</div>
+      <div class="pay">⚡ MGG PAY</div>
 
     </div>
 
@@ -818,9 +726,6 @@ select{
 </section>
 
 </main>
-
-
-<!-- FOOTER -->
 
 <footer id="contact">
 
@@ -841,57 +746,38 @@ select{
       </p>
     </div>
 
-
     <div>
-
       <h3>Support</h3>
-
       <p><a href="#">Game Top Up</a></p>
       <p><a href="#rewards">Rewards</a></p>
       <p><a href="#promo">Promotions</a></p>
       <p><a href="#">Order Tracking</a></p>
       <p><a href="#">FAQ</a></p>
-
     </div>
 
-
     <div>
-
       <h3>Contact</h3>
-
       <p>Telegram: @MGGStoreAdmin</p>
       <p>🇰🇭 Cambodia</p>
       <p>🟢 Support Online</p>
-
     </div>
 
-
     <div>
-
       <h3>Payment</h3>
-
       <p>We accept:</p>
-
       <p style="font-size:22px;color:white">
         ABA KHQR
       </p>
-
     </div>
 
   </div>
 
-
   <div class="copy">
-
     © 2026 MGG STORE, All Rights Reserved.<br>
     Built in Cambodia 🇰🇭 by MGG STORE
-
   </div>
 
 </footer>
-
-
-<!-- TOP UP MODAL -->
 
 <div class="modal" id="modal">
 
@@ -899,10 +785,7 @@ select{
 
     <span class="close" onclick="closeModal()">×</span>
 
-    <h2 id="modalTitle">
-      Game Top Up
-    </h2>
-
+    <h2 id="modalTitle">Game Top Up</h2>
 
     <label>Player ID</label>
 
@@ -911,7 +794,6 @@ select{
       placeholder="Enter Player ID"
     >
 
-
     <label>Server ID</label>
 
     <input
@@ -919,17 +801,13 @@ select{
       placeholder="Enter Server ID"
     >
 
-
-    <button class="verify"
-      onclick="verifyPlayer()">
+    <button class="verify" onclick="verifyPlayer()">
       🔎 Verify Player ID
     </button>
-
 
     <p id="verifyResult"
       style="margin-top:10px;color:#777">
     </p>
-
 
     <label>Select Package</label>
 
@@ -967,52 +845,39 @@ select{
 
     </div>
 
-
     <button
       class="btn"
       style="width:100%;margin-top:20px"
       onclick="showQR()">
-
       💳 Continue Payment
-
     </button>
-
 
     <div class="qr" id="qr">
 
       <h3>ABA KHQR</h3>
 
-      <p>
-        Scan QR ដើម្បីទូទាត់
-      </p>
+      <p>Scan QR ដើម្បីទូទាត់</p>
 
       <div class="qr-box"></div>
 
-      <p>
-        MGG STORE
-      </p>
+      <p>MGG STORE</p>
 
       <button
         class="btn"
         style="margin-top:15px"
         onclick="confirmOrder()">
-
         ✅ Confirm Payment
-
       </button>
 
     </div>
 
   </div>
-
 </div>
-
 
 <script>
 
 let currentGame = "";
 let selectedPackage = "";
-
 
 function openGame(game){
 
@@ -1023,17 +888,13 @@ function openGame(game){
 
   document.getElementById("modal").style.display =
     "flex";
-
 }
-
 
 function closeModal(){
 
   document.getElementById("modal").style.display =
     "none";
-
 }
-
 
 function selectPackage(el){
 
@@ -1044,9 +905,7 @@ function selectPackage(el){
   el.classList.add("active");
 
   selectedPackage = el.innerText;
-
 }
-
 
 function verifyPlayer(){
 
@@ -1071,9 +930,7 @@ function verifyPlayer(){
 
   result.style.color =
     "green";
-
 }
-
 
 function showQR(){
 
@@ -1086,9 +943,7 @@ function showQR(){
 
   document.getElementById("qr").style.display =
     "block";
-
 }
-
 
 function confirmOrder(){
 
@@ -1103,15 +958,13 @@ function confirmOrder(){
   }
 
   alert(
-    "Order received!\\n\\n" +
+    "Order received!\n\n" +
     "Game: " + currentGame +
-    "\\nPlayer ID: " + player +
-    "\\nPackage: " + selectedPackage +
-    "\\n\\nMGG STORE will process your order."
+    "\nPlayer ID: " + player +
+    "\nPackage: " + selectedPackage +
+    "\n\nMGG STORE will process your order."
   );
-
 }
-
 
 function searchGames(){
 
@@ -1133,9 +986,7 @@ function searchGames(){
         : "none";
 
     });
-
 }
-
 
 window.onclick = function(e){
 
@@ -1143,14 +994,11 @@ window.onclick = function(e){
     document.getElementById("modal");
 
   if(e.target === modal){
-
     closeModal();
-
   }
-
 }
 
 </script>
 
 </body>
-  </html>
+    </html>
