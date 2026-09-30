@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>MGG STORE — Game Top Up</title>
 
 <style>
@@ -35,7 +34,6 @@ header{
 .logo{
   font-size:25px;
   font-weight:900;
-  letter-spacing:-1px;
 }
 
 .logo span{
@@ -44,7 +42,7 @@ header{
 
 nav{
   display:flex;
-  gap:28px;
+  gap:25px;
 }
 
 nav a{
@@ -59,7 +57,7 @@ nav a:hover{
 }
 
 .search{
-  width:230px;
+  width:220px;
   padding:11px 15px;
   border:1px solid #ddd;
   border-radius:25px;
@@ -93,7 +91,6 @@ nav a:hover{
 
 .hero p{
   font-size:18px;
-  color:#eee;
   margin-bottom:25px;
 }
 
@@ -101,7 +98,7 @@ nav a:hover{
   display:inline-block;
   padding:13px 22px;
   background:#ff4b00;
-  color:white;
+  color:#fff;
   border:0;
   border-radius:10px;
   font-weight:800;
@@ -193,7 +190,7 @@ nav a:hover{
 }
 
 .promo{
-  background:white;
+  background:#fff;
   border-radius:15px;
   overflow:hidden;
   border:1px solid #eee;
@@ -207,10 +204,6 @@ nav a:hover{
 
 .promo div{
   padding:17px;
-}
-
-.promo h3{
-  margin-bottom:8px;
 }
 
 .payment{
@@ -262,10 +255,6 @@ footer a{
   text-decoration:none;
 }
 
-footer a:hover{
-  color:#fff;
-}
-
 .copy{
   max-width:1250px;
   margin:35px auto 0;
@@ -303,10 +292,6 @@ footer a:hover{
   cursor:pointer;
 }
 
-.modal-box h2{
-  margin-bottom:18px;
-}
-
 label{
   display:block;
   margin-top:14px;
@@ -314,8 +299,7 @@ label{
   font-weight:bold;
 }
 
-input,
-select{
+input{
   width:100%;
   padding:13px;
   border:1px solid #ddd;
@@ -441,7 +425,6 @@ select{
 <body>
 
 <header>
-
   <div class="logo">
     MGG<span>STORE</span>
   </div>
@@ -460,26 +443,20 @@ select{
     placeholder="Search games..."
     onkeyup="searchGames()"
   >
-
 </header>
 
 <main class="container">
 
 <section class="hero">
-
   <div>
     <h1>MGG STORE</h1>
-
-    <p>
-      លឿនរហ័ស • សុវត្ថិភាព • តម្លៃសមរម្យ • មិនខកបំណង
-    </p>
+    <p>លឿនរហ័ស • សុវត្ថិភាព • តម្លៃសមរម្យ • មិនខកបំណង</p>
 
     <button class="btn"
       onclick="document.getElementById('games').scrollIntoView()">
       🛒 ចូលទិញ
     </button>
   </div>
-
 </section>
 
 <section class="section" id="games">
@@ -496,14 +473,16 @@ select{
       data-name="Free Fire"
       onclick="openGame('Free Fire')">
 
-      <img src="images/Screenshot_2026-09-30-08-01-18-05.jpg">
+      <img
+        src="images/Screenshot_2026-09-30-08-01-18-05.jpg"
+        alt="Free Fire"
+        onerror="this.src='https://placehold.co/600x400?text=Free+Fire'">
 
       <div class="game-info">
         <h3>Free Fire</h3>
         <span class="tag">Direct Top-up</span>
         <button class="topup">TOP UP</button>
       </div>
-
     </div>
 
     <!-- MOBILE LEGENDS -->
@@ -511,14 +490,16 @@ select{
       data-name="Mobile Legends"
       onclick="openGame('Mobile Legends')">
 
-      <img src="images/Screenshot_2026-09-30-14-37-30-58.jpg">
+      <img
+        src="images/Screenshot_2026-09-30-14-37-30-58.jpg"
+        alt="Mobile Legends"
+        onerror="this.src='https://placehold.co/600x400?text=Mobile+Legends'">
 
       <div class="game-info">
         <h3>Mobile Legends</h3>
         <span class="tag">Direct Top-up</span>
         <button class="topup">TOP UP</button>
       </div>
-
     </div>
 
     <!-- PUBG -->
@@ -526,14 +507,16 @@ select{
       data-name="PUBG Mobile"
       onclick="openGame('PUBG Mobile')">
 
-      <img src="images/pubg.jpg">
+      <img
+        src="images/pubg.jpg"
+        alt="PUBG Mobile"
+        onerror="this.src='https://placehold.co/600x400?text=PUBG+Mobile'">
 
       <div class="game-info">
         <h3>PUBG Mobile</h3>
         <span class="tag">UC Top-up</span>
         <button class="topup">TOP UP</button>
       </div>
-
     </div>
 
     <!-- ROBLOX -->
@@ -541,14 +524,16 @@ select{
       data-name="Roblox"
       onclick="openGame('Roblox')">
 
-      <img src="images/Screenshot_2026-09-30-14-34-51-87.jpg">
+      <img
+        src="images/Screenshot_2026-09-30-14-34-51-87.jpg"
+        alt="Roblox"
+        onerror="this.src='https://placehold.co/600x400?text=Roblox'">
 
       <div class="game-info">
         <h3>Roblox</h3>
         <span class="tag">Robux Top-up</span>
         <button class="topup">TOP UP</button>
       </div>
-
     </div>
 
     <!-- BLOOD STRIKE -->
@@ -556,85 +541,101 @@ select{
       data-name="Blood Strike"
       onclick="openGame('Blood Strike')">
 
-      <img src="images/Screenshot_2026-09-30-14-44-57-67.jpg">
+      <img
+        src="images/Screenshot_2026-09-30-14-44-57-67.jpg"
+        alt="Blood Strike"
+        onerror="this.src='https://placehold.co/600x400?text=Blood+Strike'">
 
       <div class="game-info">
         <h3>Blood Strike</h3>
         <span class="tag">Gold Top-up</span>
         <button class="topup">TOP UP</button>
       </div>
-
     </div>
 
-    <!-- OTHER GAMES -->
+    <!-- HONOR OF KINGS -->
     <div class="game"
       data-name="Honor of Kings"
       onclick="openGame('Honor of Kings')">
 
-      <img src="images/honor-of-kings.jpg">
+      <img
+        src="images/honor-of-kings.jpg"
+        alt="Honor of Kings"
+        onerror="this.src='https://placehold.co/600x400?text=Honor+of+Kings'">
 
       <div class="game-info">
         <h3>Honor of Kings</h3>
         <span class="tag">Token Top-up</span>
         <button class="topup">TOP UP</button>
       </div>
-
     </div>
 
+    <!-- MAGIC CHESS -->
     <div class="game"
       data-name="Magic Chess"
       onclick="openGame('Magic Chess')">
 
-      <img src="images/magic-chess.jpg">
+      <img
+        src="images/magic-chess.jpg"
+        alt="Magic Chess"
+        onerror="this.src='https://placehold.co/600x400?text=Magic+Chess'">
 
       <div class="game-info">
         <h3>Magic Chess</h3>
         <span class="tag">Diamond Top-up</span>
         <button class="topup">TOP UP</button>
       </div>
-
     </div>
 
+    <!-- GENSHIN -->
     <div class="game"
       data-name="Genshin Impact"
       onclick="openGame('Genshin Impact')">
 
-      <img src="images/genshin.jpg">
+      <img
+        src="images/genshin.jpg"
+        alt="Genshin Impact"
+        onerror="this.src='https://placehold.co/600x400?text=Genshin'">
 
       <div class="game-info">
         <h3>Genshin Impact</h3>
         <span class="tag">Crystal Top-up</span>
         <button class="topup">TOP UP</button>
       </div>
-
     </div>
 
+    <!-- COD MOBILE -->
     <div class="game"
       data-name="Call of Duty Mobile"
       onclick="openGame('Call of Duty Mobile')">
 
-      <img src="images/cod-mobile.jpg">
+      <img
+        src="images/cod-mobile.jpg"
+        alt="Call of Duty Mobile"
+        onerror="this.src='https://placehold.co/600x400?text=COD+Mobile'">
 
       <div class="game-info">
         <h3>Call of Duty Mobile</h3>
         <span class="tag">CP Top-up</span>
         <button class="topup">TOP UP</button>
       </div>
-
     </div>
 
+    <!-- EFOOTBALL -->
     <div class="game"
       data-name="eFootball"
       onclick="openGame('eFootball')">
 
-      <img src="images/efootball.jpg">
+      <img
+        src="images/efootball.jpg"
+        alt="eFootball"
+        onerror="this.src='https://placehold.co/600x400?text=eFootball'">
 
       <div class="game-info">
         <h3>eFootball</h3>
         <span class="tag">Coin Top-up</span>
         <button class="topup">TOP UP</button>
       </div>
-
     </div>
 
   </div>
@@ -644,11 +645,9 @@ select{
 
   <div class="section-head">
     <h2>🎁 MGG Rewards</h2>
-    <a class="see" href="#">View Rewards →</a>
   </div>
 
   <div class="payment">
-
     <h3>Earn rewards when you top up</h3>
 
     <p style="margin-top:10px;color:#666">
@@ -661,7 +660,6 @@ select{
     <button class="btn">
       🎁 Grab Reward
     </button>
-
   </div>
 
 </section>
@@ -670,13 +668,14 @@ select{
 
   <div class="section-head">
     <h2>NEWS & PROMOTIONS</h2>
-    <a class="see" href="#">See All →</a>
   </div>
 
   <div class="promos">
 
     <div class="promo">
-      <img src="images/promo-1.jpg">
+      <img src="images/promo-1.jpg"
+           alt="Promotion"
+           onerror="this.src='https://placehold.co/800x400?text=Promotion'">
       <div>
         <h3>🔥 Special Top Up</h3>
         <p>Promotion ពិសេសពី MGG STORE</p>
@@ -684,7 +683,9 @@ select{
     </div>
 
     <div class="promo">
-      <img src="images/promo-2.jpg">
+      <img src="images/promo-2.jpg"
+           alt="Weekly Reward"
+           onerror="this.src='https://placehold.co/800x400?text=Weekly+Reward'">
       <div>
         <h3>🎁 Weekly Reward</h3>
         <p>Top up ហើយទទួល Reward</p>
@@ -692,7 +693,9 @@ select{
     </div>
 
     <div class="promo">
-      <img src="images/promo-3.jpg">
+      <img src="images/promo-3.jpg"
+           alt="Fast Delivery"
+           onerror="this.src='https://placehold.co/800x400?text=Fast+Delivery'">
       <div>
         <h3>⚡ Fast Delivery</h3>
         <p>Order ងាយ • លឿន • សុវត្ថិភាព</p>
@@ -700,7 +703,6 @@ select{
     </div>
 
   </div>
-
 </section>
 
 <section class="section">
@@ -714,15 +716,12 @@ select{
     <p>ទូទាត់បានងាយស្រួលតាមរយៈ៖</p>
 
     <div class="pay-grid">
-
       <div class="pay">🟢 ABA KHQR</div>
       <div class="pay">💳 ABA Bank</div>
       <div class="pay">⚡ MGG PAY</div>
-
     </div>
 
   </div>
-
 </section>
 
 </main>
@@ -733,11 +732,7 @@ select{
 
     <div>
       <h3>MGG STORE</h3>
-
-      <p>
-        Game Top Up សម្រាប់អ្នកលេងហ្គេម
-        នៅកម្ពុជា។
-      </p>
+      <p>Game Top Up សម្រាប់អ្នកលេងហ្គេមនៅកម្ពុជា។</p>
 
       <p>
         ⚡ លឿនរហ័ស<br>
@@ -748,11 +743,9 @@ select{
 
     <div>
       <h3>Support</h3>
-      <p><a href="#">Game Top Up</a></p>
+      <p><a href="#games">Game Top Up</a></p>
       <p><a href="#rewards">Rewards</a></p>
       <p><a href="#promo">Promotions</a></p>
-      <p><a href="#">Order Tracking</a></p>
-      <p><a href="#">FAQ</a></p>
     </div>
 
     <div>
@@ -765,9 +758,7 @@ select{
     <div>
       <h3>Payment</h3>
       <p>We accept:</p>
-      <p style="font-size:22px;color:white">
-        ABA KHQR
-      </p>
+      <p style="font-size:22px;color:white">ABA KHQR</p>
     </div>
 
   </div>
@@ -779,6 +770,7 @@ select{
 
 </footer>
 
+<!-- TOP UP MODAL -->
 <div class="modal" id="modal">
 
   <div class="modal-box">
@@ -788,58 +780,42 @@ select{
     <h2 id="modalTitle">Game Top Up</h2>
 
     <label>Player ID</label>
-
-    <input
-      id="playerId"
-      placeholder="Enter Player ID"
-    >
+    <input id="playerId" placeholder="Enter Player ID">
 
     <label>Server ID</label>
-
-    <input
-      id="serverId"
-      placeholder="Enter Server ID"
-    >
+    <input id="serverId" placeholder="Enter Server ID">
 
     <button class="verify" onclick="verifyPlayer()">
       🔎 Verify Player ID
     </button>
 
-    <p id="verifyResult"
-      style="margin-top:10px;color:#777">
-    </p>
+    <p id="verifyResult" style="margin-top:10px;color:#777"></p>
 
     <label>Select Package</label>
 
     <div class="packages">
 
-      <div class="package"
-        onclick="selectPackage(this)">
+      <div class="package" onclick="selectPackage(this)">
         💎 100 Diamonds — $0.99
       </div>
 
-      <div class="package"
-        onclick="selectPackage(this)">
+      <div class="package" onclick="selectPackage(this)">
         💎 310 Diamonds — $2.99
       </div>
 
-      <div class="package"
-        onclick="selectPackage(this)">
+      <div class="package" onclick="selectPackage(this)">
         💎 520 Diamonds — $4.99
       </div>
 
-      <div class="package"
-        onclick="selectPackage(this)">
+      <div class="package" onclick="selectPackage(this)">
         💎 1060 Diamonds — $9.99
       </div>
 
-      <div class="package"
-        onclick="selectPackage(this)">
+      <div class="package" onclick="selectPackage(this)">
         🎫 Weekly Pass — $1.99
       </div>
 
-      <div class="package"
-        onclick="selectPackage(this)">
+      <div class="package" onclick="selectPackage(this)">
         ⭐ Special Package — $14.99
       </div>
 
@@ -855,7 +831,6 @@ select{
     <div class="qr" id="qr">
 
       <h3>ABA KHQR</h3>
-
       <p>Scan QR ដើម្បីទូទាត់</p>
 
       <div class="qr-box"></div>
@@ -910,7 +885,7 @@ function selectPackage(el){
 function verifyPlayer(){
 
   const id =
-    document.getElementById("playerId").value;
+    document.getElementById("playerId").value.trim();
 
   const result =
     document.getElementById("verifyResult");
@@ -926,7 +901,7 @@ function verifyPlayer(){
   }
 
   result.innerText =
-    "✅ Player ID format looks valid. Real API verification can be connected later.";
+    "✅ Player ID format looks valid.";
 
   result.style.color =
     "green";
@@ -948,12 +923,11 @@ function showQR(){
 function confirmOrder(){
 
   const player =
-    document.getElementById("playerId").value;
+    document.getElementById("playerId").value.trim();
 
   if(!player){
 
     alert("សូមបញ្ចូល Player ID");
-
     return;
   }
 
@@ -982,9 +956,8 @@ function searchGames(){
 
       game.style.display =
         name.includes(value)
-        ? "block"
+        ? ""
         : "none";
-
     });
 }
 
