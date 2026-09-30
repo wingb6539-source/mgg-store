@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>MGG STORE V2026</title>
 
 <style>
@@ -10,122 +11,1267 @@
   box-sizing:border-box;
   margin:0;
   padding:0;
-  font-family:Arial, sans-serif;
+}
+
+html{
+  scroll-behavior:smooth;
 }
 
 body{
+  font-family:Arial,"Noto Sans Khmer",sans-serif;
   background:
-    radial-gradient(circle at top,#35120d,#100708 45%,#070304);
-  color:white;
+    radial-gradient(circle at 20% 0%,#45150b 0%,transparent 35%),
+    radial-gradient(circle at 90% 10%,#35100b 0%,transparent 30%),
+    #070303;
+  color:#fff;
   min-height:100vh;
 }
 
+/* HEADER */
 header{
-  padding:22px 18px;
+  position:sticky;
+  top:0;
+  z-index:100;
+  padding:18px 15px;
   text-align:center;
-  background:linear-gradient(135deg,#ff4b00,#ff1300);
-  box-shadow:0 0 30px #ff3b00;
+  background:rgba(15,5,4,.92);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid #ff4b0038;
 }
 
 .logo{
-  font-size:32px;
+  font-size:31px;
   font-weight:900;
   letter-spacing:2px;
+  color:#fff;
+  text-shadow:0 0 18px #ff4200;
 }
 
-.subtitle{
+.logo span{
+  color:#ff4b00;
+}
+
+.tagline{
   margin-top:6px;
-  opacity:.9;
+  color:#cfcfcf;
+  font-size:13px;
 }
 
-.container{
-  width:min(1000px,94%);
+/* HERO */
+.hero{
+  width:min(1100px,94%);
   margin:25px auto;
+  padding:35px 22px;
+  border-radius:26px;
+  text-align:center;
+  background:
+    linear-gradient(135deg,#2b0d08,#100605 65%);
+  border:1px solid #ff4b0045;
+  box-shadow:0 0 35px #ff3b0018;
+}
+
+.hero h1{
+  font-size:32px;
+  margin-bottom:12px;
+}
+
+.hero h1 span{
+  color:#ff5200;
+}
+
+.hero p{
+  color:#c9c9c9;
+  line-height:1.7;
+}
+
+.hero-badges{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:9px;
+  margin-top:20px;
+}
+
+.badge{
+  padding:9px 13px;
+  border-radius:30px;
+  background:#21100d;
+  border:1px solid #ff4b0038;
+  font-size:13px;
+}
+
+/* CONTAINER */
+.container{
+  width:min(1100px,94%);
+  margin:auto;
 }
 
 .section-title{
   font-size:22px;
-  font-weight:bold;
-  margin:25px 0 15px;
+  font-weight:900;
+  margin:30px 0 15px;
 }
 
+.section-title small{
+  display:block;
+  margin-top:5px;
+  font-size:12px;
+  color:#999;
+  font-weight:normal;
+}
+
+/* GAMES */
 .games{
   display:grid;
   grid-template-columns:repeat(2,1fr);
-  gap:14px;
+  gap:13px;
 }
 
 .game{
-  padding:20px 10px;
-  border:1px solid #ff4b2244;
-  border-radius:18px;
-  background:linear-gradient(145deg,#21100d,#120809);
+  position:relative;
+  padding:22px 12px;
+  min-height:125px;
+  border-radius:20px;
   text-align:center;
   cursor:pointer;
+  background:
+    linear-gradient(145deg,#1c0b09,#0f0706);
+  border:1px solid #44201a;
   transition:.2s;
+  overflow:hidden;
+}
+
+.game::after{
+  content:"";
+  position:absolute;
+  width:80px;
+  height:80px;
+  right:-35px;
+  top:-35px;
+  border-radius:50%;
+  background:#ff4b00;
+  opacity:.08;
 }
 
 .game:hover,
 .game.active{
   transform:translateY(-3px);
   border-color:#ff4b00;
-  box-shadow:0 0 20px #ff3b0044;
+  box-shadow:0 0 24px #ff3b0038;
 }
 
 .game-icon{
-  font-size:38px;
-  margin-bottom:8px;
+  font-size:43px;
+  margin-bottom:10px;
 }
 
 .game-name{
-  font-weight:bold;
+  font-weight:900;
+  font-size:15px;
 }
 
+.game-sub{
+  color:#888;
+  font-size:11px;
+  margin-top:5px;
+}
+
+/* CARD */
 .card{
-  background:#160a09dd;
-  border:1px solid #ff4b0038;
-  border-radius:20px;
-  padding:20px;
   margin-top:20px;
+  padding:20px;
+  border-radius:22px;
+  background:rgba(20,8,7,.94);
+  border:1px solid #ff4b0038;
+  box-shadow:0 10px 35px #0005;
 }
 
-label{
-  display:block;
-  margin:12px 0 7px;
-  font-weight:bold;
-}
-
-input,select{
-  width:100%;
-  padding:14px;
-  border-radius:12px;
-  border:1px solid #54241c;
-  background:#0d0606;
-  color:white;
-  outline:none;
-}
-
-input:focus,select:focus{
-  border-color:#ff4b00;
-}
-
+/* PACKAGES */
 .packages{
   display:grid;
   grid-template-columns:repeat(2,1fr);
   gap:10px;
-  margin-top:10px;
 }
 
 .package{
-  padding:15px 8px;
-  border:1px solid #4b211b;
-  border-radius:14px;
-  background:#110707;
+  padding:17px 9px;
+  text-align:center;
+  border-radius:16px;
   cursor:pointer;
+  background:#0d0605;
+  border:1px solid #43201a;
+  transition:.2s;
+}
+
+.package:hover,
+.package.active{
+  border-color:#ff4b00;
+  background:#301008;
+  box-shadow:0 0 17px #ff3b0030;
+  transform:translateY(-2px);
+}
+
+.diamond{
+  color:#ffd76a;
+  font-weight:900;
+  font-size:16px;
+}
+
+.price{
+  color:#ff7950;
+  font-weight:bold;
+  margin-top:6px;
+}
+
+.package-note{
+  color:#777;
+  font-size:10px;
+  margin-top:4px;
+}
+
+/* FORM */
+label{
+  display:block;
+  margin:18px 0 7px;
+  font-weight:bold;
+}
+
+input{
+  width:100%;
+  padding:14px;
+  border-radius:13px;
+  border:1px solid #4a211b;
+  outline:none;
+  background:#090404;
+  color:white;
+  font-size:14px;
+}
+
+input:focus{
+  border-color:#ff4b00;
+  box-shadow:0 0 12px #ff3b0020;
+}
+
+.verify-row{
+  display:flex;
+  gap:9px;
+}
+
+.verify-row input{
+  flex:1;
+}
+
+button{
+  border:0;
+  cursor:pointer;
+  color:white;
+  font-weight:900;
+  border-radius:13px;
+  padding:14px 17px;
+  background:linear-gradient(135deg,#ff6500,#ff1d00);
+  box-shadow:0 7px 20px #ff350035;
+}
+
+button:active{
+  transform:scale(.97);
+}
+
+.verify-btn{
+  width:105px;
+}
+
+.status{
+  display:none;
+  margin-top:10px;
+  padding:11px;
+  border-radius:11px;
+  font-size:13px;
+}
+
+.status.success{
+  display:block;
+  background:#0c2b19;
+  border:1px solid #197d45;
+  color:#7dffad;
+}
+
+.status.error{
+  display:block;
+  background:#35100e;
+  border:1px solid #9c3026;
+  color:#ffaaa0;
+}
+
+/* BUY */
+.buy-btn{
+  width:100%;
+  margin-top:20px;
+  padding:16px;
+  font-size:17px;
+}
+
+/* PAYMENT */
+.payment{
+  display:none;
+}
+
+.payment.show{
+  display:block;
+}
+
+.payment-header{
   text-align:center;
 }
 
-.package.active{
-  border-color:#ff4b00;
-  background:#351008;
-  box-shadow:0 0 15px #ff3b003
+.qr-box{
+  width:245px;
+  height:245px;
+  margin:20px auto;
+  border-radius:18px;
+  background:#fff;
+  color:#111;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:20px;
+  font-weight:bold;
+}
+
+.qr-placeholder{
+  border:3px dashed #222;
+  padding:25px;
+  border-radius:12px;
+}
+
+.payment-info{
+  padding:14px;
+  border-radius:13px;
+  background:#0b0504;
+  border:1px solid #3d1b15;
+  line-height:1.8;
+  margin-bottom:15px;
+}
+
+.payment-warning{
+  color:#ffc15c;
+  font-size:12px;
+  text-align:center;
+  margin-bottom:15px;
+}
+
+/* ORDER */
+.order{
+  display:none;
+}
+
+.order.show{
+  display:block;
+}
+
+.order-box{
+  padding:18px;
+  border-radius:17px;
+  background:#081b10;
+  border:1px solid #1e884e;
+}
+
+.order-id{
+  font-size:22px;
+  color:#78ffad;
+  margin:8px 0 15px;
+}
+
+.order-line{
+  padding:7px 0;
+  color:#ddd;
+  border-bottom:1px solid #ffffff0d;
+}
+
+/* ADMIN */
+.admin{
+  margin:25px 0;
+  padding:25px 18px;
+  text-align:center;
+  border-radius:23px;
+  background:
+    linear-gradient(135deg,#101b32,#18091d);
+  border:1px solid #355181;
+}
+
+.admin-icon{
+  font-size:40px;
+  margin-bottom:8px;
+}
+
+.admin p{
+  color:#aaa;
+  margin:9px 0 14px;
+}
+
+.admin-handle{
+  display:inline-block;
+  padding:11px 18px;
+  border-radius:30px;
+  background:#172744;
+  border:1px solid #46659a;
+  color:#7eb2ff;
+  font-weight:bold;
+}
+
+/* FEATURES */
+.features{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+  margin:20px 0;
+}
+
+.feature{
+  padding:17px 10px;
+  text-align:center;
+  border-radius:16px;
+  background:#110706;
+  border:1px solid #341712;
+}
+
+.feature-icon{
+  font-size:25px;
+  margin-bottom:7px;
+}
+
+.feature-title{
+  font-weight:bold;
+  font-size:13px;
+}
+
+.feature-text{
+  margin-top:4px;
+  color:#777;
+  font-size:10px;
+}
+
+/* FOOTER */
+footer{
+  padding:35px 15px;
+  text-align:center;
+  color:#777;
+  font-size:12px;
+  border-top:1px solid #ffffff0b;
+}
+
+footer strong{
+  color:#ff5a25;
+}
+
+/* DESKTOP */
+@media(min-width:700px){
+
+  .games{
+    grid-template-columns:repeat(4,1fr);
+  }
+
+  .packages{
+    grid-template-columns:repeat(4,1fr);
+  }
+
+  .features{
+    grid-template-columns:repeat(4,1fr);
+  }
+
+  .hero h1{
+    font-size:42px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">🔥 MGG <span>STORE</span></div>
+  <div class="tagline">
+    V2026 • Fast • Safe • Easy Top Up
+  </div>
+</header>
+
+
+<section class="hero">
+
+  <h1>
+    Welcome to <span>MGG STORE</span> 💎
+  </h1>
+
+  <p>
+    Game Top Up ងាយស្រួល លឿន និងមានការផ្ទៀងផ្ទាត់ Order
+  </p>
+
+  <div class="hero-badges">
+    <div class="badge">⚡ Fast Top Up</div>
+    <div class="badge">🔐 Safe Order</div>
+    <div class="badge">💎 Good Price</div>
+    <div class="badge">💬 Admin Support</div>
+  </div>
+
+</section>
+
+
+<div class="container">
+
+  <!-- GAMES -->
+
+  <div class="section-title">
+    🎮 ជ្រើសរើស Game
+    <small>ជ្រើស Game ដែលអ្នកចង់ Top Up</small>
+  </div>
+
+  <div class="games">
+
+    <div class="game active"
+         onclick="selectGame('Free Fire',this)">
+      <div class="game-icon">🔥</div>
+      <div class="game-name">Free Fire</div>
+      <div class="game-sub">Diamond Top Up</div>
+    </div>
+
+    <div class="game"
+         onclick="selectGame('Mobile Legends',this)">
+      <div class="game-icon">⚔️</div>
+      <div class="game-name">Mobile Legends</div>
+      <div class="game-sub">Diamond Top Up</div>
+    </div>
+
+    <div class="game"
+         onclick="selectGame('Roblox',this)">
+      <div class="game-icon">🟥</div>
+      <div class="game-name">Roblox</div>
+      <div class="game-sub">Robux Top Up</div>
+    </div>
+
+    <div class="game"
+         onclick="selectGame('PUBG Mobile',this)">
+      <div class="game-icon">🎯</div>
+      <div class="game-name">PUBG Mobile</div>
+      <div class="game-sub">UC Top Up</div>
+    </div>
+
+  </div>
+
+
+  <!-- TOP UP -->
+
+  <div class="card">
+
+    <div class="section-title">
+      💎 ជ្រើសរើស Package
+      <small id="selectedGameText">
+        Free Fire
+      </small>
+    </div>
+
+    <div class="packages">
+
+      <div class="package active"
+           onclick="selectPackage('100 Diamonds','$1.00',this)">
+        <div class="diamond">💎 100</div>
+        <div class="price">$1.00</div>
+        <div class="package-note">Basic</div>
+      </div>
+
+      <div class="package"
+           onclick="selectPackage('310 Diamonds','$3.00',this)">
+        <div class="diamond">💎 310</div>
+        <div class="price">$3.00</div>
+        <div class="package-note">Popular</div>
+      </div>
+
+      <div class="package"
+           onclick="selectPackage('520 Diamonds','$5.00',this)">
+        <div class="diamond">💎 520</div>
+        <div class="price">$5.00</div>
+        <div class="package-note">Value</div>
+      </div>
+
+      <div class="package"
+           onclick="selectPackage('1060 Diamonds','$10.00',this)">
+        <div class="diamond">💎 1060</div>
+        <div class="price">$10.00</div>
+        <div class="package-note">Premium</div>
+      </div>
+
+      <div class="package"
+           onclick="selectPackage('Weekly Pass','$2.50',this)">
+        <div class="diamond">🎫 Weekly Pass</div>
+        <div class="price">$2.50</div>
+        <div class="package-note">Weekly</div>
+      </div>
+
+      <div class="package"
+           onclick="selectPackage('2180 Diamonds','$20.00',this)">
+        <div class="diamond">💎 2180</div>
+        <div class="price">$20.00</div>
+        <div class="package-note">Premium+</div>
+      </div>
+
+    </div>
+
+
+    <!-- PLAYER ID -->
+
+    <label>
+      👤 Player ID
+    </label>
+
+    <input
+      id="playerId"
+      type="text"
+      placeholder="បញ្ចូល Player ID របស់អ្នក"
+      autocomplete="off"
+    >
+
+
+    <label>
+      🔐 Confirm Player ID
+    </label>
+
+    <div class="verify-row">
+
+      <input
+        id="verifyId"
+        type="text"
+        placeholder="បញ្ចូល Player ID ម្តងទៀត"
+        autocomplete="off"
+      >
+
+      <button
+        class="verify-btn"
+        onclick="verifyPlayer()">
+        Verify
+      </button>
+
+    </div>
+
+
+    <div
+      id="verifyStatus"
+      class="status">
+    </div>
+
+
+    <button
+      class="buy-btn"
+      onclick="openPayment()">
+
+      🛒 ទិញឥឡូវនេះ
+
+    </button>
+
+  </div>
+
+
+  <!-- PAYMENT -->
+
+  <div
+    id="paymentCard"
+    class="card payment">
+
+    <div class="payment-header">
+
+      <div class="section-title">
+        📱 MGG STORE PAYMENT
+      </div>
+
+      <p style="color:#aaa;">
+        សូមពិនិត្យព័ត៌មាន Order មុនបង់ប្រាក់
+      </p>
+
+    </div>
+
+
+    <div
+      id="paymentInfo"
+      class="payment-info">
+    </div>
+
+
+    <div class="qr-box">
+
+      <div class="qr-placeholder">
+
+        📱<br><br>
+
+        YOUR MGG STORE<br>
+        QR CODE<br><br>
+
+        <small>
+          ដាក់ QR ពិតរបស់អ្នកនៅទីនេះ
+        </small>
+
+      </div>
+
+    </div>
+
+
+    <div class="payment-warning">
+      ⚠️ សូមពិនិត្យចំនួនទឹកប្រាក់ និងព័ត៌មាន Order មុនបង់ប្រាក់។
+    </div>
+
+
+    <button
+      id="confirmButton"
+      class="buy-btn"
+      onclick="confirmPayment()">
+
+      ✅ ខ្ញុំបានបង់ប្រាក់
+
+    </button>
+
+  </div>
+
+
+  <!-- ORDER -->
+
+  <div
+    id="orderCard"
+    class="card order">
+
+    <div class="section-title">
+      🎉 Order បានបង្កើត
+    </div>
+
+    <div class="order-box">
+
+      <div>
+        🧾 Order ID
+      </div>
+
+      <div
+        id="orderId"
+        class="order-id">
+        -
+      </div>
+
+      <div class="order-line">
+        🎮 Game:
+        <strong id="orderGame">-</strong>
+      </div>
+
+      <div class="order-line">
+        💎 Package:
+        <strong id="orderPackage">-</strong>
+      </div>
+
+      <div class="order-line">
+        👤 Player ID:
+        <strong id="orderPlayer">-</strong>
+      </div>
+
+      <div class="order-line">
+        💰 Price:
+        <strong id="orderPrice">-</strong>
+      </div>
+
+      <div class="order-line">
+        ⏳ Status:
+        <strong>PENDING PAYMENT</strong>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- FEATURES -->
+
+  <div class="section-title">
+    🛡️ Why MGG STORE?
+  </div>
+
+  <div class="features">
+
+    <div class="feature">
+      <div class="feature-icon">⚡</div>
+      <div class="feature-title">
+        Fast
+      </div>
+      <div class="feature-text">
+        Process Order Quickly
+      </div>
+    </div>
+
+    <div class="feature">
+      <div class="feature-icon">🔐</div>
+      <div class="feature-title">
+        Safe
+      </div>
+      <div class="feature-text">
+        Verify Player ID
+      </div>
+    </div>
+
+    <div class="feature">
+      <div class="feature-icon">💎</div>
+      <div class="feature-title">
+        Easy
+      </div>
+      <div class="feature-text">
+        Simple Top Up
+      </div>
+    </div>
+
+    <div class="feature">
+      <div class="feature-icon">💬</div>
+      <div class="feature-title">
+        Support
+      </div>
+      <div class="feature-text">
+        Admin Help
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- ADMIN -->
+
+  <div class="admin">
+
+    <div class="admin-icon">
+      💬
+    </div>
+
+    <h3>
+      MGG STORE ADMIN
+    </h3>
+
+    <p>
+      មានបញ្ហាជាមួយ Order ឬចង់សួរអំពី Top Up?
+    </p>
+
+    <div class="admin-handle">
+      @MGGStoreAdmin
+    </div>
+
+  </div>
+
+</div>
+
+
+<footer>
+
+  <div>
+    © 2026 <strong>MGG STORE</strong>
+  </div>
+
+  <div style="margin-top:7px;">
+    Fast • Safe • Easy Game Top Up
+  </div>
+
+</footer>
+
+
+<script>
+
+/* =========================
+   SETTINGS
+========================= */
+
+const API_URL =
+"https://mgg-store-backend.onrender.com";
+
+let selectedGame = "Free Fire";
+
+let selectedPackage =
+"100 Diamonds";
+
+let selectedPrice =
+"$1.00";
+
+let verified =
+false;
+
+
+/* =========================
+   GAME
+========================= */
+
+function selectGame(game, element){
+
+  selectedGame = game;
+
+  document
+    .querySelectorAll(".game")
+    .forEach(function(item){
+
+      item.classList.remove("active");
+
+    });
+
+  element.classList.add("active");
+
+  document
+    .getElementById("selectedGameText")
+    .innerText =
+      game;
+
+  verified = false;
+
+  document
+    .getElementById("verifyStatus")
+    .className =
+      "status";
+
+}
+
+
+/* =========================
+   PACKAGE
+========================= */
+
+function selectPackage(
+  packageName,
+  price,
+  element
+){
+
+  selectedPackage =
+    packageName;
+
+  selectedPrice =
+    price;
+
+  document
+    .querySelectorAll(".package")
+    .forEach(function(item){
+
+      item.classList.remove("active");
+
+    });
+
+  element.classList.add("active");
+
+}
+
+
+/* =========================
+   VERIFY
+========================= */
+
+function verifyPlayer(){
+
+  const playerId =
+    document
+      .getElementById("playerId")
+      .value
+      .trim();
+
+  const verifyId =
+    document
+      .getElementById("verifyId")
+      .value
+      .trim();
+
+  const status =
+    document
+      .getElementById("verifyStatus");
+
+
+  if(!playerId || !verifyId){
+
+    verified = false;
+
+    status.className =
+      "status error";
+
+    status.innerText =
+      "❌ សូមបញ្ចូល Player ID ទាំងពីរ";
+
+    return;
+  }
+
+
+  if(playerId !== verifyId){
+
+    verified = false;
+
+    status.className =
+      "status error";
+
+    status.innerText =
+      "❌ Player ID មិនដូចគ្នាទេ";
+
+    return;
+  }
+
+
+  if(playerId.length < 3){
+
+    verified = false;
+
+    status.className =
+      "status error";
+
+    status.innerText =
+      "❌ Player ID មិនត្រឹមត្រូវ";
+
+    return;
+  }
+
+
+  verified = true;
+
+  status.className =
+    "status success";
+
+  status.innerText =
+    "✅ Player ID បានផ្ទៀងផ្ទាត់រួចរាល់";
+
+}
+
+
+/* =========================
+   OPEN PAYMENT
+========================= */
+
+function openPayment(){
+
+  const playerId =
+    document
+      .getElementById("playerId")
+      .value
+      .trim();
+
+
+  if(!playerId){
+
+    alert(
+      "សូមបញ្ចូល Player ID ជាមុនសិន!"
+    );
+
+    return;
+  }
+
+
+  if(!verified){
+
+    alert(
+      "សូម Verify Player ID ជាមុនសិន!"
+    );
+
+    return;
+  }
+
+
+  const paymentCard =
+    document
+      .getElementById("paymentCard");
+
+
+  const info =
+    document
+      .getElementById("paymentInfo");
+
+
+  info.innerHTML =
+
+    "🎮 Game: <strong>" +
+    escapeHtml(selectedGame) +
+    "</strong><br>" +
+
+    "💎 Package: <strong>" +
+    escapeHtml(selectedPackage) +
+    "</strong><br>" +
+
+    "💰 Price: <strong>" +
+    escapeHtml(selectedPrice) +
+    "</strong><br>" +
+
+    "👤 Player ID: <strong>" +
+    escapeHtml(playerId) +
+    "</strong>";
+
+
+  paymentCard.classList.add("show");
+
+
+  paymentCard.scrollIntoView({
+    behavior:"smooth",
+    block:"start"
+  });
+
+}
+
+
+/* =========================
+   CREATE ORDER
+========================= */
+
+async function confirmPayment(){
+
+  const playerId =
+    document
+      .getElementById("playerId")
+      .value
+      .trim();
+
+
+  if(!verified){
+
+    alert(
+      "សូម Verify Player ID ជាមុនសិន!"
+    );
+
+    return;
+  }
+
+
+  const button =
+    document
+      .getElementById("confirmButton");
+
+
+  button.disabled = true;
+
+  button.innerText =
+    "⏳ កំពុងបង្កើត Order...";
+
+
+  try{
+
+    const response =
+      await fetch(
+        API_URL + "/api/orders",
+        {
+
+          method:"POST",
+
+          headers:{
+            "Content-Type":
+              "application/json"
+          },
+
+          body:JSON.stringify({
+
+            game:
+              selectedGame,
+
+            playerId:
+              playerId,
+
+            package:
+              selectedPackage
+
+          })
+
+        }
+      );
+
+
+    const data =
+      await response.json();
+
+
+    if(!response.ok){
+
+      throw new Error(
+        data.message ||
+        "Backend Error"
+      );
+
+    }
+
+
+    const orderId =
+      data.orderId ||
+      "MGG-" +
+      Date.now();
+
+
+    document
+      .getElementById("orderId")
+      .innerText =
+        orderId;
+
+
+    document
+      .getElementById("orderGame")
+      .innerText =
+        selectedGame;
+
+
+    document
+      .getElementById("orderPackage")
+      .innerText =
+        selectedPackage;
+
+
+    document
+      .getElementById("orderPlayer")
+      .innerText =
+        playerId;
+
+
+    document
+      .getElementById("orderPrice")
+      .innerText =
+        selectedPrice;
+
+
+    document
+      .getElementById("orderCard")
+      .classList.add("show");
+
+
+    document
+      .getElementById("orderCard")
+      .scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+      });
+
+
+    button.innerText =
+      "✅ Order បានបង្កើត";
+
+
+  }catch(error){
+
+    console.error(error);
+
+
+    alert(
+      "❌ Backend Connection Error\n\n" +
+      error.message
+    );
+
+
+    button.disabled = false;
+
+    button.innerText =
+      "✅ ខ្ញុំបានបង់ប្រាក់";
+
+  }
+
+}
+
+
+/* =========================
+   SECURITY DISPLAY
+========================= */
+
+function escapeHtml(text){
+
+  const div =
+    document.createElement("div");
+
+  div.textContent =
+    text;
+
+  return div.innerHTML;
+
+}
+
+</script>
+
+</body>
+  </html>
