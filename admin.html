@@ -1,8 +1,7 @@
 <!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MGG STORE — Admin Panel V2026</title>  <style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">  <title>MGG STORE — Admin Panel V2026</title>  <style>
     * {
       box-sizing: border-box;
       margin: 0;
@@ -16,6 +15,7 @@
       color: #222;
     }
 
+    /* LOGIN */
     .login-page {
       min-height: 100vh;
       display: flex;
@@ -94,6 +94,7 @@
       font-size: 14px;
     }
 
+    /* DASHBOARD */
     .dashboard {
       display: none;
       min-height: 100vh;
@@ -142,6 +143,7 @@
       color: #777;
     }
 
+    /* STATS */
     .stats {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -167,6 +169,7 @@
       font-weight: 900;
     }
 
+    /* ORDERS */
     .orders-box {
       background: white;
       border-radius: 20px;
@@ -222,6 +225,16 @@
       color: #07963d;
     }
 
+    .status.paid {
+      background: #fff5d6;
+      color: #b26a00;
+    }
+
+    .status.cancelled {
+      background: #ffe8e8;
+      color: #d93025;
+    }
+
     .order-info {
       display: grid;
       gap: 7px;
@@ -231,6 +244,34 @@
 
     .order-info b {
       color: #222;
+    }
+
+    /* ORDER ACTIONS */
+    .order-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 15px;
+      flex-wrap: wrap;
+    }
+
+    .btn-paid {
+      background: #ff9800;
+      color: white;
+    }
+
+    .btn-completed {
+      background: #0a9f4f;
+      color: white;
+    }
+
+    .btn-cancel {
+      background: #d93025;
+      color: white;
+    }
+
+    .order-actions .btn {
+      flex: 1;
+      min-width: 110px;
     }
 
     .empty {
@@ -243,16 +284,12 @@
       color: #ff5500;
     }
 
-    .success {
-      color: #07963d;
-      font-weight: bold;
-    }
-
     small {
       word-break: break-word;
     }
 
     @media (max-width: 700px) {
+
       .stats {
         grid-template-columns: 1fr;
       }
@@ -279,8 +316,9 @@
       .orders-header .btn {
         width: 100%;
       }
+
     }
-  </style></head><body>  <!-- LOGIN -->  <div class="login-page" id="loginPage"><div class="login-box">
+  </style></head><body>  <!-- LOGIN PAGE -->  <div class="login-page" id="loginPage"><div class="login-box">
 
   <div class="logo">
     MGG STORE
@@ -306,15 +344,24 @@
     autocomplete="current-password"
   >
 
-  <button class="btn btn-primary" onclick="login()">
+  <button
+    class="btn btn-primary"
+    onclick="login()"
+  >
     🔐 Login
   </button>
 
-  <div class="error" id="loginError"></div>
+  <div
+    class="error"
+    id="loginError"
+  ></div>
 
 </div>
 
-  </div>  <!-- DASHBOARD -->  <div class="dashboard" id="dashboard"><div class="topbar">
+  </div>  <!-- DASHBOARD -->  <div
+    class="dashboard"
+    id="dashboard"
+  ><div class="topbar">
 
   <div class="brand">
     🛒 MGG STORE ADMIN
@@ -344,8 +391,15 @@
 <div class="container">
 
   <div class="welcome">
-    <h1>Welcome Admin 👋</h1>
-    <p>Manage MGG STORE orders</p>
+
+    <h1>
+      Welcome Admin 👋
+    </h1>
+
+    <p>
+      Manage MGG STORE orders
+    </p>
+
   </div>
 
 
@@ -353,6 +407,7 @@
   <div class="stats">
 
     <div class="stat">
+
       <div class="stat-title">
         Total Orders
       </div>
@@ -363,10 +418,12 @@
       >
         0
       </div>
+
     </div>
 
 
     <div class="stat">
+
       <div class="stat-title">
         Pending Payment
       </div>
@@ -377,10 +434,12 @@
       >
         0
       </div>
+
     </div>
 
 
     <div class="stat">
+
       <div class="stat-title">
         Completed
       </div>
@@ -391,6 +450,7 @@
       >
         0
       </div>
+
     </div>
 
   </div>
@@ -415,9 +475,11 @@
     </div>
 
     <div id="orders">
+
       <div class="empty">
         Loading orders...
       </div>
+
     </div>
 
   </div>
@@ -445,10 +507,13 @@
     function login() {
 
       const username =
-        document.getElementById("username").value.trim();
+        document.getElementById("username")
+          .value
+          .trim();
 
       const password =
-        document.getElementById("password").value;
+        document.getElementById("password")
+          .value;
 
       const error =
         document.getElementById("loginError");
@@ -550,17 +615,6 @@
           await response.text();
 
 
-        console.log(
-          "Backend status:",
-          response.status
-        );
-
-        console.log(
-          "Backend response:",
-          text
-        );
-
-
         if (!response.ok) {
 
           throw new Error(
@@ -586,6 +640,7 @@
 
 
         updateStats(orders);
+
         renderOrders(orders);
 
 
@@ -633,7 +688,8 @@
 
       document.getElementById(
         "totalOrders"
-      ).textContent = orders.length;
+      ).textContent =
+        orders.length;
 
 
       const pending =
@@ -669,12 +725,14 @@
 
       document.getElementById(
         "pendingOrders"
-      ).textContent = pending;
+      ).textContent =
+        pending;
 
 
       document.getElementById(
         "completedOrders"
-      ).textContent = completed;
+      ).textContent =
+        completed;
 
     }
 
@@ -725,15 +783,28 @@
               "UNKNOWN";
 
 
-            const statusClass =
+            const upperStatus =
               String(status)
-                .toUpperCase()
-                .includes("COMPLETED") ||
-              String(status)
-                .toUpperCase()
-                .includes("SUCCESS")
-                ? "completed"
-                : "";
+                .toUpperCase();
+
+
+            let statusClass = "";
+
+            if (
+              upperStatus === "COMPLETED" ||
+              upperStatus === "SUCCESS" ||
+              upperStatus === "SUCCESSFUL"
+            ) {
+              statusClass = "completed";
+            }
+
+            if (upperStatus === "PAID") {
+              statusClass = "paid";
+            }
+
+            if (upperStatus === "CANCELLED") {
+              statusClass = "cancelled";
+            }
 
 
             const price =
@@ -769,10 +840,13 @@
                 <div class="order-top">
 
                   <div class="order-id">
-                    🆔 ${escapeHTML(orderId)}
+                    🆔
+                    ${escapeHTML(orderId)}
                   </div>
 
-                  <div class="status ${statusClass}">
+                  <div
+                    class="status ${statusClass}"
+                  >
                     ${escapeHTML(status)}
                   </div>
 
@@ -826,6 +900,44 @@
 
                 </div>
 
+
+                <!-- ORDER ACTIONS -->
+                <div class="order-actions">
+
+                  <button
+                    class="btn btn-paid"
+                    onclick="updateOrderStatus(
+                      '${escapeHTML(orderId)}',
+                      'PAID'
+                    )"
+                  >
+                    💵 Paid
+                  </button>
+
+
+                  <button
+                    class="btn btn-completed"
+                    onclick="updateOrderStatus(
+                      '${escapeHTML(orderId)}',
+                      'COMPLETED'
+                    )"
+                  >
+                    ✅ Completed
+                  </button>
+
+
+                  <button
+                    class="btn btn-cancel"
+                    onclick="updateOrderStatus(
+                      '${escapeHTML(orderId)}',
+                      'CANCELLED'
+                    )"
+                  >
+                    ❌ Cancel
+                  </button>
+
+                </div>
+
               </div>
 
             `;
@@ -837,17 +949,137 @@
 
 
     /* =========================
+       UPDATE ORDER STATUS
+    ========================= */
+
+    async function updateOrderStatus(
+      orderId,
+      status
+    ) {
+
+      const labels = {
+
+        PAID:
+          "💵 Paid",
+
+        COMPLETED:
+          "✅ Completed",
+
+        CANCELLED:
+          "❌ Cancelled"
+
+      };
+
+
+      const label =
+        labels[status] || status;
+
+
+      if (
+        !confirm(
+          "Update order " +
+          orderId +
+          " to " +
+          label +
+          "?"
+        )
+      ) {
+
+        return;
+
+      }
+
+
+      try {
+
+        const response =
+          await fetch(
+            `${BACKEND_URL}/api/orders/${encodeURIComponent(orderId)}/status`,
+            {
+              method: "PATCH",
+
+              headers: {
+                "Content-Type":
+                  "application/json"
+              },
+
+              body: JSON.stringify({
+                status: status
+              })
+            }
+          );
+
+
+        const data =
+          await response.json();
+
+
+        if (!response.ok) {
+
+          throw new Error(
+            data.error ||
+            "Failed to update order"
+          );
+
+        }
+
+
+        alert(
+          "✅ " +
+          orderId +
+          " → " +
+          label
+        );
+
+
+        loadOrders();
+
+
+      } catch (error) {
+
+        console.error(
+          "Update error:",
+          error
+        );
+
+
+        alert(
+          "❌ Update failed: " +
+          error.message
+        );
+
+      }
+
+    }
+
+
+    /* =========================
        SECURITY
     ========================= */
 
     function escapeHTML(value) {
 
       return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+        .replace(
+          /&/g,
+          "&amp;"
+        )
+        .replace(
+          /</g,
+          "&lt;"
+        )
+        .replace(
+          />/g,
+          "&gt;"
+        )
+        .replace(
+          /"/g,
+          "&quot;"
+        )
+        .replace(
+          /'/g,
+          "&#039;"
+        );
 
     }
 
