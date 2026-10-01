@@ -2,1463 +2,1094 @@
 <html lang="km">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>MGG STORE V2026 — Game Top Up</title>
 
 <style>
-
-/* =========================================================
-   MGG STORE V2026
-   BLUE NEON EDITION
-========================================================= */
-
 *{
   box-sizing:border-box;
   margin:0;
   padding:0;
-  font-family:Arial,"Noto Sans Khmer",sans-serif;
-}
-
-:root{
-  --blue:#078cff;
-  --blue2:#00c6ff;
-  --dark:#020817;
-  --card:#071a36;
-  --line:#1265b0;
-  --gold:#ffd43b;
-  --white:#fff;
-}
-
-html{
-  scroll-behavior:smooth;
+  font-family:Arial,sans-serif;
 }
 
 body{
-  background:
-    radial-gradient(circle at 20% 10%,rgba(0,140,255,.16),transparent 30%),
-    radial-gradient(circle at 80% 30%,rgba(0,198,255,.12),transparent 30%),
-    #020817;
-  color:white;
-  min-height:100vh;
+  background:#111725;
+  color:#fff;
+  padding-bottom:95px;
 }
 
-/* ================= HEADER ================= */
+a{
+  text-decoration:none;
+  color:inherit;
+}
 
+/* HEADER */
 header{
   position:sticky;
   top:0;
-  z-index:1000;
-  height:70px;
+  z-index:50;
+  background:#091321ee;
+  border-bottom:1px solid #21456d;
+  backdrop-filter:blur(10px);
+}
 
-  background:rgba(2,12,30,.94);
-  backdrop-filter:blur(15px);
-
-  border-bottom:1px solid #075da9;
-
+.nav{
+  max-width:1100px;
+  margin:auto;
+  padding:14px 4%;
   display:flex;
   align-items:center;
   justify-content:space-between;
-
-  padding:0 5%;
 }
 
 .logo{
-  font-size:26px;
-  font-weight:1000;
-  color:white;
-  text-shadow:0 0 15px #009dff;
-}
-
-.logo span{
-  color:#00bfff;
+  font-size:25px;
+  font-weight:900;
+  color:#fff;
+  text-shadow:0 0 15px #00c6ff;
 }
 
 nav{
   display:flex;
-  gap:24px;
-}
-
-nav a{
-  color:#dceeff;
-  text-decoration:none;
+  gap:18px;
+  color:#b9c9dc;
   font-size:14px;
-  font-weight:bold;
 }
 
-nav a:hover{
-  color:#00c6ff;
-}
-
-.search{
-  width:210px;
-  padding:11px 15px;
-  border-radius:25px;
-  border:1px solid #1769ac;
-  background:#071a36;
-  color:white;
-  outline:none;
-}
-
-.search::placeholder{
-  color:#8ba8c7;
-}
-
-/* ================= CONTAINER ================= */
-
-.container{
-  width:92%;
-  max-width:1400px;
-  margin:auto;
-}
-
-/* ================= HERO ================= */
-
+/* HERO */
 .hero{
-  margin:22px 0;
-
-  min-height:360px;
-
-  border-radius:24px;
-  overflow:hidden;
-
+  min-height:390px;
   position:relative;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#08111e;
+}
 
+.hero:before{
+  content:"";
+  position:absolute;
+  inset:0;
   background:
-    linear-gradient(90deg,
-      rgba(1,10,28,.96),
-      rgba(1,25,60,.72),
-      rgba(0,115,255,.18)
+    linear-gradient(
+      90deg,
+      #07101ef2,
+      #07101e99,
+      #07101e30
     ),
-    url("images/mgg-banner.jpg") center/cover;
-
-  border:1px solid #0878d4;
-
-  box-shadow:
-    0 0 30px rgba(0,130,255,.25);
+    url("images/luffy.jpg") center/cover;
 }
 
 .hero-content{
-  padding:55px;
-  max-width:720px;
-}
-
-.badge{
-  display:inline-block;
-
-  padding:7px 13px;
-
-  border-radius:20px;
-
-  background:#ffd43b;
-  color:#07101f;
-
-  font-size:13px;
-  font-weight:900;
-
-  margin-bottom:15px;
-
-  box-shadow:0 0 20px rgba(255,212,59,.35);
+  position:relative;
+  text-align:center;
+  padding:65px 15px;
 }
 
 .hero h1{
-  font-size:58px;
-  font-weight:1000;
-  line-height:1;
-
+  font-size:clamp(42px,9vw,78px);
   text-shadow:
-    0 0 15px #008cff,
-    0 0 35px #006eff;
-
-  margin-bottom:16px;
+    0 0 15px #00c6ff,
+    0 0 35px #0066ff;
 }
 
-.hero h1 span{
+.hero h2{
   color:#00c6ff;
+  letter-spacing:5px;
+  margin:8px;
 }
 
 .hero p{
-  color:#dceeff;
-  font-size:18px;
-  line-height:1.8;
-  margin-bottom:25px;
+  color:#c7d7e9;
+  margin:15px;
 }
 
-.hero-features{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  margin-bottom:25px;
-}
-
-.feature{
-  padding:9px 13px;
-  border:1px solid #1578c9;
-  background:rgba(0,50,100,.5);
-  border-radius:10px;
-  font-size:13px;
-}
-
+/* BUTTON */
 .btn{
   border:0;
-  cursor:pointer;
-
-  padding:14px 24px;
-
   border-radius:12px;
-
-  background:
-    linear-gradient(135deg,#008cff,#00c6ff);
-
-  color:white;
-
-  font-weight:900;
-
-  box-shadow:
-    0 0 18px rgba(0,153,255,.45);
-
-  transition:.2s;
+  padding:13px 22px;
+  background:#00aeea;
+  color:#fff;
+  font-weight:800;
+  cursor:pointer;
 }
 
 .btn:hover{
-  transform:translateY(-2px);
-  box-shadow:
-    0 0 28px rgba(0,190,255,.7);
+  background:#0094ca;
 }
 
-.btn:disabled{
-  opacity:.5;
-  cursor:not-allowed;
+/* CONTAINER */
+.container{
+  width:min(1100px,94%);
+  margin:30px auto;
 }
 
-/* ================= SECTION ================= */
-
-.section{
-  margin:55px 0;
-}
-
-.section-head{
+.section-title{
   display:flex;
-  justify-content:space-between;
   align-items:center;
-  margin-bottom:20px;
+  gap:10px;
+  border-bottom:2px solid #65451e;
+  padding:12px 3px;
+  margin-bottom:17px;
 }
 
-.section-head h2{
-  font-size:28px;
+.section-title h2{
+  font-size:22px;
 }
 
-.section-head h2::first-letter{
-  color:#00c6ff;
+.badge{
+  margin-left:auto;
+  background:#182d55;
+  border:1px solid #477dff;
+  border-radius:18px;
+  padding:7px 12px;
+  color:#ffd21c;
+  font-size:12px;
 }
 
-.see{
-  color:#00bfff;
-  text-decoration:none;
-  font-weight:bold;
-}
-
-/* ================= GAMES ================= */
-
+/* GAMES */
 .games{
   display:grid;
-  grid-template-columns:repeat(5,1fr);
-  gap:16px;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
 }
 
 .game{
-  position:relative;
-
-  background:
-    linear-gradient(180deg,#09234a,#04132b);
-
-  border:1px solid #1467ae;
-
+  padding:12px;
+  background:#1b2231;
+  border:1px solid #28436b;
   border-radius:16px;
-
-  overflow:hidden;
-
+  text-align:center;
   cursor:pointer;
-
-  transition:.25s;
-
-  box-shadow:
-    0 8px 25px rgba(0,0,0,.25);
+  transition:.2s;
 }
 
 .game:hover{
-  transform:translateY(-7px);
-
+  transform:translateY(-3px);
   border-color:#00c6ff;
-
-  box-shadow:
-    0 0 25px rgba(0,157,255,.35);
 }
 
 .game img{
   width:100%;
-  height:175px;
+  height:125px;
   object-fit:cover;
-  display:block;
+  border-radius:11px;
 }
 
-.game-info{
-  padding:13px;
+.game h3{
+  margin:9px;
 }
 
-.game-info h3{
-  font-size:16px;
-  margin-bottom:7px;
-}
-
-.tag{
-  color:#83b7df;
-  font-size:12px;
-}
-
-.topup{
-  width:100%;
-  margin-top:12px;
-
-  padding:10px;
-
-  border:1px solid #159cff;
-
-  border-radius:9px;
-
-  background:#087cff;
-  color:white;
-
-  font-weight:900;
-
-  cursor:pointer;
-}
-
-.topup:hover{
-  background:#00bfff;
-}
-
-/* ================= PACKAGES ================= */
-
-.packages-showcase{
+/* PACKAGE */
+.grid{
   display:grid;
-  grid-template-columns:repeat(6,1fr);
-  gap:13px;
+  grid-template-columns:repeat(2,1fr);
+  gap:16px;
 }
 
-.package-card{
-  position:relative;
-
-  text-align:center;
-
-  padding:18px 10px;
-
-  background:
-    linear-gradient(180deg,#0b2c5b,#061630);
-
-  border:1px solid #176db4;
-
-  border-radius:15px;
-
-  transition:.25s;
+.card{
+  display:flex;
+  gap:14px;
+  align-items:center;
+  padding:16px;
+  background:#252938;
+  border:1px solid #293f70;
+  border-radius:18px;
+  cursor:pointer;
+  transition:.2s;
 }
 
-.package-card:hover{
-  transform:translateY(-5px);
+.card:hover{
+  transform:translateY(-3px);
   border-color:#00c6ff;
+  box-shadow:0 0 22px #00c6ff25;
 }
 
-.package-card.popular{
-  border:2px solid #ffd43b;
-
-  box-shadow:
-    0 0 25px rgba(255,212,59,.2);
-}
-
-.popular-label{
-  position:absolute;
-
-  top:-12px;
-  left:50%;
-
-  transform:translateX(-50%);
-
-  background:#ffd43b;
-  color:#101010;
-
-  border-radius:20px;
-
-  padding:5px 10px;
-
-  font-size:11px;
-  font-weight:900;
-
-  white-space:nowrap;
-}
-
-.diamond{
-  font-size:40px;
-  margin:10px;
-  filter:drop-shadow(0 0 10px #00c6ff);
-}
-
-.package-card h3{
-  font-size:22px;
-}
-
-.bonus{
-  color:#ffd43b;
-  font-size:12px;
-  font-weight:bold;
-  margin:5px;
+.card img{
+  width:78px;
+  height:78px;
+  object-fit:cover;
+  border-radius:13px;
+  background:#35405a;
 }
 
 .price{
-  font-size:20px;
+  color:#ffc107;
+  font-size:26px;
   font-weight:900;
-  margin:8px;
 }
 
-.small-btn{
-  width:100%;
-  padding:9px;
-
-  border:0;
-  border-radius:9px;
-
-  background:#087cff;
-  color:white;
-
-  font-weight:bold;
-  cursor:pointer;
+.card h3{
+  font-size:16px;
+  margin-top:5px;
 }
 
-/* ================= SPIN ================= */
-
-.spin-area{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:25px;
-
-  background:
-    linear-gradient(135deg,#061a38,#031025);
-
-  border:1px solid #126ab6;
-
-  border-radius:20px;
-
-  padding:28px;
-
-  box-shadow:0 0 30px rgba(0,100,255,.12);
-}
-
-.spin-info{
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-}
-
-.spin-info h2{
-  font-size:30px;
-  margin-bottom:12px;
-}
-
-.spin-info p{
-  color:#a9c5df;
-  line-height:1.8;
-}
-
-.wheel-wrap{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  flex-direction:column;
-}
-
-.wheel{
-  width:280px;
-  height:280px;
-
-  border-radius:50%;
-
-  position:relative;
-
-  border:8px solid #078cff;
-
-  background:
-    conic-gradient(
-      #ffd43b 0deg 60deg,
-      #ff4b7d 60deg 120deg,
-      #00c6ff 120deg 180deg,
-      #8b5cf6 180deg 240deg,
-      #00e676 240deg 300deg,
-      #ff8a00 300deg 360deg
-    );
-
-  box-shadow:
-    0 0 35px rgba(0,153,255,.55);
-
-  transition:transform 4s cubic-bezier(.15,.75,.15,1);
-}
-
-.wheel::after{
-  content:"SPIN";
-
-  position:absolute;
-
-  left:50%;
-  top:50%;
-
-  transform:translate(-50%,-50%);
-
-  width:70px;
-  height:70px;
-
-  border-radius:50%;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  background:#06152e;
-
-  border:4px solid white;
-
-  font-weight:1000;
-
-  color:white;
-}
-
-.wheel-label{
-  position:absolute;
-
-  font-weight:900;
-  font-size:13px;
-
-  color:#07101f;
-
-  text-align:center;
-}
-
-.w1{top:35px;left:100px;}
-.w2{top:100px;right:25px;}
-.w3{bottom:38px;right:75px;}
-.w4{bottom:38px;left:65px;}
-.w5{top:100px;left:25px;}
-.w6{top:35px;right:75px;}
-
-.pointer{
-  width:0;
-  height:0;
-
-  border-left:12px solid transparent;
-  border-right:12px solid transparent;
-  border-top:30px solid #fff;
-
-  margin-bottom:-8px;
-
-  z-index:2;
-
-  filter:drop-shadow(0 0 7px #00c6ff);
-}
-
-.spin-btn{
-  margin-top:20px;
-  min-width:170px;
-}
-
-/* ================= SUPPORT ================= */
-
-.support{
-  display:grid;
-  grid-template-columns:1.3fr 1fr;
-  gap:20px;
-}
-
-.support-card{
-  background:
-    linear-gradient(135deg,#092550,#04132b);
-
-  border:1px solid #126ab6;
-
+/* VERIFY */
+.verify,
+.support,
+.spinbox{
+  background:#151e2e;
+  border:1px solid #29456f;
   border-radius:18px;
-
-  padding:25px;
-}
-
-.support-admin{
-  display:flex;
-  gap:15px;
-  align-items:center;
-}
-
-.admin-avatar{
-  width:58px;
-  height:58px;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  border-radius:50%;
-
-  background:
-    linear-gradient(135deg,#008cff,#00d4ff);
-
-  font-size:27px;
-
-  border:3px solid #9eeaff;
-}
-
-.online{
-  color:#00e676;
-  font-size:13px;
-  margin-top:3px;
-}
-
-.chat-box{
-  margin-top:18px;
-
-  background:#020c1c;
-
-  border-radius:14px;
-
-  padding:15px;
-}
-
-.message{
-  background:#0b2850;
-  padding:12px;
-  border-radius:12px;
-  color:#d9edff;
-  line-height:1.6;
-}
-
-.chat-input{
-  display:flex;
-  gap:8px;
-  margin-top:10px;
-}
-
-.chat-input input{
-  flex:1;
-  padding:12px;
-
-  border-radius:9px;
-  border:1px solid #1b70b5;
-
-  background:#06172e;
-  color:white;
-}
-
-.chat-input button{
-  padding:10px 15px;
-  border:0;
-  border-radius:9px;
-  background:#087cff;
-  color:white;
-  font-weight:bold;
-}
-
-/* ================= PAYMENT ================= */
-
-.payment{
-  background:
-    linear-gradient(135deg,#071c3a,#031027);
-
-  border:1px solid #126ab6;
-
-  border-radius:18px;
-
-  padding:28px;
-}
-
-.pay-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:15px;
-  margin-top:20px;
-}
-
-.pay{
   padding:20px;
-
-  border:1px solid #146db6;
-  border-radius:13px;
-
-  background:#06172f;
-
-  text-align:center;
-
-  font-weight:bold;
-}
-
-.pay:hover{
-  border-color:#00c6ff;
-}
-
-/* ================= MODAL ================= */
-
-.modal{
-  display:none;
-
-  position:fixed;
-  inset:0;
-
-  z-index:5000;
-
-  background:rgba(0,5,15,.82);
-
-  backdrop-filter:blur(8px);
-
-  align-items:center;
-  justify-content:center;
-
-  padding:15px;
-}
-
-.modal-box{
-  width:100%;
-  max-width:560px;
-
-  max-height:92vh;
-  overflow:auto;
-
-  background:
-    linear-gradient(180deg,#092550,#031027);
-
-  border:1px solid #168cff;
-
-  border-radius:20px;
-
-  padding:25px;
-
-  box-shadow:
-    0 0 40px rgba(0,145,255,.35);
-}
-
-.close{
-  float:right;
-
-  font-size:28px;
-
-  cursor:pointer;
-
-  color:#9bcfff;
-}
-
-.modal-title{
-  color:#00c6ff;
-  margin-bottom:20px;
-}
-
-.step{
-  display:flex;
-  gap:8px;
-
-  margin-bottom:20px;
-}
-
-.step span{
-  flex:1;
-
-  text-align:center;
-
-  padding:8px 4px;
-
-  border-radius:8px;
-
-  background:#06172f;
-
-  border:1px solid #145f9d;
-
-  color:#8bb9dd;
-
-  font-size:12px;
-}
-
-.step span.active{
-  background:#087cff;
-  color:white;
-  border-color:#00c6ff;
-}
-
-label{
-  display:block;
-  margin-top:14px;
-  margin-bottom:7px;
-
-  font-weight:bold;
+  margin-top:15px;
 }
 
 input{
   width:100%;
-
   padding:13px;
-
-  border-radius:9px;
-
-  border:1px solid #1b70b5;
-
-  background:#06172e;
-
-  color:white;
-
+  margin:8px 0;
+  background:#0d1523;
+  border:1px solid #365278;
+  color:#fff;
+  border-radius:10px;
   outline:none;
 }
 
-.verify{
-  width:100%;
-
-  margin-top:10px;
-
-  padding:11px;
-
-  border:0;
-
-  border-radius:9px;
-
-  background:#123455;
-
-  color:white;
-
-  cursor:pointer;
-
-  font-weight:bold;
+input:focus{
+  border-color:#00c6ff;
 }
 
-.verify.ok{
-  background:#16863b;
-}
-
-.verify.error{
-  background:#b52828;
-}
-
-.modal-packages{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:10px;
-
-  margin-top:10px;
-}
-
-.modal-package{
-  padding:13px;
-
-  border:1px solid #1769aa;
-
+.result{
+  padding:12px;
+  background:#102b3d;
   border-radius:10px;
-
-  background:#06172f;
-
-  cursor:pointer;
-
-  transition:.2s;
-}
-
-.modal-package:hover,
-.modal-package.active{
-  border:2px solid #00c6ff;
-
-  background:#082e5d;
-
-  box-shadow:0 0 15px rgba(0,198,255,.2);
-}
-
-.qr{
+  margin-top:8px;
   display:none;
-
-  margin-top:20px;
-
-  padding:20px;
-
-  border-radius:14px;
-
-  background:#04132a;
-
-  border:1px solid #176db4;
-
-  text-align:center;
 }
 
-.qr-box{
-  width:180px;
-  height:180px;
+/* SPIN */
+.wheel-area{
+  display:flex;
+  gap:25px;
+  align-items:center;
+  justify-content:center;
+  flex-wrap:wrap;
+}
 
-  margin:15px auto;
+.wheel{
+  width:250px;
+  height:250px;
+  border-radius:50%;
+  border:8px solid #263b64;
 
   background:
-    repeating-linear-gradient(
-      45deg,
-      #fff 0px,
-      #fff 4px,
-      #111 4px,
-      #111 8px
+    conic-gradient(
+      #00b7ff 0 60deg,
+      #ffc107 60deg 120deg,
+      #7b61ff 120deg 180deg,
+      #00d084 180deg 240deg,
+      #ff5b7a 240deg 300deg,
+      #ff8a00 300deg 360deg
     );
 
-  border:8px solid white;
+  transition:
+    transform 4s cubic-bezier(.15,.75,.15,1);
+
+  position:relative;
+  box-shadow:0 0 35px #00c6ff33;
 }
 
-.order-result{
-  display:none;
-
-  margin-top:18px;
-
-  padding:15px;
-
-  border-radius:12px;
-
-  background:#06331d;
-
-  border:1px solid #1bd477;
-
-  color:#8ff0b4;
-
-  line-height:1.8;
-}
-
-.order-error{
-  display:none;
-
-  margin-top:18px;
-
-  padding:15px;
-
-  border-radius:12px;
-
-  background:#3b1010;
-
-  border:1px solid #ff5b5b;
-
-  color:#ff9a9a;
-}
-
-/* ================= FOOTER ================= */
-
-footer{
-  margin-top:70px;
-
-  background:#010711;
-
-  border-top:1px solid #0b5b9c;
-
-  padding:45px 5% 25px;
-}
-
-.footer-grid{
-  max-width:1400px;
-  margin:auto;
-
+.wheel:after{
+  content:"MGG";
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  background:#111a2b;
+  border:4px solid #fff;
+  border-radius:50%;
+  width:62px;
+  height:62px;
   display:grid;
-
-  grid-template-columns:2fr 1fr 1fr 1fr;
-
-  gap:30px;
+  place-items:center;
+  font-weight:900;
 }
 
-footer h3{
-  margin-bottom:14px;
-  color:#00c6ff;
+.pointer{
+  width:0;
+  height:0;
+  border-left:14px solid transparent;
+  border-right:14px solid transparent;
+  border-top:28px solid #ffcf33;
+  margin:auto;
 }
 
-footer p,
-footer a{
-  color:#8baac8;
-
-  font-size:14px;
-
-  line-height:2;
-
-  text-decoration:none;
+/* CHAT */
+.chat{
+  height:230px;
+  overflow:auto;
+  background:#0b1421;
+  border-radius:12px;
+  padding:12px;
+  margin:12px 0;
 }
 
-.copy{
-  max-width:1400px;
-  margin:30px auto 0;
-
-  padding-top:20px;
-
-  border-top:1px solid #14304b;
-
-  text-align:center;
-
-  color:#607993;
-
-  font-size:13px;
+.msg{
+  background:#202c40;
+  border-radius:10px;
+  padding:9px;
+  margin:7px 0;
+  max-width:85%;
 }
 
-/* ================= RESPONSIVE ================= */
-
-@media(max-width:1100px){
-
-  .games{
-    grid-template-columns:repeat(4,1fr);
-  }
-
-  .packages-showcase{
-    grid-template-columns:repeat(3,1fr);
-  }
-
-  .hero h1{
-    font-size:48px;
-  }
+/* BOTTOM PAYMENT */
+.bottom{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  background:#182238;
+  border-top:1px solid #314a70;
+  padding:13px 5%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  z-index:40;
 }
 
-@media(max-width:800px){
+.bottom b{
+  font-size:20px;
+}
 
-  header{
-    height:64px;
-    padding:0 15px;
-  }
+.bottom small{
+  color:#a9b8cc;
+}
+
+/* MODAL */
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:#000b;
+  z-index:100;
+  align-items:center;
+  justify-content:center;
+  padding:15px;
+}
+
+.modal-box{
+  width:min(500px,100%);
+  background:#151e2e;
+  border:1px solid #00c6ff;
+  border-radius:18px;
+  padding:22px;
+}
+
+.close{
+  float:right;
+  font-size:25px;
+  cursor:pointer;
+  color:#aaa;
+}
+
+/* MOBILE */
+@media(max-width:650px){
 
   nav{
     display:none;
   }
 
-  .search{
-    width:150px;
+  .games{
+    grid-template-columns:repeat(2,1fr);
   }
 
-  .container{
-    width:94%;
+  .game img{
+    height:100px;
+  }
+
+  .grid{
+    gap:10px;
+  }
+
+  .card{
+    padding:10px;
+    gap:9px;
+  }
+
+  .card img{
+    width:62px;
+    height:62px;
+  }
+
+  .price{
+    font-size:20px;
   }
 
   .hero{
     min-height:330px;
   }
 
-  .hero-content{
-    padding:35px 25px;
-  }
-
   .hero h1{
-    font-size:40px;
-  }
-
-  .games{
-    grid-template-columns:repeat(2,1fr);
-    gap:12px;
-  }
-
-  .game img{
-    height:145px;
-  }
-
-  .packages-showcase{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .spin-area,
-  .support{
-    grid-template-columns:1fr;
-  }
-
-  .pay-grid{
-    grid-template-columns:1fr;
-  }
-
-  .footer-grid{
-    grid-template-columns:1fr 1fr;
-  }
-}
-
-@media(max-width:500px){
-
-  .logo{
-    font-size:21px;
-  }
-
-  .search{
-    width:135px;
-    padding:9px 12px;
-  }
-
-  .hero{
-    min-height:390px;
-  }
-
-  .hero-content{
-    padding:30px 20px;
-  }
-
-  .hero h1{
-    font-size:34px;
-  }
-
-  .hero p{
-    font-size:15px;
-  }
-
-  .games{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .game img{
-    height:120px;
-  }
-
-  .game-info{
-    padding:10px;
-  }
-
-  .game-info h3{
-    font-size:14px;
-  }
-
-  .packages-showcase{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .package-card{
-    padding:14px 7px;
-  }
-
-  .diamond{
-    font-size:30px;
-  }
-
-  .package-card h3{
-    font-size:18px;
+    font-size:48px;
   }
 
   .wheel{
-    width:245px;
-    height:245px;
-  }
-
-  .modal-box{
-    padding:18px;
-  }
-
-  .footer-grid{
-    grid-template-columns:1fr;
+    width:210px;
+    height:210px;
   }
 }
-
 </style>
 </head>
 
 <body>
 
-<!-- ======================================================
-     HEADER
-====================================================== -->
-
+<!-- HEADER -->
 <header>
+  <div class="nav">
 
-  <div class="logo">
-    💎 MGG<span>STORE</span>
+    <div class="logo">
+      💎 MGG STORE
+    </div>
+
+    <nav>
+      <a href="#games">Games</a>
+      <a href="#packages">Packages</a>
+      <a href="#spin">Spin</a>
+      <a href="#support">Support</a>
+    </nav>
+
   </div>
-
-  <nav>
-    <a href="#">ទំព័រដើម</a>
-    <a href="#games">ហ្គេម</a>
-    <a href="#packages">ពេជ្រ</a>
-    <a href="#spin">បង្វិល</a>
-    <a href="#support">ជំនួយ</a>
-  </nav>
-
-  <input
-    class="search"
-    id="search"
-    placeholder="🔎 ស្វែងរកហ្គេម..."
-    onkeyup="searchGames()"
-  >
-
 </header>
 
 
-<main class="container">
-
-<!-- ======================================================
-     HERO
-====================================================== -->
-
+<!-- HERO / LUFFY -->
 <section class="hero">
 
   <div class="hero-content">
 
-    <div class="badge">
-      👑 MGG STORE V2026
-    </div>
+    <h1>MGG STORE</h1>
 
-    <h1>
-      MGG <span>STORE</span>
-    </h1>
+    <h2>V2026</h2>
 
     <p>
-      ទិញពេជ្រ និង Game Top Up ងាយៗ
-      លឿន សុវត្ថិភាព និងតម្លៃសមរម្យ
+      FAST • SAFE • EASY GAME TOP UP
     </p>
 
-    <div class="hero-features">
-
-      <div class="feature">⚡ លឿនរហ័ស</div>
-      <div class="feature">🔒 សុវត្ថិភាព</div>
-      <div class="feature">💰 តម្លៃសមរម្យ</div>
-      <div class="feature">🇰🇭 សម្រាប់កម្ពុជា</div>
-
-    </div>
-
-    <button
-      class="btn"
-      onclick="document.getElementById('games').scrollIntoView()"
-    >
-      🛒 ចាប់ផ្តើមទិញ
-    </button>
+    <a class="btn" href="#games">
+      🎮 TOP UP NOW
+    </a>
 
   </div>
 
 </section>
 
 
-<!-- ======================================================
-     GAMES
-====================================================== -->
+<main class="container">
 
-<section class="section" id="games">
 
-  <div class="section-head">
+<!-- GAMES -->
+<section id="games">
 
-    <h2>🎮 ហ្គេមពេញនិយម</h2>
+  <div class="section-title">
 
-    <a class="see" href="#games">
-      មើលហ្គេមទាំងអស់ →
-    </a>
+    <h2>🎮 GAMES</h2>
+
+    <span class="badge">
+      POPULAR GAMES
+    </span>
 
   </div>
 
 
-  <div class="games" id="gameGrid">
+  <div class="games">
 
-
-    <div
-      class="game"
-      data-name="Free Fire"
-      onclick="openGame('Free Fire')"
-    >
+    <div class="game"
+         onclick="openGame('Free Fire')">
 
       <img
-        src="images/Screenshot_2026-09-30-08-01-18-05.jpg"
-        alt="Free Fire"
-        onerror="this.src='https://placehold.co/600x400?text=Free+Fire'"
+        src="images/free-fire.jpg"
+        onerror="this.src='https://placehold.co/500x300/182238/00c6ff?text=Free+Fire'"
       >
 
-      <div class="game-info">
-
-        <h3>Free Fire</h3>
-
-        <span class="tag">
-          💎 ពេជ្រ Direct Top Up
-        </span>
-
-        <button class="topup">
-          ចូលទិញ
-        </button>
-
-      </div>
+      <h3>Free Fire</h3>
 
     </div>
 
 
-    <div
-      class="game"
-      data-name="Mobile Legends"
-      onclick="openGame('Mobile Legends')"
-    >
+    <div class="game"
+         onclick="openGame('Mobile Legends')">
 
       <img
-        src="images/Screenshot_2026-09-30-14-37-30-58.jpg"
-        alt="Mobile Legends"
-        onerror="this.src='https://placehold.co/600x400?text=Mobile+Legends'"
+        src="images/mobile-legends.jpg"
+        onerror="this.src='https://placehold.co/500x300/182238/00c6ff?text=Mobile+Legends'"
       >
 
-      <div class="game-info">
-
-        <h3>Mobile Legends</h3>
-
-        <span class="tag">
-          💎 Diamond Top Up
-        </span>
-
-        <button class="topup">
-          ចូលទិញ
-        </button>
-
-      </div>
+      <h3>Mobile Legends</h3>
 
     </div>
 
 
-    <div
-      class="game"
-      data-name="PUBG Mobile"
-      onclick="openGame('PUBG Mobile')"
-    >
+    <div class="game"
+         onclick="openGame('PUBG Mobile')">
 
       <img
         src="images/pubg.jpg"
-        alt="PUBG Mobile"
-        onerror="this.src='https://placehold.co/600x400?text=PUBG'"
+        onerror="this.src='https://placehold.co/500x300/182238/00c6ff?text=PUBG'"
       >
 
-      <div class="game-info">
-
-        <h3>PUBG Mobile</h3>
-
-        <span class="tag">
-          🎯 UC Top Up
-        </span>
-
-        <button class="topup">
-          ចូលទិញ
-        </button>
-
-      </div>
+      <h3>PUBG Mobile</h3>
 
     </div>
 
 
-    <div
-      class="game"
-      data-name="Roblox"
-      onclick="openGame('Roblox')"
-    >
+    <div class="game"
+         onclick="openGame('Roblox')">
 
       <img
-        src="images/Screenshot_2026-09-30-14-34-51-87.jpg"
-        alt="Roblox"
-        onerror="this.src='https://placehold.co/600x400?text=Roblox'"
+        src="images/roblox.jpg"
+        onerror="this.src='https://placehold.co/500x300/182238/00c6ff?text=Roblox'"
       >
 
-      <div class="game-info">
-
-        <h3>Roblox</h3>
-
-        <span class="tag">
-          🧱 Robux Top Up
-        </span>
-
-        <button class="topup">
-          ចូលទិញ
-        </button>
-
-      </div>
+      <h3>Roblox</h3>
 
     </div>
 
 
-    <div
-      class="game"
-      data-name="Blood Strike"
-      onclick="openGame('Blood Strike')"
-    >
+    <div class="game"
+         onclick="openGame('Blood Strike')">
 
       <img
-        src="images/Screenshot_2026-09-30-14-44-57-67.jpg"
-        alt="Blood Strike"
-        onerror="this.src='https://placehold.co/600x400?text=Blood+Strike'"
+        src="images/blood-strike.jpg"
+        onerror="this.src='https://placehold.co/500x300/182238/00c6ff?text=Blood+Strike'"
       >
 
-      <div class="game-info">
-
-        <h3>Blood Strike</h3>
-
-        <span class="tag">
-          🔥 Gold Top Up
-        </span>
-
-        <button class="topup">
-          ចូលទិញ
-        </button>
-
-      </div>
+      <h3>Blood Strike</h3>
 
     </div>
 
 
-    <div
-      class="game"
-      data-name="Honor of Kings"
-      onclick="openGame('Honor of Kings')"
-    >
+    <div class="game"
+         onclick="openGame('Honor of Kings')">
 
       <img
         src="images/honor-of-kings.jpg"
-        alt="Honor of Kings"
-        onerror="this.src='https://placehold.co/600x400?text=Honor+of+Kings'"
+        onerror="this.src='https://placehold.co/500x300/182238/00c6ff?text=Honor+of+Kings'"
       >
 
-      <div class="game-info">
+      <h3>Honor of Kings</h3>
 
-        <h3>Honor of Kings</h3>
+    </div>
 
-        <span class="tag">
-          💎 Token Top Up
-        </span>
+  </div>
 
-        <button class="topup">
-          ចូលទិញ
-        </button>
+</section>
+
+
+<!-- PACKAGES -->
+<section id="packages" style="margin-top:35px">
+
+  <div class="section-title">
+
+    <h2>💎 BEST SELLING</h2>
+
+    <span class="badge">
+      14 ITEMS
+    </span>
+
+  </div>
+
+
+  <div class="grid">
+
+
+    <!-- FREE FIRE -->
+
+    <div class="card"
+         onclick="selectPackage(
+         'Free Fire',
+         '1060 Diamonds',
+         '$8.99'
+         )">
+
+      <img src="images/free-fire.jpg">
+
+      <div>
+
+        <div class="price">
+          $8.99
+        </div>
+
+        <h3>
+          1060 Diamonds
+        </h3>
 
       </div>
 
     </div>
 
 
-    <div
-      class="game"
-      data-name="Magic Chess"
-      onclick="openGame('Magic Chess')"
+    <div class="card"
+         onclick="selectPackage(
+         'Free Fire',
+         '2180 Diamonds',
+         '$17.99'
+         )">
+
+      <img src="images/free-fire.jpg">
+
+      <div>
+
+        <div class="price">
+          $17.99
+        </div>
+
+        <h3>
+          2180 Diamonds
+        </h3>
+
+      </div>
+
+    </div>
+
+
+    <div class="card"
+         onclick="selectPackage(
+         'Free Fire',
+         'Weekly Pass',
+         '$1.79'
+         )">
+
+      <img src="images/free-fire.jpg">
+
+      <div>
+
+        <div class="price">
+          $1.79
+        </div>
+
+        <h3>
+          Weekly Pass
+        </h3>
+
+      </div>
+
+    </div>
+
+
+    <div class="card"
+         onclick="selectPackage(
+         'Free Fire',
+         'Weekly Lite',
+         '$0.45'
+         )">
+
+      <img src="images/free-fire.jpg">
+
+      <div>
+
+        <div class="price">
+          $0.45
+        </div>
+
+        <h3>
+          Weekly Lite
+        </h3>
+
+      </div>
+
+    </div>
+
+
+    <div class="card"
+         onclick="selectPackage(
+         'Free Fire',
+         '3in1',
+         '$9.98'
+         )">
+
+      <img src="images/free-fire.jpg">
+
+      <div>
+
+        <div class="price">
+          $9.98
+        </div>
+
+        <h3>
+          3in1
+        </h3>
+
+      </div>
+
+    </div>
+
+
+    <div class="card"
+         onclick="selectPackage(
+         'Free Fire',
+         'Monthly Pass',
+         '$7.89'
+         )">
+
+      <img src="images/free-fire.jpg">
+
+      <div>
+
+        <div class="price">
+          $7.89
+        </div>
+
+        <h3>
+          Monthly Pass
+        </h3>
+
+      </div>
+
+    </div>
+
+
+    <div class="card"
+         onclick="selectPackage(
+         'Free Fire',
+         'Monthly x2',
+         '$15.90'
+         )">
+
+      <img src="images/free-fire.jpg">
+
+      <div>
+
+        <div class="price">
+          $15.90
+        </div>
+
+        <h3>
+          Monthly x2
+        </h3>
+
+      </div>
+
+    </div>
+
+
+    <div class="card"
+         onclick="selectPackage(
+         'Free Fire',
+         'Monthly x3',
+         '$24.50'
+         )">
+
+      <img src="images/free-fire.jpg">
+
+      <div>
+
+        <div class="price">
+          $24.50
+        </div>
+
+        <h3>
+          Monthly x3
+        </h3>
+
+      </div>
+
+    </div>
+
+
+    <!-- MOBILE LEGENDS -->
+
+    <div class="card"
+         onclick="selectPackage(
+         'Mobile Legends',
+         '86 Diamonds',
+         '$1.49'
+         )">
+
+      <img src="images/mobile-legends.jpg">
+
+      <div>
+
+        <div class="price">
+          $1.49
+        </div>
+
+        <h3>
+          86 Diamonds
+        </h3>
+
+      </div>
+
+    </div>
+
+
+    <div class="card"
+         onclick="selectPackage(
+         'Mobile Legends',
+         '172 Diamonds',
+         '$2.89'
+         )">
+
+      <img src="images/mobile-legends.jpg">
+
+      <div>
+
+        <div class="price">
+          $2.89
+        </div>
+
+        <h3>
+          172 Diamonds
+        </h3>
+
+      </div>
+
+    </div>
+
+
+    <div class="card"
+         onclick="selectPackage(
+         'Mobile Legends',
+         '257 Diamonds',
+         '$4.29'
+         )">
+
+      <img src="images/mobile-legends.jpg">
+
+      <div>
+
+        <div class="price">
+          $4.29
+        </div>
+
+        <h3>
+          257 Diamonds
+        </h3>
+
+      </div>
+
+    </div>
+
+
+    <div class="card"
+         onclick="selectPackage(
+         'Mobile Legends',
+         '344 Diamonds',
+         '$5.69'
+         )">
+
+      <img src="images/mobile-legends.jpg">
+
+      <div>
+
+        <div class="price">
+          $5.69
+        </div>
+
+        <h3>
+          344 Diamonds
+        </h3>
+
+      </div>
+
+    </div>
+
+
+    <div class="card"
+         onclick="selectPackage(
+         'Mobile Legends',
+         '706 Diamonds',
+         '$10.99'
+         )">
+
+      <img src="images/mobile-legends.jpg">
+
+      <div>
+
+        <div class="price">
+          $10.99
+        </div>
+
+        <h3>
+          706 Diamonds
+        </h3>
+
+      </div>
+
+    </div>
+
+
+    <div class="card"
+         onclick="selectPackage(
+         'Mobile Legends',
+         'Weekly Pass',
+         '$1.79'
+         )">
+
+      <img src="images/mobile-legends.jpg">
+
+      <div>
+
+        <div class="price">
+          $1.79
+        </div>
+
+        <h3>
+          Weekly Pass
+        </h3>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- PLAYER ID -->
+<section style="margin-top:35px">
+
+  <div class="section-title">
+
+    <h2>
+      🆔 PLAYER VERIFICATION
+    </h2>
+
+  </div>
+
+
+  <div class="verify">
+
+    <label>
+      Game
+    </label>
+
+    <input
+      id="gameInput"
+      readonly
+      placeholder="Choose a package"
     >
 
-      <img
-        src="images/magic-chess.jpg"
-        alt="Magic Chess"
-        onerror="this.src='https://placehold.co/600x400?text=Magic+Chess'"
-      >
 
-      <div class="game-info">
+    <label>
+      Player ID
+    </label>
 
-        <h3>Magic Chess</h3>
-
-        <span class="tag">
-          ♟️ Diamond Top Up
-        </span>
-
-        <button class="topup">
-          ចូលទិញ
-        </button>
-
-      </div>
-
-    </div>
-
-
-    <div
-      class="game"
-      data-name="Genshin Impact"
-      onclick="openGame('Genshin Impact')"
+    <input
+      id="playerId"
+      placeholder="Enter your Game ID"
     >
 
-      <img
-        src="images/genshin.jpg"
-        alt="Genshin Impact"
-        onerror="this.src='https://placehold.co/600x400?text=Genshin'"
-      >
 
-      <div class="game-info">
+    <button
+      class="btn"
+      onclick="verifyId()"
+    >
+      🔎 VERIFY ID
+    </button>
 
-        <h3>Genshin Impact</h3>
 
-        <span class="tag">
-          💠 Crystal Top Up
-        </span>
+    <div
+      id="verifyResult"
+      class="result">
+    </div>
 
-        <button class="topup">
-          ចូលទិញ
+  </div>
+
+</section>
+
+
+<!-- SPIN -->
+<section id="spin" style="margin-top:35px">
+
+  <div class="section-title">
+
+    <h2>
+      🎡 MGG FREE LUCKY SPIN
+    </h2>
+
+    <span class="badge">
+      FREE REWARD
+    </span>
+
+  </div>
+
+
+  <div class="spinbox">
+
+    <div class="wheel-area">
+
+      <div>
+
+        <div class="pointer"></div>
+
+        <div
+          id="wheel"
+          class="wheel">
+        </div>
+
+      </div>
+
+
+      <div>
+
+        <h2>
+          🎁 Spin & Get Reward
+        </h2>
+
+        <p style="color:#aebfd4;margin:12px 0">
+
+          Free promotional reward
+          from MGG STORE.
+
+        </p>
+
+
+        <button
+          id="spinBtn"
+          class="btn"
+          onclick="spin()"
+        >
+          🎡 SPIN NOW
         </button>
+
+
+        <div
+          id="spinResult"
+          class="result">
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ADMIN SUPPORT -->
+<section id="support" style="margin-top:35px">
+
+  <div class="section-title">
+
+    <h2>
+      🛠️ ADMIN SUPPORT
+    </h2>
+
+    <span class="badge">
+      ONLINE
+    </span>
+
+  </div>
+
+
+  <div class="support">
+
+    <div
+      class="chat"
+      id="chat">
+
+      <div class="msg">
+
+        👋 សួស្តី!
+        Welcome to MGG STORE.<br>
+
+        តើមានអ្វីឲ្យ Admin ជួយ?
 
       </div>
 
@@ -1466,6 +1097,438 @@ footer a{
 
 
     <div
-      class="game"
-      data-name="Call of Duty Mobile"
-      onclick="openGame('Call 
+      style="display:flex;gap:8px">
+
+      <input
+        id="chatInput"
+        placeholder="សរសេរសារទៅ Admin..."
+        onkeydown="if(event.key==='Enter')sendChat()"
+      >
+
+      <button
+        class="btn"
+        onclick="sendChat()"
+      >
+        ផ្ញើ
+      </button>
+
+    </div>
+
+
+    <p
+      style="color:#91a6bd;margin-top:12px">
+
+      Telegram Admin:
+      <b>@MGGStoreAdmin</b>
+
+    </p>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<!-- BOTTOM PAYMENT -->
+<div class="bottom">
+
+  <div>
+
+    <b>
+      Total:
+      <span id="total">
+        $0.00
+      </span>
+    </b>
+
+    <br>
+
+    <small id="product">
+      Product: -
+    </small>
+
+  </div>
+
+
+  <button
+    class="btn"
+    onclick="payNow()">
+
+    💳 Pay Now
+
+  </button>
+
+</div>
+
+
+<!-- ORDER MODAL -->
+<div
+  class="modal"
+  id="modal">
+
+  <div class="modal-box">
+
+    <span
+      class="close"
+      onclick="closeModal()">
+      ×
+    </span>
+
+
+    <h2 id="modalTitle">
+      🛒 Order
+    </h2>
+
+
+    <p
+      id="modalInfo"
+      style="margin:15px 0;color:#b9c9dc">
+    </p>
+
+
+    <label>
+      Player ID
+    </label>
+
+    <input
+      id="modalId"
+      placeholder="Player ID"
+    >
+
+
+    <button
+      class="btn"
+      style="width:100%;margin-top:8px"
+      onclick="verifyAndContinue()">
+
+      🔎 Verify & Continue
+
+    </button>
+
+
+    <div
+      id="modalResult"
+      class="result">
+    </div>
+
+  </div>
+
+</div>
+
+
+<script>
+
+let selected = {
+  game:"",
+  pkg:"",
+  price:0
+};
+
+let spinning = false;
+
+
+/* SELECT PACKAGE */
+
+function selectPackage(game,pkg,price){
+
+  selected = {
+    game:game,
+    pkg:pkg,
+    price:parseFloat(
+      String(price).replace("$","")
+    ) || 0
+  };
+
+
+  document.getElementById(
+    "gameInput"
+  ).value = game;
+
+
+  document.getElementById(
+    "total"
+  ).textContent = price;
+
+
+  document.getElementById(
+    "product"
+  ).textContent =
+    "Product: " + pkg;
+
+
+  document.getElementById(
+    "modalTitle"
+  ).textContent =
+    "🛒 " + game;
+
+
+  document.getElementById(
+    "modalInfo"
+  ).textContent =
+    pkg + " • " + price;
+
+
+  document.getElementById(
+    "modal"
+  ).style.display = "flex";
+
+}
+
+
+/* GAME */
+
+function openGame(game){
+
+  document.getElementById(
+    "gameInput"
+  ).value = game;
+
+
+  document.getElementById(
+    "packages"
+  ).scrollIntoView({
+    behavior:"smooth"
+  });
+
+}
+
+
+/* CLOSE */
+
+function closeModal(){
+
+  document.getElementById(
+    "modal"
+  ).style.display = "none";
+
+}
+
+
+/* VERIFY PLAYER ID */
+
+function verifyId(){
+
+  const id =
+    document.getElementById(
+      "playerId"
+    ).value.trim();
+
+
+  const result =
+    document.getElementById(
+      "verifyResult"
+    );
+
+
+  if(!id){
+
+    result.style.display = "block";
+
+    result.textContent =
+      "⚠️ សូមបញ្ចូល Player ID ជាមុនសិន";
+
+    return;
+
+  }
+
+
+  result.style.display = "block";
+
+  result.textContent =
+    "✅ ID format checked. សូមពិនិត្យ Player ID ឲ្យត្រឹមត្រូវមុនបង់ប្រាក់។";
+
+}
+
+
+/* MODAL VERIFY */
+
+function verifyAndContinue(){
+
+  const id =
+    document.getElementById(
+      "modalId"
+    ).value.trim();
+
+
+  const result =
+    document.getElementById(
+      "modalResult"
+    );
+
+
+  if(!id){
+
+    result.style.display = "block";
+
+    result.textContent =
+      "⚠️ សូមបញ្ចូល Player ID";
+
+    return;
+
+  }
+
+
+  result.style.display = "block";
+
+  result.textContent =
+    "✅ Player ID បានបញ្ចូល។ ឥឡូវអាចបន្តទៅ Payment/QR បាន។";
+
+}
+
+
+/* PAY NOW */
+
+function payNow(){
+
+  if(!selected.game){
+
+    alert(
+      "សូមជ្រើសរើស Package មុនសិន"
+    );
+
+    return;
+
+  }
+
+
+  document.getElementById(
+    "modal"
+  ).style.display = "flex";
+
+
+  document.getElementById(
+    "modalInfo"
+  ).textContent =
+    selected.pkg +
+    " • $" +
+    selected.price.toFixed(2);
+
+}
+
+
+/* SPIN */
+
+function spin(){
+
+  if(spinning) return;
+
+
+  spinning = true;
+
+
+  document.getElementById(
+    "spinBtn"
+  ).disabled = true;
+
+
+  const rewards = [
+
+    "💎 10 Diamonds",
+
+    "💎 20 Diamonds",
+
+    "💎 50 Diamonds",
+
+    "🎟️ Coupon",
+
+    "🎁 Free Reward",
+
+    "💎 100 Diamonds"
+
+  ];
+
+
+  const index =
+    Math.floor(
+      Math.random() *
+      rewards.length
+    );
+
+
+  const degree =
+    30 + index * 60;
+
+
+  const wheel =
+    document.getElementById(
+      "wheel"
+    );
+
+
+  wheel.style.transform =
+    `rotate(${1800 + (360-degree)}deg)`;
+
+
+  setTimeout(function(){
+
+    const result =
+      document.getElementById(
+        "spinResult"
+      );
+
+
+    result.style.display =
+      "block";
+
+
+    result.textContent =
+      "🎉 Reward: " +
+      rewards[index];
+
+
+    spinning = false;
+
+
+    document.getElementById(
+      "spinBtn"
+    ).disabled = false;
+
+  },4100);
+
+}
+
+
+/* CHAT */
+
+function sendChat(){
+
+  const input =
+    document.getElementById(
+      "chatInput"
+    );
+
+
+  const text =
+    input.value.trim();
+
+
+  if(!text) return;
+
+
+  const box =
+    document.getElementById(
+      "chat"
+    );
+
+
+  const message =
+    document.createElement(
+      "div"
+    );
+
+
+  message.className =
+    "msg";
+
+
+  message.textContent =
+    "👤 " + text;
+
+
+  box.appendChild(
+    message
+  );
+
+
+ 
