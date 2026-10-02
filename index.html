@@ -486,23 +486,59 @@ function closePayment(){
   document.getElementById("paymentModal").style.display = "none";
 }
 
-function confirmPayment(){
+async function confirmPayment(){
+
   const r = document.getElementById("paymentResult");
 
+  if(!selected.game || !selected.pkg || !selected.id){
+    r.style.display = "block";
+    r.textContent = "⚠️ សូមជ្រើស Game, Player ID និង Package មុនសិន។";
+    return;
+  }
+
   r.style.display = "block";
-  r.textContent =
-    "✅ Payment បានរាយការណ៍។ Order ត្រូវបានរក្សាទុកសម្រាប់ Admin ពិនិត្យ។ Order ID: MGG-" +
-    Math.random().toString(36).substring(2,8).toUpperCase();
+  r.textContent = "⏳ កំពុងបង្កើត Order...";
 
-  /*
-    ចំណាំ:
-    ផ្នែកនេះជាដំណាក់កាល Demo/UI ប៉ុណ្ណោះ។
-    ការផ្ទៀងផ្ទាត់ ABA/QR និងការបញ្ចូល Diamonds ដោយស្វ័យប្រវត្តិ
-    ត្រូវភ្ជាប់ Payment API + Game Top-Up API នៅ Backend មុនដាក់ប្រើពិត។
-  */
-}
+  try{
 
-function spin(){
+    const response = await fetch(
+      "https://mgg-store-backend.onrender.com/api/orders",
+      {
+        method:"POST",
+        headers:{
+          "Content-Type":"application/json"
+        },
+        body:JSON.stringify({
+          game:selected.game,
+          playerId:selected.id,
+          package:selected.pkg,
+          price:selected.price
+        })
+      }
+    );
+
+    const result = await response.json();
+
+    if(!response.ok){
+      throw new Error(
+        result.error || "Failed to create order"
+      );
+    }
+
+    r.textContent =
+      "✅ Order បានបង្កើតជោគជ័យ! Order ID: " +
+      (result.order?.orderId || result.orderId || "-") +
+      "។ Admin កំពុងពិនិត្យ Payment។";
+
+  }catch(error){
+
+    console.error(error);
+
+    r.textContent =
+      "❌ មិនអាចបង្កើត Order បានទេ។ សូមសាកម្ដងទៀត។";
+
+  }
+  }{
   if(spinning)return;
 
   spinning = true;
