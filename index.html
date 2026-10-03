@@ -1140,7 +1140,9 @@ function openGame(game){
    CHECK PLAYER ID
    ========================================================= */
 
-async function verifyId(){
+
+
+  async function verifyId(){
 
   const game = selected.game;
 
@@ -1148,144 +1150,103 @@ async function verifyId(){
     .getElementById("playerId")
     .value
     .trim();
-const serverId = document
-  .getElementById("serverId")
-  .value
-  .trim();
+
+  const serverId = document
+    .getElementById("serverId")
+    .value
+    .trim();
+
   const result = document.getElementById("verifyResult");
 
-  if(!game){
-    result.style.display = "block";
-    result.textContent = "⚠️ សូមជ្រើស Game មុនសិន។";
+  // Check Player ID
+  if(!id){
+    result.innerHTML = "❌ សូមបញ្ចូល Player ID";
     return;
   }
 
-  if(id.length < 4){
-    result.style.display = "block";
-    result.textContent = "❌ សូមបញ្ចូល Player ID ឲ្យបានត្រឹមត្រូវ។";
-    verified = false;
+  // Check Zone ID
+  if(!serverId){
+    result.innerHTML = "❌ សូមបញ្ចូល Zone ID";
     return;
   }
 
-  result.style.display = "block";
-  result.textContent = "⏳ កំពុង Check Player ID...";
+  result.innerHTML = "⏳ កំពុង Verify...";
 
-  try {
+  try{
 
-    /*
-      Convert website game name
-      to Khmer Top Up game slug
-    */
-    const slugMap = {
-      "Free Fire": "free-fire",
-      "Mobile Legends": "mobile-legends",
-      "Roblox": "roblox",
-      "Honor of Kings": "honor-of-kings",
-      "PUBG Mobile": "pubg-mobile",
-      "Blood Strike": "blood-strike",
-      "Magic Chess Go Go": "magic-chess-go-go",
-      "HoYoverse": "hoyoverse"
-    };
+    const url =
+      "https://mgg-store-backend.onrender.com/api/topup/check" +
+      "?slug=mobile-legends" +
+      "&player_id=" + encodeURIComponent(id) +
+      "&server_id=" + encodeURIComponent(serverId);
 
-    const slug = slugMap[game];
+    const response = await fetch(url);
 
-    if(!slug){
-      result.textContent =
-        "⚠️ Game នេះមិនទាន់មាន Verify API។";
-      verified = false;
+    const json = await response.json();
+
+    console.log("VERIFY RESPONSE:", json);
+
+    if(!response.ok || !json.success){
+
+      result.innerHTML =
+        "❌ Verify មិនបាន<br>" +
+        (json?.data?.message || json?.error || "Unknown error");
+
       return;
     }
 
-    
-  
+    /*
+      Khmer Top Up response អាចដាក់ Player Name
+      នៅក្នុង data ផ្សេងៗគ្នា ដូច្នេះយើងពិនិត្យច្រើនទីតាំង
+    */
 
-  
+    const data = json.data || {};
 
-  let url =
-  "https://mgg-store-backend.onrender.com/api/topup/check" +
-  "?slug=" + encodeURIComponent(slug) +
-  "&player_id=" + encodeURIComponent(id);
+    const playerName =
+      data.player_name ||
+      data.playerName ||
+      data.name ||
+      data.username ||
+      data.data?.player_name ||
+      data.data?.playerName ||
+      data.data?.name ||
+      data.result?.player_name ||
+      data.result?.name;
 
-if(serverId){
-  url +=
-    "&server_id=" +
-    encodeURIComponent(serverId);
-}
+    if(playerName){
 
-const response = await fetch(url);
+      result.innerHTML =
+        "✅ Verify ជោគជ័យ<br>" +
+        "👤 Player Name: <strong>" +
+        playerName +
+        "</strong>";
 
-const json = await response.json();
+      window.verifiedPlayer = {
+        playerId: id,
+        zoneId: serverId,
+        playerName: playerName
+      };
 
-console.log("VERIFY RESPONSE:", json);
+    }else{
 
-const data = json.data;
+      result.innerHTML =
+        "✅ Verify ជោគជ័យ<br>" +
+        "👤 Player: <strong>រកឃើញ</strong>";
 
-if(
-  json.success &&
-  data &&
-  (
-    data.result === "valid" ||
-    data.valid === true
-  )
-){
-
-  selected.id = id;
-  verified = true;
-
-  const nickname =
-    data.nickname ||
-    data.player_name ||
-    data.name ||
-    "Player";
-
-  result.style.display = "block";
-
-  result.innerHTML =
-    "✅ <strong>ID Verified</strong><br>" +
-    "🎮 Game: " + game + "<br>" +
-    "🆔 ID: " + id + "<br>" +
-    "👤 Nickname: " + nickname;
-
-  renderPackages();
-
-  setTimeout(()=>{
-
-    document
-      .getElementById("packages")
-      .scrollIntoView({
-        behavior:"smooth",
-        block:"start"
-      });
-
-  },500);
-
-}else{
-
-  verified = false;
-
-  result.style.display = "block";
-
-  result.innerHTML =
-    "❌ Verify មិនបាន<br>" +
-    "<small style='word-break:break-all'>" +
-    JSON.stringify(json) +
-    "</small>";
-}
-
-}catch(error){
-
-  console.error("VERIFY ERROR:", error);
-
-  verified = false;
-
-  result.style.display = "block";
-
-  result.textContent =
-    "⚠️ មិនអាចភ្ជាប់ទៅ Verify Server បាន។";
-
-}
-
+      window.verifiedPlayer = {
+        playerId: id,
+        zoneId: serverId
+      };
     }
+
+  }catch(error){
+
+    console.error("VERIFY ERROR:", error);
+
+    result.innerHTML =
+      "❌ មិនអាចភ្ជាប់ទៅ Backend បាន";
+  }
+  }
 
 
 /* =========================================================
