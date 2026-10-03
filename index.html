@@ -1188,20 +1188,19 @@ result.style.display = "block";
 
     console.log("CHECK RESPONSE:", json);
 
-    if(!response.ok || !json.success){
+    if(
+  !response.ok ||
+  !json.success ||
+  json?.data?.result === "invalid"
+){
 
-      result.innerHTML =
-        "❌ CHECK ID Error<br>" +
-        (
-          json?.data?.message ||
-          json?.error ||
-          "Unknown error"
-        );
+  result.innerHTML =
+    "❌ CHECK ID FAILED<br>" +
+    "Player ID ឬ Zone ID មិនត្រឹមត្រូវ";
 
-      verified = false;
-      return;
-    }
-
+  verified = false;
+  return;
+  }
     const data = json.data || {};
 
     const playerName =
