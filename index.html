@@ -755,6 +755,10 @@ footer{
         class="input"
         id="playerId"
         placeholder="បញ្ចូល Player ID">
+      <input
+  class="input"
+  id="serverId"
+  placeholder="Server / Zone ID (បើត្រូវការ)">
 
       <button class="btn" onclick="verifyId()">
         🔍 CHECK ID
@@ -1144,7 +1148,10 @@ async function verifyId(){
     .getElementById("playerId")
     .value
     .trim();
-
+const serverId = document
+  .getElementById("serverId")
+  .value
+  .trim();
   const result = document.getElementById("verifyResult");
 
   if(!game){
@@ -1189,10 +1196,16 @@ async function verifyId(){
       return;
     }
 
-    const url =
-      "https://mgg-store-backend.onrender.com/api/topup/check" +
-      "?slug=" + encodeURIComponent(slug) +
-      "&player_id=" + encodeURIComponent(id);
+    let url =
+  "https://mgg-store-backend.onrender.com/api/topup/check" +
+  "?slug=" + encodeURIComponent(slug) +
+  "&player_id=" + encodeURIComponent(id);
+
+if(serverId){
+  url +=
+    "&server_id=" +
+    encodeURIComponent(serverId);
+  }
 
     const response = await fetch(url);
 
