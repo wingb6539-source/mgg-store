@@ -1136,68 +1136,141 @@ function openGame(game){
    CHECK PLAYER ID
    ========================================================= */
 
-function verifyId(){
+async function verifyId(){
 
-  const game =
-    selected.game;
+  const game = selected.game;
 
-  const id =
-    document.getElementById("playerId")
-      .value
-      .trim();
+  const id = document
+    .getElementById("playerId")
+    .value
+    .trim();
 
-  const result =
-    document.getElementById("verifyResult");
-
+  const result = document.getElementById("verifyResult");
 
   if(!game){
-
     result.style.display = "block";
-
-    result.textContent =
-      "⚠️ សូមជ្រើស Game មុនសិន។";
-
+    result.textContent = "⚠️ សូមជ្រើស Game មុនសិន។";
     return;
   }
 
-
   if(id.length < 4){
-
     result.style.display = "block";
+    result.textContent = "❌ សូមបញ្ចូល Player ID ឲ្យបានត្រឹមត្រូវ។";
+    verified = false;
+    return;
+  }
 
-    result.textContent =
-      "❌ Player ID មិនត្រឹមត្រូវ។ សូមបញ្ចូល ID ឲ្យបានត្រឹមត្រូវ។";
+  result.style.display = "block";
+  result.textContent = "⏳ កំពុង Check Player ID...";
+
+  try {
+
+    /*
+      Convert website game name
+      to Khmer Top Up game slug
+    */
+    const slugMap = {
+      "Free Fire": "free-fire",
+      "Mobile Legends": "mobile-legends",
+      "Roblox": "roblox",
+      "Honor of Kings": "honor-of-kings",
+      "PUBG Mobile": "pubg-mobile",
+      "Blood Strike": "blood-strike",
+      "Magic Chess Go Go": "magic-chess-go-go",
+      "HoYoverse": "hoyoverse"
+    };
+
+    const slug = slugMap[game];
+
+    if(!slug){
+      result.textContent =
+        "⚠️ Game នេះមិនទាន់មាន Verify API។";
+      verified = false;
+      return;
+    }
+
+    const url =
+      "https://mgg-store-backend.onrender.com/api/topup/check" +
+      "?slug=" + encodeURIComponent(slug) +
+      "&player_id=" + encodeURIComponent(id);
+
+    const response = await fetch(url);
+
+    const json = await response.json();
+
+    console.log("VERIFY RESPONSE:", json);
+
+    /*
+      Khmer Top Up response
+    */
+    const data = json.data;
+
+    if(
+      json.success &&
+      data &&
+      (
+        data.result === "valid" ||
+        data.valid === true
+      )
+    ){
+
+      selected.id = id;
+      verified = true;
+
+      const nickname =
+        data.nickname ||
+        data.player_name ||
+        data.name ||
+        "Player";
+
+      result.innerHTML =
+        "✅ <strong>ID Verified</strong><br>" +
+        "🎮 Game: " + game + "<br>" +
+        "🆔 ID: " + id + "<br>" +
+        "👤 Nickname: " + nickname;
+
+      renderPackages();
+
+      setTimeout(()=>{
+
+        document
+          .getElementById("packages")
+          .scrollIntoView({
+            behavior:"smooth",
+            block:"start"
+          });
+
+      },500);
+
+    }else{
+
+      verified = false;
+
+      result.textContent =
+        "❌ Player ID មិនត្រឹមត្រូវ ឬមិនអាច Verify បាន។";
+
+      renderPackages();
+
+    }
+
+  }catch(error){
+
+    console.error("VERIFY ERROR:", error);
 
     verified = false;
 
-    return;
+    result.textContent =
+      "⚠️ មិនអាចភ្ជាប់ទៅ Verify Server បាន។ សូមសាកម្ដងទៀត។";
+
+    renderPackages();
+
   }
 
-
-  selected.id = id;
-
-  verified = true;
+  }
+  
 
 
-  result.style.display = "block";
-
-  result.textContent =
-    "✅ Player ID បាន Check ជោគជ័យ!";
-
-  renderPackages();
-
-
-  setTimeout(()=>{
-
-    document.getElementById("packages")
-      .scrollIntoView({
-        behavior:"smooth",
-        block:"start"
-      });
-
-  },300);
-
-}
+  
 
 
 /* =========================================================
