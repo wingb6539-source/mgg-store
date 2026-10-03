@@ -1196,7 +1196,12 @@ const serverId = document
       return;
     }
 
-    let url =
+    
+  
+
+  
+
+  let url =
   "https://mgg-store-backend.onrender.com/api/topup/check" +
   "?slug=" + encodeURIComponent(slug) +
   "&player_id=" + encodeURIComponent(id);
@@ -1205,163 +1210,82 @@ if(serverId){
   url +=
     "&server_id=" +
     encodeURIComponent(serverId);
-  }
+}
 
-    const response = await fetch(url);
+const response = await fetch(url);
 
-    const json = await response.json();
+const json = await response.json();
 
-    console.log("VERIFY RESPONSE:", json);
+console.log("VERIFY RESPONSE:", json);
 
-    /*
-      Khmer Top Up response
-    */
-    const data = json.data;
+const data = json.data;
 
-    if(
-      json.success &&
-      data &&
-      (
-        data.result === "valid" ||
-        data.valid === true
-      )
-    ){
+if(
+  json.success &&
+  data &&
+  (
+    data.result === "valid" ||
+    data.valid === true
+  )
+){
 
-      selected.id = id;
-      verified = true;
+  selected.id = id;
+  verified = true;
 
-      const nickname =
-        data.nickname ||
-        data.player_name ||
-        data.name ||
-        "Player";
+  const nickname =
+    data.nickname ||
+    data.player_name ||
+    data.name ||
+    "Player";
 
-      result.innerHTML =
-        "✅ <strong>ID Verified</strong><br>" +
-        "🎮 Game: " + game + "<br>" +
-        "🆔 ID: " + id + "<br>" +
-        "👤 Nickname: " + nickname;
+  result.style.display = "block";
 
-      renderPackages();
+  result.innerHTML =
+    "✅ <strong>ID Verified</strong><br>" +
+    "🎮 Game: " + game + "<br>" +
+    "🆔 ID: " + id + "<br>" +
+    "👤 Nickname: " + nickname;
 
-      setTimeout(()=>{
+  renderPackages();
 
-        document
-          .getElementById("packages")
-          .scrollIntoView({
-            behavior:"smooth",
-            block:"start"
-          });
+  setTimeout(()=>{
 
-      },500);
+    document
+      .getElementById("packages")
+      .scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+      });
 
-    }else{
+  },500);
 
-      verified = false;
+}else{
 
-      result.textContent =
-        "❌ Player ID មិនត្រឹមត្រូវ ឬមិនអាច Verify បាន។";
+  verified = false;
 
-      renderPackages();
+  result.style.display = "block";
 
-    }
+  result.innerHTML =
+    "❌ Verify មិនបាន<br>" +
+    "<small style='word-break:break-all'>" +
+    JSON.stringify(json) +
+    "</small>";
+}
 
-  }catch(error){
+}catch(error){
 
-    console.error("VERIFY ERROR:", error);
+  console.error("VERIFY ERROR:", error);
 
-    verified = false;
+  verified = false;
 
-    result.textContent =
-      "⚠️ មិនអាចភ្ជាប់ទៅ Verify Server បាន។ សូមសាកម្ដងទៀត។";
+  result.style.display = "block";
 
-    renderPackages();
-
-  }
-
-  }
-  
-
-
-  
-
-
-/* =========================================================
-   RENDER PACKAGES
-   ========================================================= */
-
-function renderPackages(){
-
-  const box =
-    document.getElementById("packageList");
-
-  box.innerHTML = "";
-
-  if(!selected.game){
-
-    box.innerHTML =
-      `<div class="verifyBox">
-        សូមជ្រើស Game មុនសិន។
-      </div>`;
-
-    return;
-  }
-
-  if(!verified){
-
-    box.innerHTML =
-      `<div class="verifyBox">
-        🔒 សូម Check Player ID មុនសិន
-        ដើម្បីបង្ហាញ Packages។
-      </div>`;
-
-    return;
-  }
-
-  const list =
-    packages[selected.game] || [];
-
-  if(!list.length){
-
-    box.innerHTML =
-      `<div class="verifyBox">
-        មិនទាន់មាន Package សម្រាប់ Game នេះ។
-      </div>`;
-
-    return;
-  }
-
-  list.forEach(item => {
-
-    const pkg = item[0];
-    const price = item[1];
-
-    const card =
-      document.createElement("div");
-
-    card.className = "package";
-
-    card.innerHTML = `
-      <h3>💎 ${pkg}</h3>
-      <div class="price">${price}</div>
-      <small>ចុចដើម្បីទិញ</small>
-    `;
-
-    card.onclick = function(){
-
-      selectPackage(
-        selected.game,
-        pkg,
-        price
-      );
-
-    };
-
-    box.appendChild(card);
-
-  });
+  result.textContent =
+    "⚠️ មិនអាចភ្ជាប់ទៅ Verify Server បាន។";
 
 }
+
+    }
 
 
 /* =========================================================
