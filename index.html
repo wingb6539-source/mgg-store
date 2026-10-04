@@ -1140,7 +1140,8 @@ function openGame(game){
    CHECK PLAYER ID
    ========================================================= */
 
-async function verifyId(){
+       
+      async function verifyId(){
 
   const id = document
     .getElementById("playerId")
@@ -1158,18 +1159,19 @@ async function verifyId(){
   result.style.display = "block";
 
   if(!id){
-    result.innerHTML = "❌ សូមបញ្ចូល Player ID";
-    verified = false;
+    result.innerHTML =
+      "❌ សូមបញ្ចូល Player ID";
     return;
   }
 
   if(!serverId){
-    result.innerHTML = "❌ សូមបញ្ចូល Zone ID";
-    verified = false;
+    result.innerHTML =
+      "❌ សូមបញ្ចូល Zone ID";
     return;
   }
 
-  result.innerHTML = "⏳ កំពុង CHECK ID...";
+  result.innerHTML =
+    "⏳ កំពុង CHECK ID...";
 
   try{
 
@@ -1183,77 +1185,35 @@ async function verifyId(){
 
     console.log("CHECK URL:", url);
 
-    const response = await fetch(url);
+    const response =
+      await fetch(url);
 
-    const json = await response.json();
-alert(JSON.stringify(json));
-    console.log("CHECK RESPONSE:", json);
-    console.log("CHECK STATUS:", response.status);
-console.log("CHECK RESULT:", json.result);
-console.log("CHECK DATA:", json.data);
+    const json =
+      await response.json();
 
-    const data = json.data || json;
+    console.log(
+      "CHECK STATUS:",
+      response.status
+    );
 
-    /* =========================
-       CHECK RESULT
-       ========================= */
+    console.log(
+      "CHECK RESPONSE:",
+      json
+    );
 
-    if(
-      !response.ok ||
-      data.result !== "valid"
-    ){
-
-      result.innerHTML =
-        "❌ CHECK ID FAILED<br>" +
-        (
-          data.message ||
-          json.error ||
-          "Player ID ឬ Zone ID មិនត្រឹមត្រូវ"
-        );
-
-      verified = false;
-      return;
-    }
-
-    /* =========================
-       PLAYER NAME
-       ========================= */
-
-    const playerName =
-      data.nickname ||
-      data.player_name ||
-      data.playerName ||
-      data.name ||
-      "Unknown Player";
-
-    /* =========================
-       SAVE VERIFIED PLAYER
-       ========================= */
-
-    verified = true;
-
-    selected.id = id;
-
-    window.verifiedPlayer = {
-      playerId: id,
-      zoneId: serverId,
-      playerName: playerName
-    };
-
-    /* =========================
-       SHOW RESULT
-       ========================= */
+    /*
+      TEMPORARY DEBUG
+      បង្ហាញ Response ពិតពី Backend
+    */
 
     result.innerHTML =
-      "✅ CHECK ID SUCCESS<br>" +
-      "👤 Player Name: <strong>" +
-      playerName +
-      "</strong><br>" +
-      "🆔 Player ID: " +
-      id +
-      "<br>" +
-      "🌐 Zone ID: " +
-      serverId;
+      "<pre style=\"" +
+      "white-space:pre-wrap;" +
+      "text-align:left;" +
+      "font-size:14px;" +
+      "\">" +
+      JSON.stringify(json, null, 2) +
+      "</pre>";
 
   }catch(error){
 
@@ -1262,12 +1222,11 @@ console.log("CHECK DATA:", json.data);
       error
     );
 
-    verified = false;
-
     result.innerHTML =
-      "❌ មិនអាចភ្ជាប់ Backend បាន";
+      "❌ Backend ERROR<br>" +
+      error.message;
   }
-  }
+      }
       
   
         
