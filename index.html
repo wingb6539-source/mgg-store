@@ -1140,20 +1140,13 @@ function openGame(game){
    CHECK PLAYER ID
    ========================================================= */
 
-       
-       async function verifyId(){
+      async function verifyId(){
 
-  const id = document
-    .getElementById("playerId")
-    .value
-    .trim();
-
-  const serverId = document
-    .getElementById("serverId")
-    .value
-    .trim();
-
+  const id = document.getElementById("playerId").value.trim();
+  const serverId = document.getElementById("serverId").value.trim();
   const result = document.getElementById("verifyResult");
+
+  result.style.display = "block";
 
   if(!id || !serverId){
     result.innerHTML = "❌ សូមបញ្ចូល Player ID និង Zone ID";
@@ -1172,7 +1165,6 @@ function openGame(game){
       "&server_id=" + encodeURIComponent(serverId);
 
     const response = await fetch(url);
-
     const json = await response.json();
 
     console.log("CHECK STATUS:", response.status);
@@ -1180,11 +1172,7 @@ function openGame(game){
 
     const data = json.data || json;
 
-    if(
-      response.ok &&
-      json.success !== false &&
-      data.result === "valid"
-    ){
+    if(response.ok && json.success !== false){
 
       const playerName =
         data.nickname ||
@@ -1195,19 +1183,13 @@ function openGame(game){
 
       verified = true;
 
-      window.verifiedPlayer = {
-        id: id,
-        serverId: serverId,
-        name: playerName
-      };
-
       result.innerHTML =
         "✅ CHECK ID SUCCESS<br>" +
         "👤 Player Name: " + playerName + "<br>" +
         "🆔 Player ID: " + id + "<br>" +
         "🌐 Zone ID: " + serverId;
 
-    } else {
+    }else{
 
       verified = false;
 
@@ -1217,7 +1199,7 @@ function openGame(game){
 
     }
 
-  } catch(error) {
+  }catch(error){
 
     console.error("CHECK ID ERROR:", error);
 
@@ -1227,7 +1209,9 @@ function openGame(game){
       "❌ មិនអាចភ្ជាប់ Backend បាន";
 
   }
-  }
+        } 
+       
+    
       
   
         
