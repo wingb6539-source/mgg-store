@@ -1141,7 +1141,7 @@ function openGame(game){
    ========================================================= */
 
        
-      async function verifyId(){
+       async function verifyId(){
 
   const id = document
     .getElementById("playerId")
@@ -1153,80 +1153,81 @@ function openGame(game){
     .value
     .trim();
 
-  const result =
-    document.getElementById("verifyResult");
+  const result = document.getElementById("verifyResult");
 
-  result.style.display = "block";
-
-  if(!id){
-    result.innerHTML =
-      "❌ សូមបញ្ចូល Player ID";
+  if(!id || !serverId){
+    result.innerHTML = "❌ សូមបញ្ចូល Player ID និង Zone ID";
+    verified = false;
     return;
   }
 
-  if(!serverId){
-    result.innerHTML =
-      "❌ សូមបញ្ចូល Zone ID";
-    return;
-  }
+  result.innerHTML = "⏳ Checking ID...";
 
-  result.innerHTML =
-    "⏳ កំពុង CHECK ID...";
-
-  try{
+  try {
 
     const url =
       "https://mgg-store-backend.onrender.com/api/topup/check" +
       "?slug=mobile-legends" +
-      "&player_id=" +
-      encodeURIComponent(id) +
-      "&server_id=" +
-      encodeURIComponent(serverId);
+      "&player_id=" + encodeURIComponent(id) +
+      "&server_id=" + encodeURIComponent(serverId);
 
-    console.log("CHECK URL:", url);
+    const response = await fetch(url);
 
-    const response =
-      await fetch(url);
+    const json = await response.json();
 
-    const json =
-      await response.json();
+    console.log("CHECK STATUS:", response.status);
+    console.log("CHECK RESPONSE:", json);
 
-    console.log(
-      "CHECK STATUS:",
-      response.status
-    );
+    const data = json.data || json;
 
-    console.log(
-      "CHECK RESPONSE:",
-      json
-    );
+    if(
+      response.ok &&
+      json.success !== false &&
+      data.result === "valid"
+    ){
 
-    /*
-      TEMPORARY DEBUG
-      បង្ហាញ Response ពិតពី Backend
-    */
+      const playerName =
+        data.nickname ||
+        data.player_name ||
+        data.playerName ||
+        data.name ||
+        "Unknown Player";
+
+      verified = true;
+
+      window.verifiedPlayer = {
+        id: id,
+        serverId: serverId,
+        name: playerName
+      };
+
+      result.innerHTML =
+        "✅ CHECK ID SUCCESS<br>" +
+        "👤 Player Name: " + playerName + "<br>" +
+        "🆔 Player ID: " + id + "<br>" +
+        "🌐 Zone ID: " + serverId;
+
+    } else {
+
+      verified = false;
+
+      result.innerHTML =
+        "❌ CHECK ID FAILED<br>" +
+        "Player ID ឬ Zone ID មិនត្រឹមត្រូវ";
+
+    }
+
+  } catch(error) {
+
+    console.error("CHECK ID ERROR:", error);
+
+    verified = false;
 
     result.innerHTML =
-      "<pre style=\"" +
-      "white-space:pre-wrap;" +
-      "text-align:left;" +
-      "font-size:14px;" +
-      "\">" +
-      JSON.stringify(json, null, 2) +
-      "</pre>";
+      "❌ មិនអាចភ្ជាប់ Backend បាន";
 
-  }catch(error){
-
-    console.error(
-      "CHECK ID ERROR:",
-      error
-    );
-
-    result.innerHTML =
-      "❌ Backend ERROR<br>" +
-      error.message;
   }
-      }
+  }
       
   
         
