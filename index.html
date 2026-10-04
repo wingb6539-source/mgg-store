@@ -1154,21 +1154,22 @@ async function verifyId(){
 
   const result =
     document.getElementById("verifyResult");
-result.style.display = "block";
+
+  result.style.display = "block";
+
   if(!id){
-    result.innerHTML =
-      "❌ សូមបញ្ចូល Player ID";
+    result.innerHTML = "❌ សូមបញ្ចូល Player ID";
+    verified = false;
     return;
   }
 
   if(!serverId){
-    result.innerHTML =
-      "❌ សូមបញ្ចូល Zone ID";
+    result.innerHTML = "❌ សូមបញ្ចូល Zone ID";
+    verified = false;
     return;
   }
 
-  result.innerHTML =
-    "⏳ កំពុង CHECK ID...";
+  result.innerHTML = "⏳ កំពុង CHECK ID...";
 
   try{
 
@@ -1188,44 +1189,57 @@ result.style.display = "block";
 
     console.log("CHECK RESPONSE:", json);
 
+    const data = json.data || json;
+
+    /* =========================
+       CHECK RESULT
+       ========================= */
+
     if(
-  !response.ok ||
-  !json.success ||
-  json?.data?.result === "invalid"
-){
+      !response.ok ||
+      data.result !== "valid"
+    ){
 
-  result.innerHTML =
-    "❌ CHECK ID FAILED<br>" +
-    "Player ID ឬ Zone ID មិនត្រឹមត្រូវ";
+      result.innerHTML =
+        "❌ CHECK ID FAILED<br>" +
+        (
+          data.message ||
+          json.error ||
+          "Player ID ឬ Zone ID មិនត្រឹមត្រូវ"
+        );
 
-  verified = false;
-  return;
-  }
-    const data = json.data || {};
+      verified = false;
+      return;
+    }
+
+    /* =========================
+       PLAYER NAME
+       ========================= */
 
     const playerName =
+      data.nickname ||
       data.player_name ||
       data.playerName ||
       data.name ||
-      data.username ||
-      data.data?.player_name ||
-      data.data?.playerName ||
-      data.data?.name ||
-      data.result?.player_name ||
-      data.result?.playerName ||
-      data.result?.name ||
       "Unknown Player";
 
-    // SAVE VERIFIED PLAYER
+    /* =========================
+       SAVE VERIFIED PLAYER
+       ========================= */
+
     verified = true;
 
-    
+    selected.id = id;
 
     window.verifiedPlayer = {
       playerId: id,
       zoneId: serverId,
       playerName: playerName
     };
+
+    /* =========================
+       SHOW RESULT
+       ========================= */
 
     result.innerHTML =
       "✅ CHECK ID SUCCESS<br>" +
@@ -1251,7 +1265,7 @@ result.style.display = "block";
       "❌ មិនអាចភ្ជាប់ Backend បាន";
   }
   }
-
+      
   
         
 
