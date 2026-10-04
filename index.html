@@ -1186,7 +1186,7 @@ async function verifyId(){
     const response = await fetch(url);
 
     const json = await response.json();
-
+alert(JSON.stringify(json));
     console.log("CHECK RESPONSE:", json);
     console.log("CHECK STATUS:", response.status);
 console.log("CHECK RESULT:", json.result);
