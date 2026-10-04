@@ -1188,6 +1188,9 @@ async function verifyId(){
     const json = await response.json();
 
     console.log("CHECK RESPONSE:", json);
+    console.log("CHECK STATUS:", response.status);
+console.log("CHECK RESULT:", json.result);
+console.log("CHECK DATA:", json.data);
 
     const data = json.data || json;
 
