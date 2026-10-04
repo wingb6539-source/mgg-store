@@ -1169,6 +1169,10 @@ function openGame(game){
 
     console.log("CHECK STATUS:", response.status);
     console.log("CHECK RESPONSE:", json);
+    result.innerHTML =
+  "<pre style='white-space:pre-wrap;word-break:break-word'>" +
+  JSON.stringify(json, null, 2) +
+  "</pre>";
 
     const data = json.data || json;
 
