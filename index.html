@@ -1149,7 +1149,8 @@ function openGame(game){
   result.style.display = "block";
 
   if(!id || !serverId){
-    result.innerHTML = "❌ សូមបញ្ចូល Player ID និង Zone ID";
+    result.innerHTML =
+      "❌ សូមបញ្ចូល Player ID និង Zone ID";
     verified = false;
     return;
   }
@@ -1169,12 +1170,30 @@ function openGame(game){
 
     console.log("CHECK STATUS:", response.status);
     console.log("CHECK RESPONSE:", json);
-    result.innerHTML =
-  "<pre style='white-space:pre-wrap;word-break:break-word'>" +
-  JSON.stringify(json, null, 2) +
-  "</pre>";
+
+    /* =========================================
+       SHOW REAL BACKEND RESPONSE
+       ========================================= */
+
+    const responseBox =
+      "<pre style=\"" +
+      "white-space:pre-wrap;" +
+      "word-break:break-word;" +
+      "background:#111;" +
+      "color:#00ff88;" +
+      "padding:12px;" +
+      "border-radius:10px;" +
+      "margin-top:10px;" +
+      "font-size:13px;" +
+      "\">" +
+      JSON.stringify(json, null, 2) +
+      "</pre>";
 
     const data = json.data || json;
+
+    /* =========================================
+       CHECK SUCCESS
+       ========================================= */
 
     if(response.ok && json.success !== false){
 
@@ -1186,14 +1205,19 @@ function openGame(game){
         "Unknown Player";
 
       verified = true;
+
       selected.id = id;
-renderPackages();
+
+      renderPackages();
 
       result.innerHTML =
         "✅ CHECK ID SUCCESS<br>" +
         "👤 Player Name: " + playerName + "<br>" +
         "🆔 Player ID: " + id + "<br>" +
-        "🌐 Zone ID: " + serverId;
+        "🌐 Zone ID: " + serverId +
+        "<br><br>" +
+        "📡 BACKEND RESPONSE:" +
+        responseBox;
 
     }else{
 
@@ -1201,7 +1225,10 @@ renderPackages();
 
       result.innerHTML =
         "❌ CHECK ID FAILED<br>" +
-        "Player ID ឬ Zone ID មិនត្រឹមត្រូវ";
+        "Player ID ឬ Zone ID មិនត្រឹមត្រូវ" +
+        "<br><br>" +
+        "📡 BACKEND RESPONSE:" +
+        responseBox;
 
     }
 
@@ -1212,10 +1239,12 @@ renderPackages();
     verified = false;
 
     result.innerHTML =
-      "❌ មិនអាចភ្ជាប់ Backend បាន";
+      "❌ មិនអាចភ្ជាប់ Backend បាន<br><br>" +
+      "Error: " + error.message;
 
   }
-        } 
+
+  }
        
     
       
