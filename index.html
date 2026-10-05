@@ -13,7 +13,52 @@
   padding:0;
   font-family:Arial,Helvetica,sans-serif;
 }
+.package-card{
+  width:100%;
+  padding:16px;
+  margin:8px 0;
+  border:1px solid rgba(0,170,255,.35);
+  border-radius:14px;
+  background:linear-gradient(135deg,#101a2e,#07101f);
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  cursor:pointer;
+  transition:.2s;
+}
 
+.package-card:hover{
+  transform:translateY(-2px);
+  border-color:#00bfff;
+  box-shadow:0 0 15px rgba(0,191,255,.25);
+}
+
+.package-info{
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+  text-align:left;
+}
+
+.package-diamond{
+  font-size:18px;
+  font-weight:bold;
+}
+
+.package-price{
+  color:#00c8ff;
+  font-weight:bold;
+}
+
+.package-buy{
+  padding:8px 13px;
+  border:0;
+  border-radius:9px;
+  background:#00aaff;
+  color:white;
+  font-weight:bold;
+  }
 html{
   scroll-behavior:smooth;
 }
@@ -1278,10 +1323,21 @@ function renderPackages(){
 
     button.className = "package-card";
 
-    button.innerHTML =
-      "💎 " + pkg +
-      "<br>" +
-      "<small>" + price + "</small>";
+    button.innerHTML = `
+  <div class="package-info">
+    <div class="package-diamond">
+      💎 ${pkg} Diamonds
+    </div>
+
+    <div class="package-price">
+      $${price}
+    </div>
+  </div>
+
+  <div class="package-buy">
+    BUY
+  </div>
+`;
 
     button.onclick = function(){
 
