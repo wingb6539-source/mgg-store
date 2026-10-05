@@ -1146,25 +1146,33 @@ function money(value){
    ========================================================= */
 
 function openGame(game){
-  
-alert("OPEN GAME: " + game);
-  
+
   selected = {
-    game:game,
-    pkg:"",
-    price:0,
-    id:""
+
+    game: game,
+    pkg: "",
+    price: 0,
+    id: "",
+    zoneId: ""
+
   };
+
   console.log("SELECTED GAME:", selected.game);
-console.log("PACKAGE LIST:", packages[selected.game]);
+  console.log("PACKAGE LIST:", packages[selected.game]);
 
   verified = false;
 
-  document.getElementById("gameInput").value = game;
+  document.getElementById("gameInput").value =
+    game;
 
-  document.getElementById("playerId").value = "";
+  document.getElementById("playerId").value =
+    "";
 
-  document.getElementById("verifyResult").style.display = "none";
+  document.getElementById("serverId").value =
+    "";
+
+  document.getElementById("verifyResult").style.display =
+    "none";
 
   document.getElementById("total").textContent =
     "Total: $0.00";
@@ -1179,7 +1187,7 @@ console.log("PACKAGE LIST:", packages[selected.game]);
     block:"start"
   });
 
-}
+  }
 
 
 /* =========================================================
@@ -1308,15 +1316,30 @@ selected.zoneId = serverId;
   
         
 
+/* =========================================================
+   RENDER PACKAGES
+   ========================================================= */
+
 function renderPackages(){
 
   const box = document.getElementById("packageList");
-  
+
   if(!box) return;
 
   const list = packages[selected.game] || [];
 
   box.innerHTML = "";
+
+  if(list.length === 0){
+
+    box.innerHTML = `
+      <div class="verifyBox">
+        សូមជ្រើស Game មុនសិន។
+      </div>
+    `;
+
+    return;
+  }
 
   list.forEach(function(item){
 
@@ -1328,20 +1351,22 @@ function renderPackages(){
     button.className = "package-card";
 
     button.innerHTML = `
-  <div class="package-info">
-    <div class="package-diamond">
-      💎 ${pkg} Diamonds
-    </div>
+      <div class="package-info">
 
-    <div class="package-price">
-      $${price}
-    </div>
-  </div>
+        <div class="package-diamond">
+          💎 ${pkg}
+        </div>
 
-  <div class="package-buy">
-    BUY
-  </div>
-`;
+        <div class="package-price">
+          ${price}
+        </div>
+
+      </div>
+
+      <div class="package-buy">
+        BUY
+      </div>
+    `;
 
     button.onclick = function(){
 
@@ -1357,7 +1382,9 @@ function renderPackages(){
 
   });
 
-  }
+}
+
+
 /* =========================================================
    SELECT PACKAGE
    ========================================================= */
@@ -1373,14 +1400,12 @@ function selectPackage(game,pkg,price){
 
   selected = {
 
-  game: game,
-  pkg: pkg,
-  price: money(price),
+    game: game,
+    pkg: pkg,
+    price: money(price),
 
-  id: selected.id,
-  zoneId: selected.zoneId
-
-}; 
+    id: selected.id,
+    zoneId: selected.zoneId
 
   };
 
@@ -1404,7 +1429,53 @@ function selectPackage(game,pkg,price){
 
   document.getElementById("paymentModal").style.display =
     "flex";
-}
+
+  }
+/* =========================================================
+   SELECT PACKAGE
+   ========================================================= */
+
+function selectPackage(game,pkg,price){
+
+  if(!verified || !selected.id){
+
+    alert("⚠️ សូម Check Player ID មុនសិន។");
+
+    return;
+  }
+
+  selected = {
+
+    game: game,
+    pkg: pkg,
+    price: money(price),
+
+    id: selected.id,
+    zoneId: selected.zoneId
+
+  };
+
+  document.getElementById("total").textContent =
+    "Total: $" + selected.price.toFixed(2);
+
+  document.getElementById("product").textContent =
+    selected.game + " • " + selected.pkg;
+
+  document.getElementById("paymentInfo").textContent =
+    selected.game +
+    " • " +
+    selected.pkg +
+    " • Player ID: " +
+    selected.id +
+    " • Total: $" +
+    selected.price.toFixed(2);
+
+  document.getElementById("paymentResult").style.display =
+    "none";
+
+  document.getElementById("paymentModal").style.display =
+    "flex";
+  }
 
 
 /* =========================================================
