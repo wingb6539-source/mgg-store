@@ -1259,7 +1259,45 @@ function openGame(game){
   
         
 
+function renderPackages(){
 
+  const box = document.getElementById("packages");
+
+  if(!box) return;
+
+  const list = packages[selected.game] || [];
+
+  box.innerHTML = "";
+
+  list.forEach(function(item){
+
+    const pkg = item[0];
+    const price = item[1];
+
+    const button = document.createElement("button");
+
+    button.className = "package-card";
+
+    button.innerHTML =
+      "💎 " + pkg +
+      "<br>" +
+      "<small>" + price + "</small>";
+
+    button.onclick = function(){
+
+      selectPackage(
+        selected.game,
+        pkg,
+        price
+      );
+
+    };
+
+    box.appendChild(button);
+
+  });
+
+  }
 /* =========================================================
    SELECT PACKAGE
    ========================================================= */
