@@ -1140,7 +1140,7 @@ function openGame(game){
    CHECK PLAYER ID
    ========================================================= */
 
-      async function verifyId(){
+  async function verifyId(){
 
   const id = document.getElementById("playerId").value.trim();
   const serverId = document.getElementById("serverId").value.trim();
@@ -1149,9 +1149,11 @@ function openGame(game){
   result.style.display = "block";
 
   if(!id || !serverId){
+    verified = false;
+
     result.innerHTML =
       "❌ សូមបញ្ចូល Player ID និង Zone ID";
-    verified = false;
+
     return;
   }
 
@@ -1171,6 +1173,8 @@ function openGame(game){
     console.log("CHECK STATUS:", response.status);
     console.log("CHECK RESPONSE:", json);
 
+    const data = json.data || {};
+
     /* =========================================
        SHOW REAL BACKEND RESPONSE
        ========================================= */
@@ -1189,35 +1193,15 @@ function openGame(game){
       JSON.stringify(json, null, 2) +
       "</pre>";
 
-    const data = json.data || json;
-
     /* =========================================
-       CHECK SUCCESS
+       INVALID ID
        ========================================= */
 
-    if(response.ok && json.success !== false){
-
-      const playerName =
-        data.nickname ||
-        data.player_name ||
-        data.playerName ||
-        data.name ||
-        "Unknown Player";
-
-      verified = true;
-
-      selected.id = id;
-
-      result.innerHTML =
-        "✅ CHECK ID SUCCESS<br>" +
-        "👤 Player Name: " + playerName + "<br>" +
-        "🆔 Player ID: " + id + "<br>" +
-        "🌐 Zone ID: " + serverId +
-        "<br><br>" +
-        "📡 BACKEND RESPONSE:" +
-        responseBox;
-
-    }else{
+    if(
+      !response.ok ||
+      json.success !== true ||
+      data.result === "invalid"
+    ){
 
       verified = false;
 
@@ -1228,7 +1212,36 @@ function openGame(game){
         "📡 BACKEND RESPONSE:" +
         responseBox;
 
+      return;
     }
+
+    /* =========================================
+       PLAYER NAME
+       ========================================= */
+
+    const playerName =
+      data.nickname ||
+      data.player_name ||
+      data.playerName ||
+      data.name ||
+      "Unknown Player";
+
+    /* =========================================
+       SUCCESS
+       ========================================= */
+
+    verified = true;
+
+    selected.id = id;
+
+    result.innerHTML =
+      "✅ CHECK ID SUCCESS<br>" +
+      "👤 Player Name: " + playerName + "<br>" +
+      "🆔 Player ID: " + id + "<br>" +
+      "🌐 Zone ID: " + serverId +
+      "<br><br>" +
+      "📡 BACKEND RESPONSE:" +
+      responseBox;
 
   }catch(error){
 
@@ -1239,10 +1252,10 @@ function openGame(game){
     result.innerHTML =
       "❌ មិនអាចភ្ជាប់ Backend បាន<br><br>" +
       "Error: " + error.message;
-
   }
+  }    
 
-  }
+    
        
     
       
