@@ -1274,8 +1274,8 @@ function openGame(game){
 
     verified = true;
 
-    selected.id = id;
-
+selected.id = id;
+selected.zoneId = serverId;
     result.innerHTML =
       "✅ CHECK ID SUCCESS<br>" +
       "👤 Player Name: " + playerName + "<br>" +
@@ -1369,10 +1369,14 @@ function selectPackage(game,pkg,price){
 
   selected = {
 
-    game:game,
-    pkg:pkg,
-    price:money(price),
-    id:selected.id
+  game: game,
+  pkg: pkg,
+  price: money(price),
+
+  id: selected.id,
+  zoneId: selected.zoneId
+
+}; 
 
   };
 
