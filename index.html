@@ -1344,50 +1344,53 @@ selected.zoneId = serverId;
    RENDER PACKAGES
    ========================================================= */
 
+function renderPackages(){
 
-    function renderPackages(){
-
-  const box = document.getElementById("packages");
+  const box = document.getElementById("packageList");
 
   if(!box) return;
 
-  const list = packages["mobile-legends"] || [];
+  const list = packages["Mobile Legends"] || [];
 
   box.innerHTML = "";
 
   list.forEach(function(item){
 
     const pkg = item[0];
-    const price = item[1];
+    const price = money(item[1]);
 
     const button = document.createElement("button");
 
     button.className = "package-card";
 
     button.innerHTML = `
-      <div class="diamond">💎</div>
-      <div class="package-name">${pkg}</div>
-      <div class="package-price">$${price.toFixed(2)}</div>
+      <div class="package-info">
+        <div class="package-diamond">💎 ${pkg}</div>
+        <div class="package-price">$${price.toFixed(2)}</div>
+      </div>
+      <div class="package-buy">BUY</div>
     `;
 
     button.onclick = function(){
 
-  document
-    .querySelectorAll(".package-card")
-    .forEach(function(btn){
-      btn.classList.remove("selected");
-    });
+      document
+        .querySelectorAll(".package-card")
+        .forEach(function(btn){
+          btn.classList.remove("selected");
+        });
 
-  button.classList.add("selected");
+      button.classList.add("selected");
 
-  selectPackage("mobile-legends", pkg, price);
-
-};
+      selectPackage("Mobile Legends", pkg, price);
+    };
 
     box.appendChild(button);
 
   });
   }
+    
+
+    
 
 
 /* =========================================================
@@ -1436,51 +1439,7 @@ function selectPackage(game,pkg,price){
     "flex";
 
   }
-/* =========================================================
-   SELECT PACKAGE
-   ========================================================= */
 
-function selectPackage(game,pkg,price){
-
-  if(!verified || !selected.id){
-
-    alert("⚠️ សូម Check Player ID មុនសិន។");
-
-    return;
-  }
-
-  selected = {
-
-    game: game,
-    pkg: pkg,
-    price: money(price),
-
-    id: selected.id,
-    zoneId: selected.zoneId
-
-  };
-
-  document.getElementById("total").textContent =
-    "Total: $" + selected.price.toFixed(2);
-
-  document.getElementById("product").textContent =
-    selected.game + " • " + selected.pkg;
-
-  document.getElementById("paymentInfo").textContent =
-    selected.game +
-    " • " +
-    selected.pkg +
-    " • Player ID: " +
-    selected.id +
-    " • Total: $" +
-    selected.price.toFixed(2);
-
-  document.getElementById("paymentResult").style.display =
-    "none";
-
-  document.getElementById("paymentModal").style.display =
-    "flex";
-  }
 
 
 /* =========================================================
