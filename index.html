@@ -1524,6 +1524,7 @@ function closePayment(){
    CREATE ORDER
    ========================================================= */
 
+
 async function confirmPayment(){
 
   const result =
@@ -1533,13 +1534,15 @@ async function confirmPayment(){
     !selected.game ||
     !selected.pkg ||
     !selected.id ||
+    !selected.zoneId ||
+    !selected.packageId ||
     !selected.price
   ){
 
     result.style.display = "block";
 
     result.textContent =
-      "⚠️ សូមជ្រើស Game, Player ID និង Package មុនសិន។";
+      "⚠️ សូម Check ID និងជ្រើស Package មុនសិន។";
 
     return;
   }
@@ -1563,13 +1566,17 @@ async function confirmPayment(){
 
           body:JSON.stringify({
 
-            game:selected.game,
+            game: selected.game,
 
-            playerId:selected.id,
+            playerId: selected.id,
 
-            package:selected.pkg,
+            serverId: selected.zoneId,
 
-            price:selected.price
+            package: selected.pkg,
+
+            packageId: selected.packageId,
+
+            price: selected.price
 
           })
         }
@@ -1583,6 +1590,7 @@ async function confirmPayment(){
       throw new Error(
         data.error || "Failed to create order"
       );
+
     }
 
     const order =
@@ -1596,31 +1604,52 @@ async function confirmPayment(){
     result.innerHTML = `
       <b>✅ Order បានបង្កើតជោគជ័យ!</b>
       <br><br>
+
       🧾 Order ID:
       <b>${orderId}</b>
+
       <br>
-      🎮 Game: ${selected.game}
+      🎮 Game:
+      ${selected.game}
+
       <br>
-      🆔 Player ID: ${selected.id}
+      🆔 Player ID:
+      ${selected.id}
+
       <br>
-      💎 Package: ${selected.pkg}
+      🌐 Zone ID:
+      ${selected.zoneId}
+
       <br>
-      💰 Total: $${selected.price.toFixed(2)}
+      💎 Package:
+      ${selected.pkg}
+
+      <br>
+      🔢 Package ID:
+      ${selected.packageId}
+
+      <br>
+      💰 Total:
+      $${selected.price.toFixed(2)}
+
       <br><br>
+
       ⏳ Admin កំពុងពិនិត្យ Payment។
     `;
 
+    console.log("ORDER CREATED:", data);
+
   }catch(error){
 
-    console.error(error);
+    console.error("ORDER ERROR:", error);
 
     result.textContent =
       "❌ មិនអាចបង្កើត Order បានទេ។ សូមសាកម្ដងទៀត។";
 
   }
 
-}
-
+  }
+    
 
 /* =========================================================
    SPIN
