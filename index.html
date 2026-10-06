@@ -1090,24 +1090,19 @@ const packages = {
     ["Monthly x3","$24.50"]
   ],
 
-  "Mobile Legends":[
-    ["55 Diamonds",0.76],
-    ["86 Diamonds",1.20],
-    ["172 Diamonds",2.36],
-    ["257 Diamonds",3.52],
-    ["344 Diamonds",4.70],
-    ["429 Diamonds",5.85],
-    ["514 Diamonds",7.00],
-    ["706 Diamonds",9.50],
-    ["878 Diamonds",11.80],
-    ["1412 Diamonds",18.90]
-  ],
-
-  "Roblox":[
+    "Roblox":[
     ["80 Robux","$1.00"],
     ["400 Robux","$5.00"],
     ["800 Robux","$10.00"],
     ["1700 Robux","$20.00"]
+  ],
+
+  "Mobile Legends":[
+    ["55 Diamonds",0.76,268],
+    ["86 Diamonds",1.25,269],
+    ["112",1.62,4726],
+    ["165 Diamonds",2.28,270],
+    ["172 Diamonds",2.47,271]
   ],
 
   "Honor of Kings":[
@@ -1344,6 +1339,7 @@ selected.zoneId = serverId;
    RENDER PACKAGES
    ========================================================= */
 
+
 function renderPackages(){
 
   const box = document.getElementById("packageList");
@@ -1358,6 +1354,7 @@ function renderPackages(){
 
     const pkg = item[0];
     const price = money(item[1]);
+    const packageId = item[2];
 
     const button = document.createElement("button");
 
@@ -1381,13 +1378,20 @@ function renderPackages(){
 
       button.classList.add("selected");
 
-      selectPackage("Mobile Legends", pkg, price);
+      selectPackage(
+        "Mobile Legends",
+        pkg,
+        price,
+        packageId
+      );
+
     };
 
     box.appendChild(button);
 
   });
   }
+      
     
 
     
@@ -1397,7 +1401,7 @@ function renderPackages(){
    SELECT PACKAGE
    ========================================================= */
 
-function selectPackage(game,pkg,price){
+function selectPackage(game, pkg, price, packageId){
 
   if(!verified || !selected.id){
 
@@ -1412,10 +1416,14 @@ function selectPackage(game,pkg,price){
     pkg: pkg,
     price: money(price),
 
+    packageId: packageId,
+
     id: selected.id,
     zoneId: selected.zoneId
 
   };
+
+  console.log("SELECTED PACKAGE:", selected);
 
   document.getElementById("total").textContent =
     "Total: $" + selected.price.toFixed(2);
@@ -1437,7 +1445,6 @@ function selectPackage(game,pkg,price){
 
   document.getElementById("paymentModal").style.display =
     "flex";
-
   }
 
 
