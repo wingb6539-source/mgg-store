@@ -59,6 +59,21 @@
   color:white;
   font-weight:bold;
   }
+  .package-card.selected{
+  border:2px solid #00c8ff;
+  background:#102a43;
+  box-shadow:0 0 15px rgba(0,200,255,.35);
+}
+
+.diamond{
+  font-size:28px;
+  margin-bottom:6px;
+}
+
+.package-name{
+  font-size:16px;
+  font-weight:bold;
+}
 html{
   scroll-behavior:smooth;
 }
@@ -1075,11 +1090,20 @@ const packages = {
     ["Monthly x3","$24.50"]
   ],
 
-  "Mobile Legends":[
-  ["55 Diamonds","$0.76"],
-  ["86 Diamonds","$1.20"],
-  ["172 Diamonds","$2.36"]
-],
+   const packages = {
+  "mobile-legends": [
+    ["55 Diamonds", 0.76],
+    ["86 Diamonds", 1.20],
+    ["172 Diamonds", 2.36],
+    ["257 Diamonds", 3.52],
+    ["344 Diamonds", 4.70],
+    ["429 Diamonds", 5.85],
+    ["514 Diamonds", 7.00],
+    ["706 Diamonds", 9.50],
+    ["878 Diamonds", 11.80],
+    ["1412 Diamonds", 18.90]
+  ]
+}; 
 
   "Roblox":[
     ["80 Robux","$1.00"],
@@ -1320,26 +1344,16 @@ selected.zoneId = serverId;
    RENDER PACKAGES
    ========================================================= */
 
-function renderPackages(){
 
-  const box = document.getElementById("packageList");
+    function renderPackages(){
+
+  const box = document.getElementById("packages");
 
   if(!box) return;
 
-  const list = packages[selected.game] || [];
+  const list = packages["mobile-legends"] || [];
 
   box.innerHTML = "";
-
-  if(list.length === 0){
-
-    box.innerHTML = `
-      <div class="verifyBox">
-        សូមជ្រើស Game មុនសិន។
-      </div>
-    `;
-
-    return;
-  }
 
   list.forEach(function(item){
 
@@ -1351,38 +1365,29 @@ function renderPackages(){
     button.className = "package-card";
 
     button.innerHTML = `
-      <div class="package-info">
-
-        <div class="package-diamond">
-          💎 ${pkg}
-        </div>
-
-        <div class="package-price">
-          ${price}
-        </div>
-
-      </div>
-
-      <div class="package-buy">
-        BUY
-      </div>
+      <div class="diamond">💎</div>
+      <div class="package-name">${pkg}</div>
+      <div class="package-price">$${price.toFixed(2)}</div>
     `;
 
     button.onclick = function(){
 
-      selectPackage(
-        selected.game,
-        pkg,
-        price
-      );
+  document
+    .querySelectorAll(".package-card")
+    .forEach(function(btn){
+      btn.classList.remove("selected");
+    });
 
-    };
+  button.classList.add("selected");
+
+  selectPackage("mobile-legends", pkg, price);
+
+};
 
     box.appendChild(button);
 
   });
-
-}
+  }
 
 
 /* =========================================================
