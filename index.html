@@ -1137,6 +1137,9 @@ alt="MGG STORE AMK QR">
 
 
 <footer>
+  <div id="storeStatus" style="text-align:center;padding:15px;margin:15px;border-radius:12px;background:#102b35;color:white;">
+  ⏳ កំពុងពិនិត្យម៉ោងបើកហាង...
+  </div>
   © 2026 MGG STORE — Game Top Up<br>
   Fast • Safe • Reasonable Price
 </footer>
@@ -1159,6 +1162,24 @@ alt="MGG STORE AMK QR">
    ========================================================= */
 
 const API_URL =
+  function updateStoreStatus(){
+  const now = new Date();
+  const time = now.getHours() * 60 + now.getMinutes();
+  const status = document.getElementById("storeStatus");
+
+  if (!status) return;
+
+  if (time >= 1080 && time < 1320) {
+    status.innerHTML = "🟢 ហាងកំពុងបើក!<br>⏰ បិទម៉ោង 10:00 យប់";
+    status.style.background = "#064e3b";
+  } else {
+    status.innerHTML = "🔴 ហាងកំពុងបិទ<br>⏰ បើកម៉ោង 6:00 ល្ងាច";
+    status.style.background = "#7f1d1d";
+  }
+}
+
+updateStoreStatus();
+setInterval(updateStoreStatus, 60000);
   "https://mgg-store-backend.onrender.com/api/orders";
 
 
