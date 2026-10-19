@@ -7,6 +7,93 @@
 <title>MGG STORE V2026 — Game Top Up</title>
 
 <style>
+  /* MGG STORE DAY & NIGHT SKY */
+
+body{
+transition:background .5s,color .5s;
+}
+
+.sky-effect{
+position:fixed;
+inset:0;
+z-index:-1;
+pointer-events:none;
+overflow:hidden;
+background:linear-gradient(#020617,#102b55,#07101f);
+transition:background .6s;
+}
+
+.sky-star{
+position:absolute;
+width:3px;
+height:3px;
+background:white;
+border-radius:50%;
+box-shadow:0 0 8px white;
+animation:twinkle 2s infinite alternate;
+}
+
+.sky-cloud{
+position:absolute;
+width:120px;
+height:35px;
+background:rgba(255,255,255,.6);
+border-radius:50px;
+filter:blur(2px);
+animation:cloudMove 35s linear infinite;
+}
+
+@keyframes twinkle{
+from{opacity:.25;transform:scale(.7)}
+to{opacity:1;transform:scale(1.3)}
+}
+
+@keyframes cloudMove{
+from{left:-150px}
+to{left:110%}
+}
+
+body.day-mode .sky-effect{
+background:linear-gradient(#63c7ff,#c7edff,#f4fbff);
+}
+
+body.day-mode{
+background:#eaf7ff;
+color:#14213d;
+}
+
+body.day-mode header{
+background:rgba(255,255,255,.9);
+border-color:#c5e4f7;
+}
+
+body.day-mode .navlinks a{
+color:#14213d;
+}
+
+body.day-mode .game,
+body.day-mode .verifyBox,
+body.day-mode .supportBox,
+body.day-mode .spinBox,
+body.day-mode .package{
+background:#fff;
+color:#14213d;
+border-color:#c5e4f7;
+}
+
+body.day-mode .input{
+background:#f5fbff;
+color:#14213d;
+border-color:#b8d9ee;
+}
+
+body.day-mode .sky-star{
+display:none;
+}
+
+body.day-mode .sky-cloud{
+background:rgba(255,255,255,.8);
+  }
 *{
   box-sizing:border-box;
   margin:0;
@@ -636,7 +723,9 @@ footer{
   <div class="nav">
 
     <div class="logo">💎 MGG STORE</div>
-
+<button class="btn" id="skyToggle" onclick="toggleSky()">
+  ☀️ Day Mode
+</button>
     <nav class="navlinks">
       <a href="#games">Games</a>
       <a href="#verify">Check ID</a>
@@ -1054,6 +1143,16 @@ alt="MGG STORE AMK QR">
 
 
 <script>
+  function toggleSky(){
+  document.body.classList.toggle("day-mode");
+  const btn = document.getElementById("skyToggle");
+
+  if(document.body.classList.contains("day-mode")){
+    btn.textContent = "🌙 Night Mode";
+  }else{
+    btn.textContent = "☀️ Day Mode";
+  }
+  }
 
 /* =========================================================
    MGG STORE V2026
