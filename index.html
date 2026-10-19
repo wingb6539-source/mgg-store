@@ -1161,25 +1161,32 @@ alt="MGG STORE AMK QR">
    MGG STORE V2026
    ========================================================= */
 function updateStoreStatus(){
-  const now = new Date();
-  const time = now.getHours() * 60 + now.getMinutes();
-  const status = document.getElementById("storeStatus");
+const status = document.getElementById("storeStatus");
+if (!status) return;
 
-  if (!status) return;
+const parts = new Intl.DateTimeFormat("en-GB", {
+timeZone: "Asia/Phnom_Penh",
+hour: "2-digit",
+minute: "2-digit",
+hour12: false
+}).formatToParts(new Date());
 
-  if (time >= 1080 && time < 1320) {
-    status.innerHTML = "🟢 ហាងកំពុងបើក!<br>⏰ បិទម៉ោង 10:00 យប់";
-    status.style.background = "#064e3b";
-  } else {
-    status.innerHTML = "🔴 ហាងកំពុងបិទ<br>⏰ បើកម៉ោង 6:00 ល្ងាច";
-    status.style.background = "#7f1d1d";
-  }
+const hour = Number(parts.find(p => p.type === "hour").value);
+const minute = Number(parts.find(p => p.type === "minute").value);
+const time = hour * 60 + minute;
+
+if (time >= 1080 && time < 1320) {
+status.innerHTML = "🟢 ហាងកំពុងបើក!<br>⏰ បិទម៉ោង 10:00 យប់";
+status.style.background = "#064e3b";
+} else {
+status.innerHTML = "🔴 ហាងកំពុងបិទ<br>⏰ បើកម៉ោង 6:00 ល្ងាច";
+status.style.background = "#7f1d1d";
+}
 }
 
 updateStoreStatus();
 setInterval(updateStoreStatus, 60000);
 const API_URL =
-  
   "https://mgg-store-backend.onrender.com/api/orders";
 
 
