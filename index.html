@@ -1160,9 +1160,7 @@ alt="MGG STORE AMK QR">
 /* =========================================================
    MGG STORE V2026
    ========================================================= */
-
-const API_URL =
-  function updateStoreStatus(){
+function updateStoreStatus(){
   const now = new Date();
   const time = now.getHours() * 60 + now.getMinutes();
   const status = document.getElementById("storeStatus");
@@ -1180,6 +1178,8 @@ const API_URL =
 
 updateStoreStatus();
 setInterval(updateStoreStatus, 60000);
+const API_URL =
+  
   "https://mgg-store-backend.onrender.com/api/orders";
 
 
