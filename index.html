@@ -200,11 +200,31 @@ header{
 }
 
 .logo{
+  display:flex;
+  align-items:center;
+  gap:8px;
   font-size:23px;
   font-weight:900;
   color:#39a7ff;
   text-shadow:0 0 18px rgba(57,167,255,.5);
 }
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:23px;
+  font-weight:900;
+  color:#39a7ff;
+  text-shadow:0 0 18px rgba(57,167,255,.5);
+}
+
+.logo img{
+  width:42px;
+  height:42px;
+  object-fit:contain;
+  border-radius:50%;
+  }
 
 .navlinks{
   display:flex;
@@ -722,7 +742,10 @@ footer{
 <header>
   <div class="nav">
 
-    <div class="logo">💎 MGG STORE</div>
+    <div class="logo">
+  <img src="images/file_00000000ab9482079129a8391206480f.png" alt="MGG Logo">
+  <span>💎 MGG STORE</span>
+    </div>
 <button class="btn" id="skyToggle" onclick="toggleSky()">
   ☀️ Day Mode
 </button>
